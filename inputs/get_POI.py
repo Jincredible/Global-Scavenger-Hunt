@@ -1,6 +1,8 @@
 #!/anaconda2/bin/python
 
-#Objective is to help visualize some of the test data using matplotlib
+#Objectives:
+#1. help visualize some of the test data using matplotlib
+#2. take the test data (CSVs of fire hydrant longitude/latitude in Boston and Cambridge) and convert them into redis commands to add into the redis GEOAPI
 
 #import statements
 import os
