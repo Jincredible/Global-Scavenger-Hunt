@@ -16,11 +16,15 @@ MAX_MEMBER_NUM=25738 #Defined in the commands to redis txt file, dependent on th
 
 KEY_VALUE = "Boston"
 MIN_RADIUS = 75 #in meters, this is the first radius we use to search
-MAX_RADIUS = 200 #in meters, this is the max radius we are willing to search
+MAX_RADIUS = 300 #in meters, this is the max radius we are willing to search
 STEP_RADIUS = 25 #in meters, if we don't find a valid set, step up the radius with this
-NUM_PAST_MEMBERS = 3
+NUM_PAST_MEMBERS = 3 #minimum is one, which is where you currently are
 
-WALKING_DURATION = 20 #in number of members, this is the max number of members we will simulate each player walking
+WALKING_DURATION = 50 #in number of members, this is the max number of members we will simulate each player walking
+NUM_SAMPLES = 1000
+
+RESULTS_PATH = 'sim_results'
+
 
 def find_neighbor(redis_handle, recent_members, radius=MIN_RADIUS):
 	neighbors = redis_handle.georadiusbymember(KEY_VALUE,recent_members[-1],radius,unit="m")
@@ -34,13 +38,12 @@ def find_neighbor(redis_handle, recent_members, radius=MIN_RADIUS):
 		else:
 			return find_neighbor(redis_handle,recent_members,radius+STEP_RADIUS)
 
-
-if __name__ == "__main__":
+def generate_walk(tag='0000000'):
+	r = redis.StrictRedis(host='localhost', port=6379, db=0) #first, define the python redis handler
+	
 	members = []
 	locations = []
 
-	r = redis.StrictRedis(host='localhost', port=6379, db=0) #first, define the python redis handler
-	
 	#The first member is randomly generated
 	members.append(str(random.randint(MIN_MEMBER_NUM,MAX_MEMBER_NUM)))
 
@@ -49,14 +52,18 @@ if __name__ == "__main__":
 	locations.extend(r.geopos(KEY_VALUE,members[-1]))
 
 	for count in range(WALKING_DURATION):
-		members.extend(find_neighbor(r,members[-NUM_PAST_MEMBERS:],MIN_RADIUS))
-		locations.extend(r.geopos(KEY_VALUE,members[-1]))
+		#there are some times when the simulation walks into a corner and can't get out
+		try:
+			members.extend(find_neighbor(r,members[-NUM_PAST_MEMBERS:],MIN_RADIUS))
+			locations.extend(r.geopos(KEY_VALUE,members[-1]))
+		except redis.exceptions.ResponseError: #in those cases when the simulation goes into a corner, redis throws a response error
+			pass
 
-	with open('out000000_temp.csv', 'w') as f:
+	with open(RESULTS_PATH+'/'+'sim'+tag+'_temp.csv', 'w') as f:
 		writer = csv.writer(f)
 		writer.writerows(izip(members, locations))
 
-	with open(r'out000000_temp.csv', 'r') as infile, open(r'out000000.csv', 'w') as outfile:
+	with open(RESULTS_PATH+'/'+'sim'+tag+'_temp.csv', 'r') as infile, open(RESULTS_PATH+'/'+'sim'+tag+'.csv', 'w') as outfile:
 		data = infile.read()
 		data = data.replace('"', '')
 		data = data.replace('(', '')
@@ -64,6 +71,13 @@ if __name__ == "__main__":
 		outfile.write(data)
 		outfile.close()
 
-	os.remove('out000000_temp.csv')
+	os.remove(RESULTS_PATH+'/'+'sim'+tag+'_temp.csv')
+
+if __name__ == "__main__":
+
+	for i in range(NUM_SAMPLES):
+		generate_walk(str("%07d" % (i,)))
+
+	
 
 
