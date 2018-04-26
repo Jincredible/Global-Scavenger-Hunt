@@ -10,13 +10,13 @@ import org.apache.spark.sql._
 object PriceDataStreaming {
   def main(args: Array[String]) {
 
-    val brokers = "ec2-52-26-67-62.us-west-2.compute.amazonaws.com:9092"
-    val topics = "price_data_part4"
+    val brokers = "ec2-52-21-243-144.compute-1.amazonaws.com:9092"
+    val topics = "test"
     val topicsSet = topics.split(",").toSet
 
     // Create context with 2 second batch interval
     val sparkConf = new SparkConf().setAppName("price_data")
-    val ssc = new StreamingContext(sparkConf, Seconds(2))
+    val ssc = new StreamingContext(sparkConf, Seconds(5))
 
     // Create direct kafka stream with brokers and topics
     val kafkaParams = Map[String, String]("metadata.broker.list" -> brokers)
