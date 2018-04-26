@@ -1,0 +1,3875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="Google Latitude JSON Converter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Location History</name>
+  </metadata>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:01:55Z</time>
+    <desc>2018-04-12 00:01:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:04:36Z</time>
+    <desc>2018-04-12 00:04:36 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:08:41Z</time>
+    <desc>2018-04-12 00:08:41 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:10:48Z</time>
+    <desc>2018-04-12 00:10:48 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:13:30Z</time>
+    <desc>2018-04-12 00:13:30 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:59:54Z</time>
+    <desc>2018-04-12 00:59:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:59:54Z</time>
+    <desc>2018-04-12 00:59:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T00:59:58Z</time>
+    <desc>2018-04-12 00:59:58 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T02:59:56Z</time>
+    <desc>2018-04-12 02:59:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T02:59:56Z</time>
+    <desc>2018-04-12 02:59:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652332" lon="-71.093083">
+    <ele>-16</ele>
+    <time>2018-04-12T03:00:00Z</time>
+    <desc>2018-04-12 03:00:00 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651639" lon="-71.0930228">
+    <ele>-16</ele>
+    <time>2018-04-12T05:37:15Z</time>
+    <desc>2018-04-12 05:37:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652089" lon="-71.0930861">
+    <time>2018-04-12T06:51:44Z</time>
+    <desc>2018-04-12 06:51:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652089" lon="-71.0930861">
+    <time>2018-04-12T07:53:57Z</time>
+    <desc>2018-04-12 07:53:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652089" lon="-71.0930861">
+    <time>2018-04-12T07:53:58Z</time>
+    <desc>2018-04-12 07:53:58 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T07:55:08Z</time>
+    <desc>2018-04-12 07:55:08 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T07:56:02Z</time>
+    <desc>2018-04-12 07:56:02 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T07:57:08Z</time>
+    <desc>2018-04-12 07:57:08 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T07:58:02Z</time>
+    <desc>2018-04-12 07:58:02 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T07:58:08Z</time>
+    <desc>2018-04-12 07:58:08 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:00:03Z</time>
+    <desc>2018-04-12 08:00:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:02:03Z</time>
+    <desc>2018-04-12 08:02:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:02:17Z</time>
+    <desc>2018-04-12 08:02:17 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:04:03Z</time>
+    <desc>2018-04-12 08:04:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:06:03Z</time>
+    <desc>2018-04-12 08:06:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:07:19Z</time>
+    <desc>2018-04-12 08:07:19 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:08:03Z</time>
+    <desc>2018-04-12 08:08:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:08:24Z</time>
+    <desc>2018-04-12 08:08:24 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:09:24Z</time>
+    <desc>2018-04-12 08:09:24 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:10:03Z</time>
+    <desc>2018-04-12 08:10:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:10:24Z</time>
+    <desc>2018-04-12 08:10:24 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:11:24Z</time>
+    <desc>2018-04-12 08:11:24 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:12:03Z</time>
+    <desc>2018-04-12 08:12:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:14:03Z</time>
+    <desc>2018-04-12 08:14:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:16:03Z</time>
+    <desc>2018-04-12 08:16:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:16:25Z</time>
+    <desc>2018-04-12 08:16:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:18:03Z</time>
+    <desc>2018-04-12 08:18:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:19:25Z</time>
+    <desc>2018-04-12 08:19:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:20:03Z</time>
+    <desc>2018-04-12 08:20:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:22:03Z</time>
+    <desc>2018-04-12 08:22:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:23:25Z</time>
+    <desc>2018-04-12 08:23:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:24:03Z</time>
+    <desc>2018-04-12 08:24:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:26:03Z</time>
+    <desc>2018-04-12 08:26:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:26:26Z</time>
+    <desc>2018-04-12 08:26:26 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:27:26Z</time>
+    <desc>2018-04-12 08:27:26 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930295">
+    <ele>-16</ele>
+    <time>2018-04-12T08:28:03Z</time>
+    <desc>2018-04-12 08:28:03 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.092999">
+    <ele>-17</ele>
+    <time>2018-04-12T08:29:32Z</time>
+    <desc>2018-04-12 08:29:32 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651738" lon="-71.0930001">
+    <ele>-16</ele>
+    <time>2018-04-12T08:30:03Z</time>
+    <desc>2018-04-12 08:30:03 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651738" lon="-71.0930001">
+    <ele>-16</ele>
+    <time>2018-04-12T08:32:05Z</time>
+    <desc>2018-04-12 08:32:05 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651715" lon="-71.0930105">
+    <ele>-16</ele>
+    <time>2018-04-12T08:33:23Z</time>
+    <desc>2018-04-12 08:33:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651779" lon="-71.0930086">
+    <ele>-16</ele>
+    <time>2018-04-12T08:33:46Z</time>
+    <desc>2018-04-12 08:33:46 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651748" lon="-71.0930101">
+    <ele>-16</ele>
+    <time>2018-04-12T08:35:57Z</time>
+    <desc>2018-04-12 08:35:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651748" lon="-71.0930101">
+    <ele>-16</ele>
+    <time>2018-04-12T08:37:57Z</time>
+    <desc>2018-04-12 08:37:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651748" lon="-71.0930101">
+    <ele>-16</ele>
+    <time>2018-04-12T08:38:43Z</time>
+    <desc>2018-04-12 08:38:43 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651748" lon="-71.0930101">
+    <ele>-16</ele>
+    <time>2018-04-12T08:39:57Z</time>
+    <desc>2018-04-12 08:39:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651748" lon="-71.0930101">
+    <ele>-16</ele>
+    <time>2018-04-12T08:41:57Z</time>
+    <desc>2018-04-12 08:41:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651748" lon="-71.0930101">
+    <ele>-16</ele>
+    <time>2018-04-12T08:43:08Z</time>
+    <desc>2018-04-12 08:43:08 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365176" lon="-71.0929987">
+    <ele>-16</ele>
+    <time>2018-04-12T08:43:24Z</time>
+    <desc>2018-04-12 08:43:24 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651404" lon="-71.0930125">
+    <ele>-16</ele>
+    <time>2018-04-12T08:43:40Z</time>
+    <desc>2018-04-12 08:43:40 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651559" lon="-71.09301">
+    <ele>-16</ele>
+    <time>2018-04-12T08:43:55Z</time>
+    <desc>2018-04-12 08:43:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651488" lon="-71.0930092">
+    <ele>-16</ele>
+    <time>2018-04-12T08:44:10Z</time>
+    <desc>2018-04-12 08:44:10 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651612" lon="-71.0929856">
+    <ele>-16</ele>
+    <time>2018-04-12T08:45:06Z</time>
+    <desc>2018-04-12 08:45:06 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651698" lon="-71.0930125">
+    <ele>-16</ele>
+    <time>2018-04-12T08:45:48Z</time>
+    <desc>2018-04-12 08:45:48 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651788" lon="-71.092999">
+    <ele>-16</ele>
+    <time>2018-04-12T08:46:36Z</time>
+    <desc>2018-04-12 08:46:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651788" lon="-71.092999">
+    <ele>-16</ele>
+    <time>2018-04-12T08:48:38Z</time>
+    <desc>2018-04-12 08:48:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651788" lon="-71.092999">
+    <ele>-16</ele>
+    <time>2018-04-12T08:50:38Z</time>
+    <desc>2018-04-12 08:50:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651788" lon="-71.092999">
+    <ele>-16</ele>
+    <time>2018-04-12T08:52:38Z</time>
+    <desc>2018-04-12 08:52:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651788" lon="-71.092999">
+    <ele>-16</ele>
+    <time>2018-04-12T08:54:38Z</time>
+    <desc>2018-04-12 08:54:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651174" lon="-71.0930182">
+    <ele>-8</ele>
+    <time>2018-04-12T08:55:37Z</time>
+    <desc>2018-04-12 08:55:37 (Accuracy: 19)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0929989">
+    <ele>-16</ele>
+    <time>2018-04-12T08:56:36Z</time>
+    <desc>2018-04-12 08:56:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0929989">
+    <ele>-16</ele>
+    <time>2018-04-12T08:58:19Z</time>
+    <desc>2018-04-12 08:58:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0929989">
+    <ele>-16</ele>
+    <time>2018-04-12T08:58:38Z</time>
+    <desc>2018-04-12 08:58:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0929989">
+    <ele>-16</ele>
+    <time>2018-04-12T09:01:29Z</time>
+    <desc>2018-04-12 09:01:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0929989">
+    <ele>-16</ele>
+    <time>2018-04-12T09:04:36Z</time>
+    <desc>2018-04-12 09:04:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0929989">
+    <ele>-16</ele>
+    <time>2018-04-12T09:07:19Z</time>
+    <desc>2018-04-12 09:07:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652819" lon="-71.0930786">
+    <ele>-10</ele>
+    <time>2018-04-12T09:08:39Z</time>
+    <desc>2018-04-12 09:08:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365212" lon="-71.0930286">
+    <ele>-2</ele>
+    <time>2018-04-12T09:13:57Z</time>
+    <desc>2018-04-12 09:13:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651571" lon="-71.0930034">
+    <ele>-16</ele>
+    <time>2018-04-12T09:15:37Z</time>
+    <desc>2018-04-12 09:15:37 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651519" lon="-71.0929985">
+    <ele>-16</ele>
+    <time>2018-04-12T09:15:57Z</time>
+    <desc>2018-04-12 09:15:57 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651593" lon="-71.0929952">
+    <ele>-5</ele>
+    <time>2018-04-12T09:16:17Z</time>
+    <desc>2018-04-12 09:16:17 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651759" lon="-71.0930018">
+    <ele>-5</ele>
+    <time>2018-04-12T09:16:36Z</time>
+    <desc>2018-04-12 09:16:36 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3651696" lon="-71.0929984">
+    <ele>-6</ele>
+    <time>2018-04-12T09:16:56Z</time>
+    <desc>2018-04-12 09:16:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651714" lon="-71.093002">
+    <ele>-6</ele>
+    <time>2018-04-12T09:17:16Z</time>
+    <desc>2018-04-12 09:17:16 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651703" lon="-71.0930039">
+    <ele>-7</ele>
+    <time>2018-04-12T09:17:37Z</time>
+    <desc>2018-04-12 09:17:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.36517" lon="-71.0930051">
+    <time>2018-04-12T09:19:43Z</time>
+    <desc>2018-04-12 09:19:43 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651726" lon="-71.0929727">
+    <ele>-8</ele>
+    <time>2018-04-12T09:21:53Z</time>
+    <desc>2018-04-12 09:21:53 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651726" lon="-71.0929727">
+    <ele>-8</ele>
+    <time>2018-04-12T09:23:53Z</time>
+    <desc>2018-04-12 09:23:53 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651726" lon="-71.0929727">
+    <ele>-8</ele>
+    <time>2018-04-12T09:25:53Z</time>
+    <desc>2018-04-12 09:25:53 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651726" lon="-71.0929727">
+    <ele>-8</ele>
+    <time>2018-04-12T09:27:53Z</time>
+    <desc>2018-04-12 09:27:53 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651726" lon="-71.0929727">
+    <ele>-8</ele>
+    <time>2018-04-12T09:29:53Z</time>
+    <desc>2018-04-12 09:29:53 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651776" lon="-71.0929995">
+    <ele>-16</ele>
+    <time>2018-04-12T09:30:37Z</time>
+    <desc>2018-04-12 09:30:37 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651772" lon="-71.0930207">
+    <ele>-16</ele>
+    <time>2018-04-12T09:30:54Z</time>
+    <desc>2018-04-12 09:30:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651318" lon="-71.0929672">
+    <ele>-16</ele>
+    <time>2018-04-12T09:31:09Z</time>
+    <desc>2018-04-12 09:31:09 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651411" lon="-71.0930037">
+    <ele>-16</ele>
+    <time>2018-04-12T09:31:25Z</time>
+    <desc>2018-04-12 09:31:25 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651146" lon="-71.0930263">
+    <ele>-11</ele>
+    <time>2018-04-12T09:32:09Z</time>
+    <desc>2018-04-12 09:32:09 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651403" lon="-71.0930116">
+    <ele>-16</ele>
+    <time>2018-04-12T09:32:25Z</time>
+    <desc>2018-04-12 09:32:25 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651243" lon="-71.0930075">
+    <ele>-11</ele>
+    <time>2018-04-12T09:32:40Z</time>
+    <desc>2018-04-12 09:32:40 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365124" lon="-71.0930073">
+    <ele>-11</ele>
+    <time>2018-04-12T09:32:56Z</time>
+    <desc>2018-04-12 09:32:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365124" lon="-71.0930055">
+    <ele>-11</ele>
+    <time>2018-04-12T09:33:12Z</time>
+    <desc>2018-04-12 09:33:12 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365124" lon="-71.0930051">
+    <ele>-11</ele>
+    <time>2018-04-12T09:33:27Z</time>
+    <desc>2018-04-12 09:33:27 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365124" lon="-71.0930048">
+    <ele>-11</ele>
+    <time>2018-04-12T09:33:43Z</time>
+    <desc>2018-04-12 09:33:43 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651247" lon="-71.0930045">
+    <ele>-11</ele>
+    <time>2018-04-12T09:33:58Z</time>
+    <desc>2018-04-12 09:33:58 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651254" lon="-71.0930043">
+    <ele>-11</ele>
+    <time>2018-04-12T09:34:13Z</time>
+    <desc>2018-04-12 09:34:13 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651257" lon="-71.0930041">
+    <ele>-11</ele>
+    <time>2018-04-12T09:34:29Z</time>
+    <desc>2018-04-12 09:34:29 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651257" lon="-71.0930026">
+    <ele>-11</ele>
+    <time>2018-04-12T09:34:45Z</time>
+    <desc>2018-04-12 09:34:45 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651258" lon="-71.0930024">
+    <ele>-11</ele>
+    <time>2018-04-12T09:35:00Z</time>
+    <desc>2018-04-12 09:35:00 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651263" lon="-71.0930026">
+    <ele>-11</ele>
+    <time>2018-04-12T09:35:15Z</time>
+    <desc>2018-04-12 09:35:15 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365161" lon="-71.0929823">
+    <ele>-16</ele>
+    <time>2018-04-12T09:35:44Z</time>
+    <desc>2018-04-12 09:35:44 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650358" lon="-71.0929284">
+    <ele>-25</ele>
+    <time>2018-04-12T09:36:35Z</time>
+    <desc>2018-04-12 09:36:35 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3634228" lon="-71.0931677">
+    <ele>-24</ele>
+    <time>2018-04-12T09:39:03Z</time>
+    <desc>2018-04-12 09:39:03 (Accuracy: 50)</desc>
+  </wpt>
+  <wpt lat="42.3629506" lon="-71.0934587">
+    <ele>4</ele>
+    <time>2018-04-12T09:41:43Z</time>
+    <desc>2018-04-12 09:41:43 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3634675" lon="-71.0965727">
+    <time>2018-04-12T09:43:09Z</time>
+    <desc>2018-04-12 09:43:09 (Accuracy: 100)</desc>
+  </wpt>
+  <wpt lat="42.3632544" lon="-71.0971885">
+    <ele>-25</ele>
+    <time>2018-04-12T09:44:14Z</time>
+    <desc>2018-04-12 09:44:14 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3633966" lon="-71.0975457">
+    <time>2018-04-12T09:44:32Z</time>
+    <desc>2018-04-12 09:44:32 (Accuracy: 24)</desc>
+  </wpt>
+  <wpt lat="42.3631174" lon="-71.099685">
+    <ele>-25</ele>
+    <time>2018-04-12T09:46:37Z</time>
+    <desc>2018-04-12 09:46:37 (Accuracy: 24)</desc>
+  </wpt>
+  <wpt lat="42.3636718" lon="-71.1010447">
+    <time>2018-04-12T09:47:32Z</time>
+    <desc>2018-04-12 09:47:32 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.3643616" lon="-71.1021872">
+    <ele>-11</ele>
+    <time>2018-04-12T09:49:30Z</time>
+    <desc>2018-04-12 09:49:30 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3646649" lon="-71.1024989">
+    <ele>-23</ele>
+    <time>2018-04-12T09:49:56Z</time>
+    <desc>2018-04-12 09:49:56 (Accuracy: 32)</desc>
+  </wpt>
+  <wpt lat="42.3654312" lon="-71.1021017">
+    <ele>-23</ele>
+    <time>2018-04-12T09:52:15Z</time>
+    <desc>2018-04-12 09:52:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365164" lon="-71.1023957">
+    <ele>-23</ele>
+    <time>2018-04-12T09:54:17Z</time>
+    <desc>2018-04-12 09:54:17 (Accuracy: 28)</desc>
+  </wpt>
+  <wpt lat="42.3651232" lon="-71.1025185">
+    <ele>-23</ele>
+    <time>2018-04-12T09:56:25Z</time>
+    <desc>2018-04-12 09:56:25 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651218" lon="-71.1025288">
+    <time>2018-04-12T09:56:51Z</time>
+    <desc>2018-04-12 09:56:51 (Accuracy: 45)</desc>
+  </wpt>
+  <wpt lat="42.3651218" lon="-71.1025288">
+    <time>2018-04-12T09:58:51Z</time>
+    <desc>2018-04-12 09:58:51 (Accuracy: 45)</desc>
+  </wpt>
+  <wpt lat="42.3655324" lon="-71.103472">
+    <ele>-22</ele>
+    <time>2018-04-12T10:01:07Z</time>
+    <desc>2018-04-12 10:01:07 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3656591" lon="-71.1032711">
+    <ele>-22</ele>
+    <time>2018-04-12T10:03:16Z</time>
+    <desc>2018-04-12 10:03:16 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3654716" lon="-71.1035074">
+    <ele>-22</ele>
+    <time>2018-04-12T10:05:19Z</time>
+    <desc>2018-04-12 10:05:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3655099" lon="-71.1039052">
+    <ele>2</ele>
+    <time>2018-04-12T10:06:09Z</time>
+    <desc>2018-04-12 10:06:09 (Accuracy: 39)</desc>
+  </wpt>
+  <wpt lat="42.3664375" lon="-71.102871">
+    <ele>-23</ele>
+    <time>2018-04-12T10:07:20Z</time>
+    <desc>2018-04-12 10:07:20 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3663846" lon="-71.1030948">
+    <ele>-24</ele>
+    <time>2018-04-12T10:09:00Z</time>
+    <desc>2018-04-12 10:09:00 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3663846" lon="-71.1030948">
+    <time>2018-04-12T10:09:21Z</time>
+    <desc>2018-04-12 10:09:21 (Accuracy: 62)</desc>
+  </wpt>
+  <wpt lat="42.3674426" lon="-71.1024328">
+    <ele>-22</ele>
+    <time>2018-04-12T10:11:24Z</time>
+    <desc>2018-04-12 10:11:24 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3677296" lon="-71.1021755">
+    <ele>-23</ele>
+    <time>2018-04-12T10:12:12Z</time>
+    <desc>2018-04-12 10:12:12 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3677873" lon="-71.1020898">
+    <ele>-23</ele>
+    <time>2018-04-12T10:12:52Z</time>
+    <desc>2018-04-12 10:12:52 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3677154" lon="-71.1023306">
+    <time>2018-04-12T10:13:17Z</time>
+    <desc>2018-04-12 10:13:17 (Accuracy: 300)</desc>
+  </wpt>
+  <wpt lat="42.3680184" lon="-71.1021854">
+    <ele>-22</ele>
+    <time>2018-04-12T10:14:46Z</time>
+    <desc>2018-04-12 10:14:46 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3679353" lon="-71.1020756">
+    <ele>-34</ele>
+    <time>2018-04-12T10:15:18Z</time>
+    <desc>2018-04-12 10:15:18 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3678259" lon="-71.1021023">
+    <ele>-29</ele>
+    <time>2018-04-12T10:15:33Z</time>
+    <desc>2018-04-12 10:15:33 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3676734" lon="-71.1022331">
+    <ele>-29</ele>
+    <time>2018-04-12T10:15:49Z</time>
+    <desc>2018-04-12 10:15:49 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3676515" lon="-71.102278">
+    <ele>-29</ele>
+    <time>2018-04-12T10:17:54Z</time>
+    <desc>2018-04-12 10:17:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651307" lon="-71.1025165">
+    <ele>-23</ele>
+    <time>2018-04-12T10:20:49Z</time>
+    <desc>2018-04-12 10:20:49 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651307" lon="-71.1025165">
+    <ele>-23</ele>
+    <time>2018-04-12T10:23:01Z</time>
+    <desc>2018-04-12 10:23:01 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365237" lon="-71.1024464">
+    <ele>-23</ele>
+    <time>2018-04-12T10:25:17Z</time>
+    <desc>2018-04-12 10:25:17 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652374" lon="-71.1024592">
+    <ele>-23</ele>
+    <time>2018-04-12T10:25:35Z</time>
+    <desc>2018-04-12 10:25:35 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652359" lon="-71.1024452">
+    <ele>-23</ele>
+    <time>2018-04-12T10:25:53Z</time>
+    <desc>2018-04-12 10:25:53 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652359" lon="-71.1024452">
+    <time>2018-04-12T10:26:11Z</time>
+    <desc>2018-04-12 10:26:11 (Accuracy: 42)</desc>
+  </wpt>
+  <wpt lat="42.3652361" lon="-71.1024439">
+    <ele>-23</ele>
+    <time>2018-04-12T10:28:12Z</time>
+    <desc>2018-04-12 10:28:12 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652363" lon="-71.1024447">
+    <ele>-23</ele>
+    <time>2018-04-12T10:30:13Z</time>
+    <desc>2018-04-12 10:30:13 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652363" lon="-71.1024447">
+    <ele>-23</ele>
+    <time>2018-04-12T10:31:42Z</time>
+    <desc>2018-04-12 10:31:42 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651284" lon="-71.1025039">
+    <ele>-23</ele>
+    <time>2018-04-12T10:34:15Z</time>
+    <desc>2018-04-12 10:34:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651284" lon="-71.1025039">
+    <ele>-23</ele>
+    <time>2018-04-12T10:36:15Z</time>
+    <desc>2018-04-12 10:36:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651284" lon="-71.1025039">
+    <ele>-23</ele>
+    <time>2018-04-12T10:36:29Z</time>
+    <desc>2018-04-12 10:36:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3647746" lon="-71.1026664">
+    <ele>-23</ele>
+    <time>2018-04-12T10:36:46Z</time>
+    <desc>2018-04-12 10:36:46 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3647003" lon="-71.1024883">
+    <ele>-23</ele>
+    <time>2018-04-12T10:37:03Z</time>
+    <desc>2018-04-12 10:37:03 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3646226" lon="-71.1022407">
+    <ele>-14</ele>
+    <time>2018-04-12T10:37:19Z</time>
+    <desc>2018-04-12 10:37:19 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3629856" lon="-71.0995513">
+    <time>2018-04-12T10:39:40Z</time>
+    <desc>2018-04-12 10:39:40 (Accuracy: 98)</desc>
+  </wpt>
+  <wpt lat="42.3614866" lon="-71.0962913">
+    <time>2018-04-12T10:41:55Z</time>
+    <desc>2018-04-12 10:41:55 (Accuracy: 22)</desc>
+  </wpt>
+  <wpt lat="42.3601358" lon="-71.095042">
+    <ele>-26</ele>
+    <time>2018-04-12T10:43:01Z</time>
+    <desc>2018-04-12 10:43:01 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3601293" lon="-71.0948767">
+    <ele>-2</ele>
+    <time>2018-04-12T10:43:24Z</time>
+    <desc>2018-04-12 10:43:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3584631" lon="-71.09273">
+    <ele>-22</ele>
+    <time>2018-04-12T10:45:18Z</time>
+    <desc>2018-04-12 10:45:18 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3580994" lon="-71.0928858">
+    <ele>-27</ele>
+    <time>2018-04-12T10:45:39Z</time>
+    <desc>2018-04-12 10:45:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3515695" lon="-71.0876193">
+    <time>2018-04-12T10:48:00Z</time>
+    <desc>2018-04-12 10:48:00 (Accuracy: 82)</desc>
+  </wpt>
+  <wpt lat="42.3513958" lon="-71.0897006">
+    <ele>-24</ele>
+    <time>2018-04-12T10:50:01Z</time>
+    <desc>2018-04-12 10:50:01 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3509813" lon="-71.0894975">
+    <ele>-24</ele>
+    <time>2018-04-12T10:50:31Z</time>
+    <desc>2018-04-12 10:50:31 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3509629" lon="-71.0895146">
+    <ele>-11</ele>
+    <time>2018-04-12T10:50:48Z</time>
+    <desc>2018-04-12 10:50:48 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3506771" lon="-71.0895518">
+    <ele>-19</ele>
+    <time>2018-04-12T10:51:04Z</time>
+    <desc>2018-04-12 10:51:04 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3499247" lon="-71.0892862">
+    <ele>-24</ele>
+    <time>2018-04-12T10:51:38Z</time>
+    <desc>2018-04-12 10:51:38 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3499318" lon="-71.0892564">
+    <ele>-14</ele>
+    <time>2018-04-12T10:52:02Z</time>
+    <desc>2018-04-12 10:52:02 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3496575" lon="-71.0889298">
+    <time>2018-04-12T10:52:20Z</time>
+    <desc>2018-04-12 10:52:20 (Accuracy: 25)</desc>
+  </wpt>
+  <wpt lat="42.3481854" lon="-71.087738">
+    <time>2018-04-12T10:54:11Z</time>
+    <desc>2018-04-12 10:54:11 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3486244" lon="-71.0871308">
+    <ele>8</ele>
+    <time>2018-04-12T10:55:37Z</time>
+    <desc>2018-04-12 10:55:37 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3486598" lon="-71.0869121">
+    <ele>1</ele>
+    <time>2018-04-12T10:55:52Z</time>
+    <desc>2018-04-12 10:55:52 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3486682" lon="-71.0856523">
+    <ele>-24</ele>
+    <time>2018-04-12T10:59:20Z</time>
+    <desc>2018-04-12 10:59:20 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3488547" lon="-71.0855243">
+    <ele>-17</ele>
+    <time>2018-04-12T10:59:36Z</time>
+    <desc>2018-04-12 10:59:36 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3489217" lon="-71.0853751">
+    <ele>-19</ele>
+    <time>2018-04-12T10:59:51Z</time>
+    <desc>2018-04-12 10:59:51 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3489657" lon="-71.0851286">
+    <ele>-16</ele>
+    <time>2018-04-12T11:00:07Z</time>
+    <desc>2018-04-12 11:00:07 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3490745" lon="-71.0848012">
+    <ele>-21</ele>
+    <time>2018-04-12T11:00:38Z</time>
+    <desc>2018-04-12 11:00:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3500846" lon="-71.0813434">
+    <ele>-15</ele>
+    <time>2018-04-12T11:03:59Z</time>
+    <desc>2018-04-12 11:03:59 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3501028" lon="-71.0811115">
+    <ele>-3</ele>
+    <time>2018-04-12T11:04:15Z</time>
+    <desc>2018-04-12 11:04:15 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3501546" lon="-71.0809304">
+    <ele>-12</ele>
+    <time>2018-04-12T11:04:31Z</time>
+    <desc>2018-04-12 11:04:31 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3507731" lon="-71.0777301">
+    <ele>7</ele>
+    <time>2018-04-12T11:08:13Z</time>
+    <desc>2018-04-12 11:08:13 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3507115" lon="-71.0777448">
+    <ele>-19</ele>
+    <time>2018-04-12T11:08:30Z</time>
+    <desc>2018-04-12 11:08:30 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3497845" lon="-71.0759957">
+    <ele>-24</ele>
+    <time>2018-04-12T11:11:50Z</time>
+    <desc>2018-04-12 11:11:50 (Accuracy: 35)</desc>
+  </wpt>
+  <wpt lat="42.3506243" lon="-71.0760343">
+    <ele>22</ele>
+    <time>2018-04-12T11:12:46Z</time>
+    <desc>2018-04-12 11:12:46 (Accuracy: 21)</desc>
+  </wpt>
+  <wpt lat="42.3513632" lon="-71.0726749">
+    <ele>-24</ele>
+    <time>2018-04-12T11:16:08Z</time>
+    <desc>2018-04-12 11:16:08 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3513771" lon="-71.0723866">
+    <ele>-19</ele>
+    <time>2018-04-12T11:16:24Z</time>
+    <desc>2018-04-12 11:16:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3518129" lon="-71.0717643">
+    <ele>-24</ele>
+    <time>2018-04-12T11:17:10Z</time>
+    <desc>2018-04-12 11:17:10 (Accuracy: 28)</desc>
+  </wpt>
+  <wpt lat="42.3518102" lon="-71.0709453">
+    <ele>-24</ele>
+    <time>2018-04-12T11:18:32Z</time>
+    <desc>2018-04-12 11:18:32 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3542963" lon="-71.0696856">
+    <ele>-25</ele>
+    <time>2018-04-12T11:22:49Z</time>
+    <desc>2018-04-12 11:22:49 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3543224" lon="-71.0693092">
+    <ele>-21</ele>
+    <time>2018-04-12T11:23:04Z</time>
+    <desc>2018-04-12 11:23:04 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3543382" lon="-71.0692876">
+    <time>2018-04-12T11:24:05Z</time>
+    <desc>2018-04-12 11:24:05 (Accuracy: 100)</desc>
+  </wpt>
+  <wpt lat="42.3524767" lon="-71.0673985">
+    <ele>-24</ele>
+    <time>2018-04-12T11:27:44Z</time>
+    <desc>2018-04-12 11:27:44 (Accuracy: 32)</desc>
+  </wpt>
+  <wpt lat="42.3523702" lon="-71.0643614">
+    <ele>-20</ele>
+    <time>2018-04-12T11:30:39Z</time>
+    <desc>2018-04-12 11:30:39 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3523844" lon="-71.0644836">
+    <ele>-13</ele>
+    <time>2018-04-12T11:31:02Z</time>
+    <desc>2018-04-12 11:31:02 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.3511185" lon="-71.0637454">
+    <time>2018-04-12T11:34:30Z</time>
+    <desc>2018-04-12 11:34:30 (Accuracy: 24)</desc>
+  </wpt>
+  <wpt lat="42.3506039" lon="-71.0632784">
+    <ele>115</ele>
+    <time>2018-04-12T11:34:47Z</time>
+    <desc>2018-04-12 11:34:47 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3507549" lon="-71.0614334">
+    <time>2018-04-12T11:36:46Z</time>
+    <desc>2018-04-12 11:36:46 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.350342" lon="-71.0596004">
+    <ele>-25</ele>
+    <time>2018-04-12T11:40:09Z</time>
+    <desc>2018-04-12 11:40:09 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.350199" lon="-71.0596859">
+    <ele>-2</ele>
+    <time>2018-04-12T11:40:26Z</time>
+    <desc>2018-04-12 11:40:26 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3508908" lon="-71.05823">
+    <ele>-24</ele>
+    <time>2018-04-12T11:42:36Z</time>
+    <desc>2018-04-12 11:42:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3506054" lon="-71.0566796">
+    <time>2018-04-12T11:44:39Z</time>
+    <desc>2018-04-12 11:44:39 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3504491" lon="-71.0556832">
+    <time>2018-04-12T11:46:27Z</time>
+    <desc>2018-04-12 11:46:27 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.3503378" lon="-71.0557563">
+    <time>2018-04-12T11:48:37Z</time>
+    <desc>2018-04-12 11:48:37 (Accuracy: 195)</desc>
+  </wpt>
+  <wpt lat="42.3503224" lon="-71.0557962">
+    <ele>-12</ele>
+    <time>2018-04-12T11:50:30Z</time>
+    <desc>2018-04-12 11:50:30 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3503937" lon="-71.0556112">
+    <time>2018-04-12T11:51:44Z</time>
+    <desc>2018-04-12 11:51:44 (Accuracy: 64)</desc>
+  </wpt>
+  <wpt lat="42.3500507" lon="-71.0559944">
+    <time>2018-04-12T11:52:02Z</time>
+    <desc>2018-04-12 11:52:02 (Accuracy: 116)</desc>
+  </wpt>
+  <wpt lat="42.3512269" lon="-71.0557778">
+    <ele>66</ele>
+    <time>2018-04-12T11:52:24Z</time>
+    <desc>2018-04-12 11:52:24 (Accuracy: 55)</desc>
+  </wpt>
+  <wpt lat="42.3512269" lon="-71.0557778">
+    <time>2018-04-12T11:52:47Z</time>
+    <desc>2018-04-12 11:52:47 (Accuracy: 92)</desc>
+  </wpt>
+  <wpt lat="42.3521564" lon="-71.0558082">
+    <time>2018-04-12T11:54:47Z</time>
+    <desc>2018-04-12 11:54:47 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3523452" lon="-71.0538565">
+    <time>2018-04-12T11:58:37Z</time>
+    <desc>2018-04-12 11:58:37 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3519882" lon="-71.0542029">
+    <ele>5</ele>
+    <time>2018-04-12T11:58:56Z</time>
+    <desc>2018-04-12 11:58:56 (Accuracy: 26)</desc>
+  </wpt>
+  <wpt lat="42.3504272" lon="-71.0507237">
+    <time>2018-04-12T12:01:48Z</time>
+    <desc>2018-04-12 12:01:48 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3503477" lon="-71.0506267">
+    <ele>-22</ele>
+    <time>2018-04-12T12:02:13Z</time>
+    <desc>2018-04-12 12:02:13 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3498856" lon="-71.0493632">
+    <ele>-19</ele>
+    <time>2018-04-12T12:03:17Z</time>
+    <desc>2018-04-12 12:03:17 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3495203" lon="-71.0492171">
+    <ele>39</ele>
+    <time>2018-04-12T12:03:36Z</time>
+    <desc>2018-04-12 12:03:36 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3499375" lon="-71.0487575">
+    <time>2018-04-12T12:04:32Z</time>
+    <desc>2018-04-12 12:04:32 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3503207" lon="-71.0485248">
+    <ele>-25</ele>
+    <time>2018-04-12T12:05:11Z</time>
+    <desc>2018-04-12 12:05:11 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3508773" lon="-71.0500558">
+    <time>2018-04-12T12:06:43Z</time>
+    <desc>2018-04-12 12:06:43 (Accuracy: 28)</desc>
+  </wpt>
+  <wpt lat="42.3512362" lon="-71.0504343">
+    <ele>-25</ele>
+    <time>2018-04-12T12:08:17Z</time>
+    <desc>2018-04-12 12:08:17 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3510623" lon="-71.0503164">
+    <ele>-22</ele>
+    <time>2018-04-12T12:08:41Z</time>
+    <desc>2018-04-12 12:08:41 (Accuracy: 35)</desc>
+  </wpt>
+  <wpt lat="42.3507313" lon="-71.0502391">
+    <ele>-23</ele>
+    <time>2018-04-12T12:09:28Z</time>
+    <desc>2018-04-12 12:09:28 (Accuracy: 26)</desc>
+  </wpt>
+  <wpt lat="42.3506965" lon="-71.0500776">
+    <ele>-9</ele>
+    <time>2018-04-12T12:09:44Z</time>
+    <desc>2018-04-12 12:09:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.349362" lon="-71.0492713">
+    <ele>-25</ele>
+    <time>2018-04-12T12:11:52Z</time>
+    <desc>2018-04-12 12:11:52 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.349221" lon="-71.0495511">
+    <ele>27</ele>
+    <time>2018-04-12T12:12:26Z</time>
+    <desc>2018-04-12 12:12:26 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3492002" lon="-71.049532">
+    <ele>-15</ele>
+    <time>2018-04-12T12:12:41Z</time>
+    <desc>2018-04-12 12:12:41 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3504111" lon="-71.0511136">
+    <ele>-23</ele>
+    <time>2018-04-12T12:14:50Z</time>
+    <desc>2018-04-12 12:14:50 (Accuracy: 38)</desc>
+  </wpt>
+  <wpt lat="42.350647" lon="-71.0509881">
+    <ele>-8</ele>
+    <time>2018-04-12T12:15:14Z</time>
+    <desc>2018-04-12 12:15:14 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.350291" lon="-71.0505057">
+    <ele>-21</ele>
+    <time>2018-04-12T12:15:54Z</time>
+    <desc>2018-04-12 12:15:54 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.350051" lon="-71.0503988">
+    <ele>-23</ele>
+    <time>2018-04-12T12:16:16Z</time>
+    <desc>2018-04-12 12:16:16 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3499455" lon="-71.0501681">
+    <ele>-27</ele>
+    <time>2018-04-12T12:16:32Z</time>
+    <desc>2018-04-12 12:16:32 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3500679" lon="-71.0500705">
+    <ele>-17</ele>
+    <time>2018-04-12T12:16:48Z</time>
+    <desc>2018-04-12 12:16:48 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3501726" lon="-71.0499235">
+    <time>2018-04-12T12:19:05Z</time>
+    <desc>2018-04-12 12:19:05 (Accuracy: 44)</desc>
+  </wpt>
+  <wpt lat="42.350108" lon="-71.0495589">
+    <ele>-22</ele>
+    <time>2018-04-12T12:21:13Z</time>
+    <desc>2018-04-12 12:21:13 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3502055" lon="-71.0493057">
+    <ele>-22</ele>
+    <time>2018-04-12T12:21:47Z</time>
+    <desc>2018-04-12 12:21:47 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3498719" lon="-71.0490219">
+    <time>2018-04-12T12:22:31Z</time>
+    <desc>2018-04-12 12:22:31 (Accuracy: 22)</desc>
+  </wpt>
+  <wpt lat="42.3496838" lon="-71.0490528">
+    <ele>-8</ele>
+    <time>2018-04-12T12:22:48Z</time>
+    <desc>2018-04-12 12:22:48 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3492005" lon="-71.0480238">
+    <time>2018-04-12T12:24:28Z</time>
+    <desc>2018-04-12 12:24:28 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3492303" lon="-71.0479296">
+    <time>2018-04-12T12:24:44Z</time>
+    <desc>2018-04-12 12:24:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3500737" lon="-71.0500338">
+    <time>2018-04-12T12:26:51Z</time>
+    <desc>2018-04-12 12:26:51 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.350407" lon="-71.050771">
+    <ele>-22</ele>
+    <time>2018-04-12T12:27:45Z</time>
+    <desc>2018-04-12 12:27:45 (Accuracy: 25)</desc>
+  </wpt>
+  <wpt lat="42.3507203" lon="-71.0509234">
+    <ele>7</ele>
+    <time>2018-04-12T12:28:01Z</time>
+    <desc>2018-04-12 12:28:01 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3507554" lon="-71.051232">
+    <time>2018-04-12T12:28:29Z</time>
+    <desc>2018-04-12 12:28:29 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.351625" lon="-71.0531566">
+    <ele>-24</ele>
+    <time>2018-04-12T12:30:29Z</time>
+    <desc>2018-04-12 12:30:29 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3517463" lon="-71.0529148">
+    <ele>-22</ele>
+    <time>2018-04-12T12:30:45Z</time>
+    <desc>2018-04-12 12:30:45 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3517817" lon="-71.0528326">
+    <time>2018-04-12T12:31:00Z</time>
+    <desc>2018-04-12 12:31:00 (Accuracy: 22)</desc>
+  </wpt>
+  <wpt lat="42.3536981" lon="-71.0536557">
+    <time>2018-04-12T12:33:31Z</time>
+    <desc>2018-04-12 12:33:31 (Accuracy: 100)</desc>
+  </wpt>
+  <wpt lat="42.3540665" lon="-71.0536767">
+    <time>2018-04-12T12:36:04Z</time>
+    <desc>2018-04-12 12:36:04 (Accuracy: 600)</desc>
+  </wpt>
+  <wpt lat="42.3540665" lon="-71.0536767">
+    <time>2018-04-12T12:37:08Z</time>
+    <desc>2018-04-12 12:37:08 (Accuracy: 600)</desc>
+  </wpt>
+  <wpt lat="42.354418" lon="-71.0551215">
+    <ele>59</ele>
+    <time>2018-04-12T12:37:33Z</time>
+    <desc>2018-04-12 12:37:33 (Accuracy: 27)</desc>
+  </wpt>
+  <wpt lat="42.3539327" lon="-71.0556906">
+    <ele>80</ele>
+    <time>2018-04-12T12:37:49Z</time>
+    <desc>2018-04-12 12:37:49 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3539416" lon="-71.0563867">
+    <ele>-21</ele>
+    <time>2018-04-12T12:39:06Z</time>
+    <desc>2018-04-12 12:39:06 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3542682" lon="-71.0564404">
+    <ele>46</ele>
+    <time>2018-04-12T12:39:22Z</time>
+    <desc>2018-04-12 12:39:22 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3550388" lon="-71.0565147">
+    <ele>-23</ele>
+    <time>2018-04-12T12:40:07Z</time>
+    <desc>2018-04-12 12:40:07 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3557242" lon="-71.0547801">
+    <time>2018-04-12T12:42:29Z</time>
+    <desc>2018-04-12 12:42:29 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.3561652" lon="-71.0546123">
+    <ele>-22</ele>
+    <time>2018-04-12T12:42:45Z</time>
+    <desc>2018-04-12 12:42:45 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3562127" lon="-71.0546471">
+    <ele>-22</ele>
+    <time>2018-04-12T12:43:01Z</time>
+    <desc>2018-04-12 12:43:01 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3568691" lon="-71.0536153">
+    <ele>-21</ele>
+    <time>2018-04-12T12:44:34Z</time>
+    <desc>2018-04-12 12:44:34 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.357066" lon="-71.0533618">
+    <ele>12</ele>
+    <time>2018-04-12T12:44:50Z</time>
+    <desc>2018-04-12 12:44:50 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3577559" lon="-71.0546531">
+    <ele>-23</ele>
+    <time>2018-04-12T12:46:45Z</time>
+    <desc>2018-04-12 12:46:45 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3580903" lon="-71.054818">
+    <time>2018-04-12T12:47:12Z</time>
+    <desc>2018-04-12 12:47:12 (Accuracy: 55)</desc>
+  </wpt>
+  <wpt lat="42.3583951" lon="-71.0552043">
+    <time>2018-04-12T12:47:44Z</time>
+    <desc>2018-04-12 12:47:44 (Accuracy: 68)</desc>
+  </wpt>
+  <wpt lat="42.3581713" lon="-71.055388">
+    <ele>-22</ele>
+    <time>2018-04-12T12:48:07Z</time>
+    <desc>2018-04-12 12:48:07 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3581203" lon="-71.0557585">
+    <ele>153</ele>
+    <time>2018-04-12T12:48:23Z</time>
+    <desc>2018-04-12 12:48:23 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3590088" lon="-71.0568291">
+    <ele>-20</ele>
+    <time>2018-04-12T12:50:16Z</time>
+    <desc>2018-04-12 12:50:16 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.3594831" lon="-71.0573702">
+    <ele>127</ele>
+    <time>2018-04-12T12:50:43Z</time>
+    <desc>2018-04-12 12:50:43 (Accuracy: 45)</desc>
+  </wpt>
+  <wpt lat="42.3597524" lon="-71.0573743">
+    <time>2018-04-12T12:51:19Z</time>
+    <desc>2018-04-12 12:51:19 (Accuracy: 107)</desc>
+  </wpt>
+  <wpt lat="42.3601508" lon="-71.0555519">
+    <ele>-23</ele>
+    <time>2018-04-12T12:53:24Z</time>
+    <desc>2018-04-12 12:53:24 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3603034" lon="-71.0546141">
+    <ele>-24</ele>
+    <time>2018-04-12T12:55:26Z</time>
+    <desc>2018-04-12 12:55:26 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3602339" lon="-71.0544672">
+    <ele>-23</ele>
+    <time>2018-04-12T12:55:59Z</time>
+    <desc>2018-04-12 12:55:59 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3603964" lon="-71.0548097">
+    <ele>-24</ele>
+    <time>2018-04-12T12:58:22Z</time>
+    <desc>2018-04-12 12:58:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3603369" lon="-71.0548569">
+    <ele>31</ele>
+    <time>2018-04-12T12:58:39Z</time>
+    <desc>2018-04-12 12:58:39 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3603593" lon="-71.0551582">
+    <ele>14</ele>
+    <time>2018-04-12T12:58:55Z</time>
+    <desc>2018-04-12 12:58:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3603354" lon="-71.0551981">
+    <ele>-2</ele>
+    <time>2018-04-12T12:59:11Z</time>
+    <desc>2018-04-12 12:59:11 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3603595" lon="-71.0553395">
+    <ele>-7</ele>
+    <time>2018-04-12T12:59:26Z</time>
+    <desc>2018-04-12 12:59:26 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3603382" lon="-71.0555436">
+    <ele>-7</ele>
+    <time>2018-04-12T12:59:41Z</time>
+    <desc>2018-04-12 12:59:41 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3603076" lon="-71.0557927">
+    <ele>-9</ele>
+    <time>2018-04-12T12:59:56Z</time>
+    <desc>2018-04-12 12:59:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3602751" lon="-71.0559629">
+    <ele>-13</ele>
+    <time>2018-04-12T13:00:12Z</time>
+    <desc>2018-04-12 13:00:12 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3598824" lon="-71.0554013">
+    <ele>-24</ele>
+    <time>2018-04-12T13:01:15Z</time>
+    <desc>2018-04-12 13:01:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3599498" lon="-71.0552251">
+    <ele>-6</ele>
+    <time>2018-04-12T13:01:31Z</time>
+    <desc>2018-04-12 13:01:31 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.359962" lon="-71.0550521">
+    <ele>-15</ele>
+    <time>2018-04-12T13:01:46Z</time>
+    <desc>2018-04-12 13:01:46 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.360086" lon="-71.05377">
+    <time>2018-04-12T13:03:55Z</time>
+    <desc>2018-04-12 13:03:55 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.360679" lon="-71.0541774">
+    <ele>-24</ele>
+    <time>2018-04-12T13:04:38Z</time>
+    <desc>2018-04-12 13:04:38 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3609303" lon="-71.0544389">
+    <ele>-29</ele>
+    <time>2018-04-12T13:05:00Z</time>
+    <desc>2018-04-12 13:05:00 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3616993" lon="-71.0557375">
+    <ele>-23</ele>
+    <time>2018-04-12T13:08:12Z</time>
+    <desc>2018-04-12 13:08:12 (Accuracy: 60)</desc>
+  </wpt>
+  <wpt lat="42.3617048" lon="-71.0563503">
+    <ele>-23</ele>
+    <time>2018-04-12T13:08:28Z</time>
+    <desc>2018-04-12 13:08:28 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3616811" lon="-71.0567062">
+    <time>2018-04-12T13:09:54Z</time>
+    <desc>2018-04-12 13:09:54 (Accuracy: 25)</desc>
+  </wpt>
+  <wpt lat="42.3615709" lon="-71.0567266">
+    <time>2018-04-12T13:12:04Z</time>
+    <desc>2018-04-12 13:12:04 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3615709" lon="-71.0567266">
+    <time>2018-04-12T13:14:06Z</time>
+    <desc>2018-04-12 13:14:06 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3619158" lon="-71.0566616">
+    <time>2018-04-12T13:14:36Z</time>
+    <desc>2018-04-12 13:14:36 (Accuracy: 38)</desc>
+  </wpt>
+  <wpt lat="42.3619789" lon="-71.0571624">
+    <ele>-23</ele>
+    <time>2018-04-12T13:17:17Z</time>
+    <desc>2018-04-12 13:17:17 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3620187" lon="-71.0577195">
+    <time>2018-04-12T13:19:18Z</time>
+    <desc>2018-04-12 13:19:18 (Accuracy: 31)</desc>
+  </wpt>
+  <wpt lat="42.3619846" lon="-71.0574165">
+    <ele>-22</ele>
+    <time>2018-04-12T13:21:17Z</time>
+    <desc>2018-04-12 13:21:17 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3622023" lon="-71.0575062">
+    <ele>-23</ele>
+    <time>2018-04-12T13:23:29Z</time>
+    <desc>2018-04-12 13:23:29 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3617463" lon="-71.0572953">
+    <time>2018-04-12T13:25:37Z</time>
+    <desc>2018-04-12 13:25:37 (Accuracy: 26)</desc>
+  </wpt>
+  <wpt lat="42.3607337" lon="-71.0568081">
+    <time>2018-04-12T13:27:37Z</time>
+    <desc>2018-04-12 13:27:37 (Accuracy: 33)</desc>
+  </wpt>
+  <wpt lat="42.360399" lon="-71.0569024">
+    <ele>-5</ele>
+    <time>2018-04-12T13:27:59Z</time>
+    <desc>2018-04-12 13:27:59 (Accuracy: 18)</desc>
+  </wpt>
+  <wpt lat="42.3604274" lon="-71.0567649">
+    <time>2018-04-12T13:28:43Z</time>
+    <desc>2018-04-12 13:28:43 (Accuracy: 61)</desc>
+  </wpt>
+  <wpt lat="42.3601466" lon="-71.0553718">
+    <ele>-23</ele>
+    <time>2018-04-12T13:30:23Z</time>
+    <desc>2018-04-12 13:30:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3601537" lon="-71.0553064">
+    <ele>-23</ele>
+    <time>2018-04-12T13:30:42Z</time>
+    <desc>2018-04-12 13:30:42 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3602367" lon="-71.0549088">
+    <ele>-23</ele>
+    <time>2018-04-12T13:31:35Z</time>
+    <desc>2018-04-12 13:31:35 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3603272" lon="-71.0547907">
+    <ele>-24</ele>
+    <time>2018-04-12T13:31:51Z</time>
+    <desc>2018-04-12 13:31:51 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3604015" lon="-71.05477">
+    <ele>-15</ele>
+    <time>2018-04-12T13:32:07Z</time>
+    <desc>2018-04-12 13:32:07 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3611357" lon="-71.0553963">
+    <time>2018-04-12T13:33:17Z</time>
+    <desc>2018-04-12 13:33:17 (Accuracy: 40)</desc>
+  </wpt>
+  <wpt lat="42.3607965" lon="-71.0556775">
+    <ele>-3</ele>
+    <time>2018-04-12T13:33:35Z</time>
+    <desc>2018-04-12 13:33:35 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3623238" lon="-71.0546858">
+    <ele>-22</ele>
+    <time>2018-04-12T13:35:48Z</time>
+    <desc>2018-04-12 13:35:48 (Accuracy: 52)</desc>
+  </wpt>
+  <wpt lat="42.3632894" lon="-71.0551303">
+    <ele>-21</ele>
+    <time>2018-04-12T13:37:50Z</time>
+    <desc>2018-04-12 13:37:50 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3632894" lon="-71.0551303">
+    <time>2018-04-12T13:38:07Z</time>
+    <desc>2018-04-12 13:38:07 (Accuracy: 41)</desc>
+  </wpt>
+  <wpt lat="42.3646225" lon="-71.053722">
+    <ele>-20</ele>
+    <time>2018-04-12T13:40:16Z</time>
+    <desc>2018-04-12 13:40:16 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3651339" lon="-71.053216">
+    <ele>-20</ele>
+    <time>2018-04-12T13:41:28Z</time>
+    <desc>2018-04-12 13:41:28 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3653294" lon="-71.0529662">
+    <ele>-12</ele>
+    <time>2018-04-12T13:41:51Z</time>
+    <desc>2018-04-12 13:41:51 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3656271" lon="-71.0529642">
+    <ele>-17</ele>
+    <time>2018-04-12T13:42:21Z</time>
+    <desc>2018-04-12 13:42:21 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3657761" lon="-71.0527689">
+    <ele>-13</ele>
+    <time>2018-04-12T13:42:40Z</time>
+    <desc>2018-04-12 13:42:40 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.36582" lon="-71.0527987">
+    <ele>-10</ele>
+    <time>2018-04-12T13:42:55Z</time>
+    <desc>2018-04-12 13:42:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3671251" lon="-71.0526195">
+    <ele>-23</ele>
+    <time>2018-04-12T13:44:55Z</time>
+    <desc>2018-04-12 13:44:55 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3672877" lon="-71.0526587">
+    <ele>-23</ele>
+    <time>2018-04-12T13:46:55Z</time>
+    <desc>2018-04-12 13:46:55 (Accuracy: 50)</desc>
+  </wpt>
+  <wpt lat="42.3675775" lon="-71.0535862">
+    <ele>-22</ele>
+    <time>2018-04-12T13:48:06Z</time>
+    <desc>2018-04-12 13:48:06 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3677149" lon="-71.0537469">
+    <ele>-14</ele>
+    <time>2018-04-12T13:48:22Z</time>
+    <desc>2018-04-12 13:48:22 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3677515" lon="-71.0539167">
+    <ele>-18</ele>
+    <time>2018-04-12T13:48:37Z</time>
+    <desc>2018-04-12 13:48:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3671864" lon="-71.0581454">
+    <time>2018-04-12T13:52:52Z</time>
+    <desc>2018-04-12 13:52:52 (Accuracy: 43)</desc>
+  </wpt>
+  <wpt lat="42.3673573" lon="-71.0591086">
+    <ele>81</ele>
+    <time>2018-04-12T13:53:08Z</time>
+    <desc>2018-04-12 13:53:08 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3673303" lon="-71.0590689">
+    <time>2018-04-12T13:53:51Z</time>
+    <desc>2018-04-12 13:53:51 (Accuracy: 78)</desc>
+  </wpt>
+  <wpt lat="42.3659457" lon="-71.0600752">
+    <time>2018-04-12T13:55:56Z</time>
+    <desc>2018-04-12 13:55:56 (Accuracy: 22)</desc>
+  </wpt>
+  <wpt lat="42.3661595" lon="-71.0603134">
+    <ele>41</ele>
+    <time>2018-04-12T13:56:12Z</time>
+    <desc>2018-04-12 13:56:12 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3650697" lon="-71.060641">
+    <ele>-24</ele>
+    <time>2018-04-12T13:57:36Z</time>
+    <desc>2018-04-12 13:57:36 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3650179" lon="-71.0604627">
+    <ele>-13</ele>
+    <time>2018-04-12T13:57:53Z</time>
+    <desc>2018-04-12 13:57:53 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3638287" lon="-71.059317">
+    <ele>-24</ele>
+    <time>2018-04-12T13:59:50Z</time>
+    <desc>2018-04-12 13:59:50 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3638267" lon="-71.0592424">
+    <ele>31</ele>
+    <time>2018-04-12T14:00:06Z</time>
+    <desc>2018-04-12 14:00:06 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3631889" lon="-71.0599437">
+    <ele>-25</ele>
+    <time>2018-04-12T14:01:13Z</time>
+    <desc>2018-04-12 14:01:13 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.3632117" lon="-71.0600406">
+    <ele>-4</ele>
+    <time>2018-04-12T14:01:29Z</time>
+    <desc>2018-04-12 14:01:29 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.363299" lon="-71.0602483">
+    <ele>-7</ele>
+    <time>2018-04-12T14:01:44Z</time>
+    <desc>2018-04-12 14:01:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3636316" lon="-71.0619564">
+    <ele>11</ele>
+    <time>2018-04-12T14:03:19Z</time>
+    <desc>2018-04-12 14:03:19 (Accuracy: 21)</desc>
+  </wpt>
+  <wpt lat="42.3635664" lon="-71.0635217">
+    <ele>-8</ele>
+    <time>2018-04-12T14:05:24Z</time>
+    <desc>2018-04-12 14:05:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3635564" lon="-71.0634767">
+    <time>2018-04-12T14:05:48Z</time>
+    <desc>2018-04-12 14:05:48 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3635679" lon="-71.0634825">
+    <ele>8</ele>
+    <time>2018-04-12T14:06:06Z</time>
+    <desc>2018-04-12 14:06:06 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.363546" lon="-71.0635774">
+    <ele>15</ele>
+    <time>2018-04-12T14:06:27Z</time>
+    <desc>2018-04-12 14:06:27 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3635549" lon="-71.0637647">
+    <ele>11</ele>
+    <time>2018-04-12T14:06:48Z</time>
+    <desc>2018-04-12 14:06:48 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3628812" lon="-71.064361">
+    <ele>72</ele>
+    <time>2018-04-12T14:07:07Z</time>
+    <desc>2018-04-12 14:07:07 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3629481" lon="-71.0643882">
+    <time>2018-04-12T14:07:25Z</time>
+    <desc>2018-04-12 14:07:25 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3626576" lon="-71.0643296">
+    <time>2018-04-12T14:07:49Z</time>
+    <desc>2018-04-12 14:07:49 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3621251" lon="-71.0642372">
+    <ele>20</ele>
+    <time>2018-04-12T14:08:16Z</time>
+    <desc>2018-04-12 14:08:16 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3609898" lon="-71.0654008">
+    <ele>-17</ele>
+    <time>2018-04-12T14:11:26Z</time>
+    <desc>2018-04-12 14:11:26 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3610605" lon="-71.0655405">
+    <ele>-19</ele>
+    <time>2018-04-12T14:11:41Z</time>
+    <desc>2018-04-12 14:11:41 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3610382" lon="-71.0658146">
+    <ele>-21</ele>
+    <time>2018-04-12T14:11:58Z</time>
+    <desc>2018-04-12 14:11:58 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.361153" lon="-71.0659205">
+    <ele>-17</ele>
+    <time>2018-04-12T14:12:20Z</time>
+    <desc>2018-04-12 14:12:20 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3612157" lon="-71.0665376">
+    <ele>-24</ele>
+    <time>2018-04-12T14:12:43Z</time>
+    <desc>2018-04-12 14:12:43 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3611639" lon="-71.066845">
+    <ele>-14</ele>
+    <time>2018-04-12T14:13:00Z</time>
+    <desc>2018-04-12 14:13:00 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3612558" lon="-71.0669886">
+    <ele>-16</ele>
+    <time>2018-04-12T14:13:20Z</time>
+    <desc>2018-04-12 14:13:20 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3610003" lon="-71.0673296">
+    <ele>-2</ele>
+    <time>2018-04-12T14:13:40Z</time>
+    <desc>2018-04-12 14:13:40 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3610844" lon="-71.0674952">
+    <ele>-10</ele>
+    <time>2018-04-12T14:14:00Z</time>
+    <desc>2018-04-12 14:14:00 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3609908" lon="-71.0677109">
+    <time>2018-04-12T14:14:18Z</time>
+    <desc>2018-04-12 14:14:18 (Accuracy: 42)</desc>
+  </wpt>
+  <wpt lat="42.3611228" lon="-71.0696275">
+    <ele>-24</ele>
+    <time>2018-04-12T14:15:38Z</time>
+    <desc>2018-04-12 14:15:38 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3611626" lon="-71.0696651">
+    <ele>-6</ele>
+    <time>2018-04-12T14:15:55Z</time>
+    <desc>2018-04-12 14:15:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3611624" lon="-71.0700384">
+    <ele>-32</ele>
+    <time>2018-04-12T14:16:20Z</time>
+    <desc>2018-04-12 14:16:20 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3610571" lon="-71.0702771">
+    <ele>1</ele>
+    <time>2018-04-12T14:16:35Z</time>
+    <desc>2018-04-12 14:16:35 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3597132" lon="-71.0707022">
+    <ele>-18</ele>
+    <time>2018-04-12T14:18:37Z</time>
+    <desc>2018-04-12 14:18:37 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3595863" lon="-71.0707055">
+    <ele>-1</ele>
+    <time>2018-04-12T14:18:53Z</time>
+    <desc>2018-04-12 14:18:53 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3581648" lon="-71.0706252">
+    <ele>-24</ele>
+    <time>2018-04-12T14:20:54Z</time>
+    <desc>2018-04-12 14:20:54 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3579323" lon="-71.070477">
+    <ele>-24</ele>
+    <time>2018-04-12T14:21:17Z</time>
+    <desc>2018-04-12 14:21:17 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3578321" lon="-71.0705719">
+    <ele>-24</ele>
+    <time>2018-04-12T14:21:34Z</time>
+    <desc>2018-04-12 14:21:34 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.3578841" lon="-71.070424">
+    <ele>-24</ele>
+    <time>2018-04-12T14:22:05Z</time>
+    <desc>2018-04-12 14:22:05 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.357925" lon="-71.0703593">
+    <ele>-24</ele>
+    <time>2018-04-12T14:22:53Z</time>
+    <desc>2018-04-12 14:22:53 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3578376" lon="-71.0704015">
+    <ele>-24</ele>
+    <time>2018-04-12T14:23:10Z</time>
+    <desc>2018-04-12 14:23:10 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3576934" lon="-71.0703582">
+    <ele>-18</ele>
+    <time>2018-04-12T14:23:25Z</time>
+    <desc>2018-04-12 14:23:25 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3574549" lon="-71.0701972">
+    <ele>-24</ele>
+    <time>2018-04-12T14:23:48Z</time>
+    <desc>2018-04-12 14:23:48 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3571847" lon="-71.0700111">
+    <ele>-24</ele>
+    <time>2018-04-12T14:24:26Z</time>
+    <desc>2018-04-12 14:24:26 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3571719" lon="-71.0700795">
+    <ele>-3</ele>
+    <time>2018-04-12T14:24:50Z</time>
+    <desc>2018-04-12 14:24:50 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3571842" lon="-71.0701067">
+    <ele>0</ele>
+    <time>2018-04-12T14:25:11Z</time>
+    <desc>2018-04-12 14:25:11 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3574085" lon="-71.0701046">
+    <time>2018-04-12T14:25:29Z</time>
+    <desc>2018-04-12 14:25:29 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3575904" lon="-71.0700486">
+    <time>2018-04-12T14:26:11Z</time>
+    <desc>2018-04-12 14:26:11 (Accuracy: 58)</desc>
+  </wpt>
+  <wpt lat="42.3596221" lon="-71.070835">
+    <ele>-23</ele>
+    <time>2018-04-12T14:29:15Z</time>
+    <desc>2018-04-12 14:29:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3595293" lon="-71.0707302">
+    <ele>-20</ele>
+    <time>2018-04-12T14:29:34Z</time>
+    <desc>2018-04-12 14:29:34 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3607043" lon="-71.0707055">
+    <ele>-24</ele>
+    <time>2018-04-12T14:31:48Z</time>
+    <desc>2018-04-12 14:31:48 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3608883" lon="-71.0705868">
+    <time>2018-04-12T14:33:49Z</time>
+    <desc>2018-04-12 14:33:49 (Accuracy: 92)</desc>
+  </wpt>
+  <wpt lat="42.3606973" lon="-71.0706897">
+    <time>2018-04-12T14:35:49Z</time>
+    <desc>2018-04-12 14:35:49 (Accuracy: 26)</desc>
+  </wpt>
+  <wpt lat="42.3612459" lon="-71.0698906">
+    <ele>-24</ele>
+    <time>2018-04-12T14:37:49Z</time>
+    <desc>2018-04-12 14:37:49 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.3609746" lon="-71.0705015">
+    <ele>-24</ele>
+    <time>2018-04-12T14:39:30Z</time>
+    <desc>2018-04-12 14:39:30 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.3609615" lon="-71.0704446">
+    <ele>-24</ele>
+    <time>2018-04-12T14:41:51Z</time>
+    <desc>2018-04-12 14:41:51 (Accuracy: 54)</desc>
+  </wpt>
+  <wpt lat="42.3610216" lon="-71.0697994">
+    <time>2018-04-12T14:43:36Z</time>
+    <desc>2018-04-12 14:43:36 (Accuracy: 97)</desc>
+  </wpt>
+  <wpt lat="42.3610359" lon="-71.0701697">
+    <time>2018-04-12T14:45:56Z</time>
+    <desc>2018-04-12 14:45:56 (Accuracy: 50)</desc>
+  </wpt>
+  <wpt lat="42.360896" lon="-71.070548">
+    <time>2018-04-12T14:48:08Z</time>
+    <desc>2018-04-12 14:48:08 (Accuracy: 23)</desc>
+  </wpt>
+  <wpt lat="42.3610881" lon="-71.0704009">
+    <time>2018-04-12T14:50:09Z</time>
+    <desc>2018-04-12 14:50:09 (Accuracy: 122)</desc>
+  </wpt>
+  <wpt lat="42.3610881" lon="-71.0704009">
+    <time>2018-04-12T14:52:13Z</time>
+    <desc>2018-04-12 14:52:13 (Accuracy: 308)</desc>
+  </wpt>
+  <wpt lat="42.3610881" lon="-71.0704009">
+    <time>2018-04-12T14:54:14Z</time>
+    <desc>2018-04-12 14:54:14 (Accuracy: 489)</desc>
+  </wpt>
+  <wpt lat="42.3626752" lon="-71.0865561">
+    <ele>-24</ele>
+    <time>2018-04-12T14:56:16Z</time>
+    <desc>2018-04-12 14:56:16 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627841" lon="-71.0867016">
+    <ele>-24</ele>
+    <time>2018-04-12T14:58:17Z</time>
+    <desc>2018-04-12 14:58:17 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627848" lon="-71.0867035">
+    <ele>-24</ele>
+    <time>2018-04-12T15:01:51Z</time>
+    <desc>2018-04-12 15:01:51 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627848" lon="-71.0867035">
+    <ele>-24</ele>
+    <time>2018-04-12T15:02:18Z</time>
+    <desc>2018-04-12 15:02:18 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627841" lon="-71.0867029">
+    <ele>-24</ele>
+    <time>2018-04-12T15:02:47Z</time>
+    <desc>2018-04-12 15:02:47 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3627848" lon="-71.0867031">
+    <ele>-24</ele>
+    <time>2018-04-12T15:04:51Z</time>
+    <desc>2018-04-12 15:04:51 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627855" lon="-71.0867058">
+    <ele>-24</ele>
+    <time>2018-04-12T15:06:03Z</time>
+    <desc>2018-04-12 15:06:03 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627849" lon="-71.0867043">
+    <ele>-24</ele>
+    <time>2018-04-12T15:07:16Z</time>
+    <desc>2018-04-12 15:07:16 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627841" lon="-71.0867014">
+    <ele>-24</ele>
+    <time>2018-04-12T15:11:06Z</time>
+    <desc>2018-04-12 15:11:06 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627763" lon="-71.0867079">
+    <ele>-30</ele>
+    <time>2018-04-12T15:13:14Z</time>
+    <desc>2018-04-12 15:13:14 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3626807" lon="-71.0865717">
+    <ele>-24</ele>
+    <time>2018-04-12T15:13:46Z</time>
+    <desc>2018-04-12 15:13:46 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3626204" lon="-71.087654">
+    <ele>-25</ele>
+    <time>2018-04-12T15:16:37Z</time>
+    <desc>2018-04-12 15:16:37 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3629192" lon="-71.0891568">
+    <ele>-26</ele>
+    <time>2018-04-12T15:18:38Z</time>
+    <desc>2018-04-12 15:18:38 (Accuracy: 100)</desc>
+  </wpt>
+  <wpt lat="42.3628053" lon="-71.0907696">
+    <ele>-26</ele>
+    <time>2018-04-12T15:19:07Z</time>
+    <desc>2018-04-12 15:19:07 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.362937" lon="-71.0908494">
+    <time>2018-04-12T15:19:25Z</time>
+    <desc>2018-04-12 15:19:25 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3632932" lon="-71.0922368">
+    <time>2018-04-12T15:20:20Z</time>
+    <desc>2018-04-12 15:20:20 (Accuracy: 46)</desc>
+  </wpt>
+  <wpt lat="42.3631337" lon="-71.0932147">
+    <ele>-26</ele>
+    <time>2018-04-12T15:22:37Z</time>
+    <desc>2018-04-12 15:22:37 (Accuracy: 99)</desc>
+  </wpt>
+  <wpt lat="42.36307" lon="-71.0950079">
+    <ele>-20</ele>
+    <time>2018-04-12T15:23:08Z</time>
+    <desc>2018-04-12 15:23:08 (Accuracy: 24)</desc>
+  </wpt>
+  <wpt lat="42.363429" lon="-71.0966234">
+    <ele>-25</ele>
+    <time>2018-04-12T15:24:36Z</time>
+    <desc>2018-04-12 15:24:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3633679" lon="-71.0967202">
+    <time>2018-04-12T15:24:53Z</time>
+    <desc>2018-04-12 15:24:53 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3633666" lon="-71.0969791">
+    <ele>-32</ele>
+    <time>2018-04-12T15:25:23Z</time>
+    <desc>2018-04-12 15:25:23 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3633817" lon="-71.0972576">
+    <ele>-30</ele>
+    <time>2018-04-12T15:25:39Z</time>
+    <desc>2018-04-12 15:25:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3633952" lon="-71.0974651">
+    <ele>-27</ele>
+    <time>2018-04-12T15:25:54Z</time>
+    <desc>2018-04-12 15:25:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3633736" lon="-71.0975111">
+    <time>2018-04-12T15:27:55Z</time>
+    <desc>2018-04-12 15:27:55 (Accuracy: 191)</desc>
+  </wpt>
+  <wpt lat="42.3640087" lon="-71.1013791">
+    <time>2018-04-12T15:30:01Z</time>
+    <desc>2018-04-12 15:30:01 (Accuracy: 55)</desc>
+  </wpt>
+  <wpt lat="42.3651307" lon="-71.1025171">
+    <ele>-23</ele>
+    <time>2018-04-12T15:32:15Z</time>
+    <desc>2018-04-12 15:32:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652838" lon="-71.1023551">
+    <ele>-23</ele>
+    <time>2018-04-12T15:34:16Z</time>
+    <desc>2018-04-12 15:34:16 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3652439" lon="-71.1023821">
+    <ele>-23</ele>
+    <time>2018-04-12T15:36:09Z</time>
+    <desc>2018-04-12 15:36:09 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3651298" lon="-71.1025175">
+    <ele>-23</ele>
+    <time>2018-04-12T15:38:16Z</time>
+    <desc>2018-04-12 15:38:16 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651328" lon="-71.102513">
+    <ele>-23</ele>
+    <time>2018-04-12T15:40:19Z</time>
+    <desc>2018-04-12 15:40:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651328" lon="-71.102513">
+    <ele>-23</ele>
+    <time>2018-04-12T15:42:21Z</time>
+    <desc>2018-04-12 15:42:21 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650237" lon="-71.1025723">
+    <ele>-23</ele>
+    <time>2018-04-12T15:42:36Z</time>
+    <desc>2018-04-12 15:42:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650237" lon="-71.1025723">
+    <ele>-23</ele>
+    <time>2018-04-12T15:44:37Z</time>
+    <desc>2018-04-12 15:44:37 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650237" lon="-71.1025723">
+    <ele>-23</ele>
+    <time>2018-04-12T15:46:37Z</time>
+    <desc>2018-04-12 15:46:37 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650237" lon="-71.1025723">
+    <ele>-23</ele>
+    <time>2018-04-12T15:47:36Z</time>
+    <desc>2018-04-12 15:47:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651303" lon="-71.1025168">
+    <ele>-23</ele>
+    <time>2018-04-12T15:49:39Z</time>
+    <desc>2018-04-12 15:49:39 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651303" lon="-71.1025168">
+    <ele>-23</ele>
+    <time>2018-04-12T15:51:39Z</time>
+    <desc>2018-04-12 15:51:39 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651221" lon="-71.1025245">
+    <ele>-23</ele>
+    <time>2018-04-12T15:52:37Z</time>
+    <desc>2018-04-12 15:52:37 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651221" lon="-71.1025245">
+    <ele>-23</ele>
+    <time>2018-04-12T15:53:06Z</time>
+    <desc>2018-04-12 15:53:06 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3655203" lon="-71.1035151">
+    <ele>-22</ele>
+    <time>2018-04-12T15:55:07Z</time>
+    <desc>2018-04-12 15:55:07 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3655405" lon="-71.1034507">
+    <ele>-22</ele>
+    <time>2018-04-12T15:57:08Z</time>
+    <desc>2018-04-12 15:57:08 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3656262" lon="-71.103296">
+    <ele>-22</ele>
+    <time>2018-04-12T15:59:13Z</time>
+    <desc>2018-04-12 15:59:13 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3654675" lon="-71.1035548">
+    <ele>-22</ele>
+    <time>2018-04-12T16:01:13Z</time>
+    <desc>2018-04-12 16:01:13 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652306" lon="-71.1024523">
+    <ele>-23</ele>
+    <time>2018-04-12T16:03:14Z</time>
+    <desc>2018-04-12 16:03:14 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3652394" lon="-71.1024454">
+    <ele>-23</ele>
+    <time>2018-04-12T16:05:14Z</time>
+    <desc>2018-04-12 16:05:14 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652394" lon="-71.1024454">
+    <ele>-23</ele>
+    <time>2018-04-12T16:07:15Z</time>
+    <desc>2018-04-12 16:07:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652325" lon="-71.1024518">
+    <ele>-23</ele>
+    <time>2018-04-12T16:09:17Z</time>
+    <desc>2018-04-12 16:09:17 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652325" lon="-71.1024518">
+    <ele>-23</ele>
+    <time>2018-04-12T16:11:27Z</time>
+    <desc>2018-04-12 16:11:27 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3647966" lon="-71.1023717">
+    <ele>-23</ele>
+    <time>2018-04-12T16:13:35Z</time>
+    <desc>2018-04-12 16:13:35 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3647551" lon="-71.1022692">
+    <ele>-24</ele>
+    <time>2018-04-12T16:13:51Z</time>
+    <desc>2018-04-12 16:13:51 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3646901" lon="-71.1022287">
+    <time>2018-04-12T16:14:27Z</time>
+    <desc>2018-04-12 16:14:27 (Accuracy: 62)</desc>
+  </wpt>
+  <wpt lat="42.3646901" lon="-71.1022287">
+    <time>2018-04-12T16:14:47Z</time>
+    <desc>2018-04-12 16:14:47 (Accuracy: 92)</desc>
+  </wpt>
+  <wpt lat="42.363499" lon="-71.1002562">
+    <ele>-25</ele>
+    <time>2018-04-12T16:16:35Z</time>
+    <desc>2018-04-12 16:16:35 (Accuracy: 58)</desc>
+  </wpt>
+  <wpt lat="42.3629986" lon="-71.0996104">
+    <time>2018-04-12T16:17:12Z</time>
+    <desc>2018-04-12 16:17:12 (Accuracy: 40)</desc>
+  </wpt>
+  <wpt lat="42.3633768" lon="-71.0991582">
+    <ele>-25</ele>
+    <time>2018-04-12T16:17:32Z</time>
+    <desc>2018-04-12 16:17:32 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3633849" lon="-71.0968005">
+    <time>2018-04-12T16:19:52Z</time>
+    <desc>2018-04-12 16:19:52 (Accuracy: 28)</desc>
+  </wpt>
+  <wpt lat="42.3629191" lon="-71.0940251">
+    <ele>-26</ele>
+    <time>2018-04-12T16:22:47Z</time>
+    <desc>2018-04-12 16:22:47 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3641693" lon="-71.0932744">
+    <time>2018-04-12T16:23:50Z</time>
+    <desc>2018-04-12 16:23:50 (Accuracy: 59)</desc>
+  </wpt>
+  <wpt lat="42.3639512" lon="-71.0930362">
+    <time>2018-04-12T16:24:11Z</time>
+    <desc>2018-04-12 16:24:11 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3645541" lon="-71.0928944">
+    <ele>-24</ele>
+    <time>2018-04-12T16:24:35Z</time>
+    <desc>2018-04-12 16:24:35 (Accuracy: 41)</desc>
+  </wpt>
+  <wpt lat="42.3645259" lon="-71.092842">
+    <ele>-24</ele>
+    <time>2018-04-12T16:24:55Z</time>
+    <desc>2018-04-12 16:24:55 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650971" lon="-71.0929747">
+    <ele>-24</ele>
+    <time>2018-04-12T16:26:56Z</time>
+    <desc>2018-04-12 16:26:56 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652319" lon="-71.0930043">
+    <ele>-3</ele>
+    <time>2018-04-12T16:30:12Z</time>
+    <desc>2018-04-12 16:30:12 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.365161" lon="-71.0929547">
+    <ele>-19</ele>
+    <time>2018-04-12T16:30:28Z</time>
+    <desc>2018-04-12 16:30:28 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651504" lon="-71.0930027">
+    <ele>-16</ele>
+    <time>2018-04-12T16:31:09Z</time>
+    <desc>2018-04-12 16:31:09 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651589" lon="-71.0930128">
+    <ele>-16</ele>
+    <time>2018-04-12T16:32:20Z</time>
+    <desc>2018-04-12 16:32:20 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651592" lon="-71.0929992">
+    <ele>-20</ele>
+    <time>2018-04-12T16:32:39Z</time>
+    <desc>2018-04-12 16:32:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651561" lon="-71.0929821">
+    <ele>-18</ele>
+    <time>2018-04-12T16:33:10Z</time>
+    <desc>2018-04-12 16:33:10 (Accuracy: 54)</desc>
+  </wpt>
+  <wpt lat="42.3651775" lon="-71.0929996">
+    <ele>-16</ele>
+    <time>2018-04-12T16:33:47Z</time>
+    <desc>2018-04-12 16:33:47 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651775" lon="-71.0929996">
+    <ele>-16</ele>
+    <time>2018-04-12T16:35:49Z</time>
+    <desc>2018-04-12 16:35:49 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651586" lon="-71.0930127">
+    <ele>-16</ele>
+    <time>2018-04-12T16:36:24Z</time>
+    <desc>2018-04-12 16:36:24 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651632" lon="-71.0929959">
+    <ele>-16</ele>
+    <time>2018-04-12T16:36:41Z</time>
+    <desc>2018-04-12 16:36:41 (Accuracy: 22)</desc>
+  </wpt>
+  <wpt lat="42.3651614" lon="-71.0930012">
+    <ele>-17</ele>
+    <time>2018-04-12T16:36:56Z</time>
+    <desc>2018-04-12 16:36:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651566" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:38:18Z</time>
+    <desc>2018-04-12 16:38:18 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651589" lon="-71.0930125">
+    <ele>-16</ele>
+    <time>2018-04-12T16:38:48Z</time>
+    <desc>2018-04-12 16:38:48 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651589" lon="-71.0930125">
+    <ele>-16</ele>
+    <time>2018-04-12T16:40:50Z</time>
+    <desc>2018-04-12 16:40:50 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651589" lon="-71.0930125">
+    <ele>-16</ele>
+    <time>2018-04-12T16:42:51Z</time>
+    <desc>2018-04-12 16:42:51 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651589" lon="-71.0930125">
+    <ele>-16</ele>
+    <time>2018-04-12T16:43:06Z</time>
+    <desc>2018-04-12 16:43:06 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651614" lon="-71.092987">
+    <ele>-16</ele>
+    <time>2018-04-12T16:43:37Z</time>
+    <desc>2018-04-12 16:43:37 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651589" lon="-71.0929766">
+    <ele>-16</ele>
+    <time>2018-04-12T16:43:52Z</time>
+    <desc>2018-04-12 16:43:52 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651656" lon="-71.0929952">
+    <ele>-16</ele>
+    <time>2018-04-12T16:44:08Z</time>
+    <desc>2018-04-12 16:44:08 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3651574" lon="-71.092993">
+    <ele>-14</ele>
+    <time>2018-04-12T16:44:23Z</time>
+    <desc>2018-04-12 16:44:23 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:44:42Z</time>
+    <desc>2018-04-12 16:44:42 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:46:47Z</time>
+    <desc>2018-04-12 16:46:47 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:47:54Z</time>
+    <desc>2018-04-12 16:47:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:48:55Z</time>
+    <desc>2018-04-12 16:48:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:50:55Z</time>
+    <desc>2018-04-12 16:50:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:52:55Z</time>
+    <desc>2018-04-12 16:52:55 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:54:56Z</time>
+    <desc>2018-04-12 16:54:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:56:56Z</time>
+    <desc>2018-04-12 16:56:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T16:58:56Z</time>
+    <desc>2018-04-12 16:58:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:00:56Z</time>
+    <desc>2018-04-12 17:00:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:02:56Z</time>
+    <desc>2018-04-12 17:02:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:04:52Z</time>
+    <desc>2018-04-12 17:04:52 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:05:12Z</time>
+    <desc>2018-04-12 17:05:12 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:06:56Z</time>
+    <desc>2018-04-12 17:06:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:09:44Z</time>
+    <desc>2018-04-12 17:09:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:12:07Z</time>
+    <desc>2018-04-12 17:12:07 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:15:10Z</time>
+    <desc>2018-04-12 17:15:10 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:18:37Z</time>
+    <desc>2018-04-12 17:18:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:20:37Z</time>
+    <desc>2018-04-12 17:20:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:22:37Z</time>
+    <desc>2018-04-12 17:22:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:24:37Z</time>
+    <desc>2018-04-12 17:24:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:26:37Z</time>
+    <desc>2018-04-12 17:26:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:28:38Z</time>
+    <desc>2018-04-12 17:28:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:30:38Z</time>
+    <desc>2018-04-12 17:30:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:32:38Z</time>
+    <desc>2018-04-12 17:32:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:34:38Z</time>
+    <desc>2018-04-12 17:34:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:34:56Z</time>
+    <desc>2018-04-12 17:34:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:36:38Z</time>
+    <desc>2018-04-12 17:36:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:38:38Z</time>
+    <desc>2018-04-12 17:38:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:40:38Z</time>
+    <desc>2018-04-12 17:40:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:42:38Z</time>
+    <desc>2018-04-12 17:42:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:44:38Z</time>
+    <desc>2018-04-12 17:44:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:46:38Z</time>
+    <desc>2018-04-12 17:46:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:48:38Z</time>
+    <desc>2018-04-12 17:48:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:50:38Z</time>
+    <desc>2018-04-12 17:50:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:52:38Z</time>
+    <desc>2018-04-12 17:52:38 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651501" lon="-71.0930035">
+    <ele>-16</ele>
+    <time>2018-04-12T17:53:07Z</time>
+    <desc>2018-04-12 17:53:07 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651908" lon="-71.0929503">
+    <ele>-3</ele>
+    <time>2018-04-12T17:53:24Z</time>
+    <desc>2018-04-12 17:53:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651957" lon="-71.0929468">
+    <ele>-3</ele>
+    <time>2018-04-12T17:53:39Z</time>
+    <desc>2018-04-12 17:53:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651968" lon="-71.0929477">
+    <ele>-3</ele>
+    <time>2018-04-12T17:53:54Z</time>
+    <desc>2018-04-12 17:53:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652056" lon="-71.0929428">
+    <ele>-2</ele>
+    <time>2018-04-12T17:56:00Z</time>
+    <desc>2018-04-12 17:56:00 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652056" lon="-71.0929428">
+    <ele>-2</ele>
+    <time>2018-04-12T17:58:08Z</time>
+    <desc>2018-04-12 17:58:08 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652056" lon="-71.0929428">
+    <ele>-2</ele>
+    <time>2018-04-12T18:00:17Z</time>
+    <desc>2018-04-12 18:00:17 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3642818" lon="-71.0927632">
+    <time>2018-04-12T18:02:23Z</time>
+    <desc>2018-04-12 18:02:23 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.3642227" lon="-71.0928178">
+    <ele>-21</ele>
+    <time>2018-04-12T18:02:40Z</time>
+    <desc>2018-04-12 18:02:40 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3641263" lon="-71.0929104">
+    <ele>-24</ele>
+    <time>2018-04-12T18:03:01Z</time>
+    <desc>2018-04-12 18:03:01 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.36293" lon="-71.0932209">
+    <ele>-19</ele>
+    <time>2018-04-12T18:04:28Z</time>
+    <desc>2018-04-12 18:04:28 (Accuracy: 40)</desc>
+  </wpt>
+  <wpt lat="42.3630866" lon="-71.0927774">
+    <ele>-12</ele>
+    <time>2018-04-12T18:04:53Z</time>
+    <desc>2018-04-12 18:04:53 (Accuracy: 21)</desc>
+  </wpt>
+  <wpt lat="42.3630909" lon="-71.0897186">
+    <ele>-26</ele>
+    <time>2018-04-12T18:07:14Z</time>
+    <desc>2018-04-12 18:07:14 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.362606" lon="-71.0878177">
+    <ele>-25</ele>
+    <time>2018-04-12T18:09:17Z</time>
+    <desc>2018-04-12 18:09:17 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3627612" lon="-71.0871589">
+    <ele>-24</ele>
+    <time>2018-04-12T18:11:19Z</time>
+    <desc>2018-04-12 18:11:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627612" lon="-71.0871589">
+    <ele>-24</ele>
+    <time>2018-04-12T18:13:21Z</time>
+    <desc>2018-04-12 18:13:21 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627583" lon="-71.0872343">
+    <ele>-24</ele>
+    <time>2018-04-12T18:13:45Z</time>
+    <desc>2018-04-12 18:13:45 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627631" lon="-71.0872194">
+    <ele>-24</ele>
+    <time>2018-04-12T18:15:46Z</time>
+    <desc>2018-04-12 18:15:46 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627631" lon="-71.0872194">
+    <ele>-24</ele>
+    <time>2018-04-12T18:16:51Z</time>
+    <desc>2018-04-12 18:16:51 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627626" lon="-71.0872199">
+    <ele>-24</ele>
+    <time>2018-04-12T18:18:51Z</time>
+    <desc>2018-04-12 18:18:51 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627626" lon="-71.0872199">
+    <ele>-24</ele>
+    <time>2018-04-12T18:20:52Z</time>
+    <desc>2018-04-12 18:20:52 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627626" lon="-71.0872199">
+    <ele>-24</ele>
+    <time>2018-04-12T18:22:52Z</time>
+    <desc>2018-04-12 18:22:52 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627626" lon="-71.0872229">
+    <ele>-24</ele>
+    <time>2018-04-12T18:23:35Z</time>
+    <desc>2018-04-12 18:23:35 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627634" lon="-71.0872204">
+    <ele>-24</ele>
+    <time>2018-04-12T18:25:10Z</time>
+    <desc>2018-04-12 18:25:10 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.362763" lon="-71.0872205">
+    <ele>-24</ele>
+    <time>2018-04-12T18:25:30Z</time>
+    <desc>2018-04-12 18:25:30 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3627589" lon="-71.0872247">
+    <ele>-24</ele>
+    <time>2018-04-12T18:25:54Z</time>
+    <desc>2018-04-12 18:25:54 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3627631" lon="-71.0872196">
+    <ele>-24</ele>
+    <time>2018-04-12T18:26:15Z</time>
+    <desc>2018-04-12 18:26:15 (Accuracy: 18)</desc>
+  </wpt>
+  <wpt lat="42.3627585" lon="-71.0872326">
+    <ele>-24</ele>
+    <time>2018-04-12T18:26:47Z</time>
+    <desc>2018-04-12 18:26:47 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627594" lon="-71.0872309">
+    <ele>-24</ele>
+    <time>2018-04-12T18:27:14Z</time>
+    <desc>2018-04-12 18:27:14 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:28:50Z</time>
+    <desc>2018-04-12 18:28:50 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:29:20Z</time>
+    <desc>2018-04-12 18:29:20 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:30:55Z</time>
+    <desc>2018-04-12 18:30:55 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:31:20Z</time>
+    <desc>2018-04-12 18:31:20 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:31:55Z</time>
+    <desc>2018-04-12 18:31:55 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:33:20Z</time>
+    <desc>2018-04-12 18:33:20 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:35:20Z</time>
+    <desc>2018-04-12 18:35:20 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:35:53Z</time>
+    <desc>2018-04-12 18:35:53 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3627694" lon="-71.087222">
+    <ele>35</ele>
+    <time>2018-04-12T18:35:59Z</time>
+    <desc>2018-04-12 18:35:59 (Accuracy: 80)</desc>
+  </wpt>
+  <wpt lat="42.3628836" lon="-71.0903975">
+    <ele>-25</ele>
+    <time>2018-04-12T18:40:05Z</time>
+    <desc>2018-04-12 18:40:05 (Accuracy: 29)</desc>
+  </wpt>
+  <wpt lat="42.362988" lon="-71.0908368">
+    <ele>-11</ele>
+    <time>2018-04-12T18:40:22Z</time>
+    <desc>2018-04-12 18:40:22 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3631324" lon="-71.0909215">
+    <ele>-12</ele>
+    <time>2018-04-12T18:40:44Z</time>
+    <desc>2018-04-12 18:40:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3635663" lon="-71.0924158">
+    <time>2018-04-12T18:42:11Z</time>
+    <desc>2018-04-12 18:42:11 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3637391" lon="-71.0922741">
+    <time>2018-04-12T18:42:36Z</time>
+    <desc>2018-04-12 18:42:36 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3649718" lon="-71.0927909">
+    <ele>-25</ele>
+    <time>2018-04-12T18:44:38Z</time>
+    <desc>2018-04-12 18:44:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651786" lon="-71.0929981">
+    <ele>-16</ele>
+    <time>2018-04-12T18:46:19Z</time>
+    <desc>2018-04-12 18:46:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651582" lon="-71.0930041">
+    <ele>-17</ele>
+    <time>2018-04-12T18:46:39Z</time>
+    <desc>2018-04-12 18:46:39 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651657" lon="-71.0930215">
+    <ele>-16</ele>
+    <time>2018-04-12T18:48:41Z</time>
+    <desc>2018-04-12 18:48:41 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651721" lon="-71.0930181">
+    <ele>-16</ele>
+    <time>2018-04-12T18:50:23Z</time>
+    <desc>2018-04-12 18:50:23 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3650729" lon="-71.0926565">
+    <ele>33</ele>
+    <time>2018-04-12T18:50:42Z</time>
+    <desc>2018-04-12 18:50:42 (Accuracy: 21)</desc>
+  </wpt>
+  <wpt lat="42.365018" lon="-71.0927503">
+    <ele>37</ele>
+    <time>2018-04-12T18:51:01Z</time>
+    <desc>2018-04-12 18:51:01 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3650874" lon="-71.0928732">
+    <ele>-16</ele>
+    <time>2018-04-12T18:51:22Z</time>
+    <desc>2018-04-12 18:51:22 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3651566" lon="-71.0930139">
+    <ele>-16</ele>
+    <time>2018-04-12T18:51:41Z</time>
+    <desc>2018-04-12 18:51:41 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3651021" lon="-71.0930052">
+    <ele>-16</ele>
+    <time>2018-04-12T18:51:56Z</time>
+    <desc>2018-04-12 18:51:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365164" lon="-71.0930088">
+    <ele>-16</ele>
+    <time>2018-04-12T18:52:36Z</time>
+    <desc>2018-04-12 18:52:36 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651675" lon="-71.0930136">
+    <ele>-16</ele>
+    <time>2018-04-12T18:53:00Z</time>
+    <desc>2018-04-12 18:53:00 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651228" lon="-71.0930311">
+    <ele>6</ele>
+    <time>2018-04-12T18:53:19Z</time>
+    <desc>2018-04-12 18:53:19 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651264" lon="-71.0930316">
+    <ele>-16</ele>
+    <time>2018-04-12T18:53:39Z</time>
+    <desc>2018-04-12 18:53:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651347" lon="-71.0930392">
+    <ele>0</ele>
+    <time>2018-04-12T18:54:10Z</time>
+    <desc>2018-04-12 18:54:10 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365173" lon="-71.0930175">
+    <ele>-16</ele>
+    <time>2018-04-12T18:54:44Z</time>
+    <desc>2018-04-12 18:54:44 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651481" lon="-71.0930299">
+    <ele>0</ele>
+    <time>2018-04-12T18:55:00Z</time>
+    <desc>2018-04-12 18:55:00 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T18:55:17Z</time>
+    <desc>2018-04-12 18:55:17 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T18:57:19Z</time>
+    <desc>2018-04-12 18:57:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T18:59:19Z</time>
+    <desc>2018-04-12 18:59:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:00:36Z</time>
+    <desc>2018-04-12 19:00:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:01:19Z</time>
+    <desc>2018-04-12 19:01:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:03:29Z</time>
+    <desc>2018-04-12 19:03:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:04:03Z</time>
+    <desc>2018-04-12 19:04:03 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:05:06Z</time>
+    <desc>2018-04-12 19:05:06 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:05:29Z</time>
+    <desc>2018-04-12 19:05:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:05:37Z</time>
+    <desc>2018-04-12 19:05:37 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:06:50Z</time>
+    <desc>2018-04-12 19:06:50 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:06:54Z</time>
+    <desc>2018-04-12 19:06:54 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651725" lon="-71.0930164">
+    <ele>-16</ele>
+    <time>2018-04-12T19:06:57Z</time>
+    <desc>2018-04-12 19:06:57 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652495" lon="-71.0930187">
+    <ele>-16</ele>
+    <time>2018-04-12T19:07:14Z</time>
+    <desc>2018-04-12 19:07:14 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3652263" lon="-71.0930169">
+    <ele>-16</ele>
+    <time>2018-04-12T19:07:17Z</time>
+    <desc>2018-04-12 19:07:17 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652263" lon="-71.0930169">
+    <ele>-16</ele>
+    <time>2018-04-12T19:09:15Z</time>
+    <desc>2018-04-12 19:09:15 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:10:21Z</time>
+    <desc>2018-04-12 19:10:21 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:11:18Z</time>
+    <desc>2018-04-12 19:11:18 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:12:18Z</time>
+    <desc>2018-04-12 19:12:18 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:14:22Z</time>
+    <desc>2018-04-12 19:14:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:16:22Z</time>
+    <desc>2018-04-12 19:16:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:17:18Z</time>
+    <desc>2018-04-12 19:17:18 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:18:18Z</time>
+    <desc>2018-04-12 19:18:18 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:19:41Z</time>
+    <desc>2018-04-12 19:19:41 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:20:22Z</time>
+    <desc>2018-04-12 19:20:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:20:45Z</time>
+    <desc>2018-04-12 19:20:45 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:22:22Z</time>
+    <desc>2018-04-12 19:22:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:24:22Z</time>
+    <desc>2018-04-12 19:24:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:26:22Z</time>
+    <desc>2018-04-12 19:26:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:28:22Z</time>
+    <desc>2018-04-12 19:28:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:30:22Z</time>
+    <desc>2018-04-12 19:30:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:32:22Z</time>
+    <desc>2018-04-12 19:32:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:34:36Z</time>
+    <desc>2018-04-12 19:34:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:34:48Z</time>
+    <desc>2018-04-12 19:34:48 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:36:36Z</time>
+    <desc>2018-04-12 19:36:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:38:36Z</time>
+    <desc>2018-04-12 19:38:36 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651689" lon="-71.0929817">
+    <ele>-16</ele>
+    <time>2018-04-12T19:39:08Z</time>
+    <desc>2018-04-12 19:39:08 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651784" lon="-71.0929988">
+    <ele>-16</ele>
+    <time>2018-04-12T19:39:32Z</time>
+    <desc>2018-04-12 19:39:32 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651928" lon="-71.0929635">
+    <ele>-16</ele>
+    <time>2018-04-12T19:39:53Z</time>
+    <desc>2018-04-12 19:39:53 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365197" lon="-71.0929751">
+    <ele>-16</ele>
+    <time>2018-04-12T19:40:13Z</time>
+    <desc>2018-04-12 19:40:13 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365197" lon="-71.0929751">
+    <ele>-16</ele>
+    <time>2018-04-12T19:42:28Z</time>
+    <desc>2018-04-12 19:42:28 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652044" lon="-71.0930094">
+    <ele>-11</ele>
+    <time>2018-04-12T19:42:46Z</time>
+    <desc>2018-04-12 19:42:46 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651956" lon="-71.0930282">
+    <ele>-2</ele>
+    <time>2018-04-12T19:43:01Z</time>
+    <desc>2018-04-12 19:43:01 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651887" lon="-71.0930157">
+    <ele>-16</ele>
+    <time>2018-04-12T19:43:17Z</time>
+    <desc>2018-04-12 19:43:17 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.0929997">
+    <ele>-16</ele>
+    <time>2018-04-12T19:43:41Z</time>
+    <desc>2018-04-12 19:43:41 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:44:13Z</time>
+    <desc>2018-04-12 19:44:13 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:45:54Z</time>
+    <desc>2018-04-12 19:45:54 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:46:15Z</time>
+    <desc>2018-04-12 19:46:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:46:54Z</time>
+    <desc>2018-04-12 19:46:54 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:48:15Z</time>
+    <desc>2018-04-12 19:48:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:50:15Z</time>
+    <desc>2018-04-12 19:50:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:52:15Z</time>
+    <desc>2018-04-12 19:52:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:54:15Z</time>
+    <desc>2018-04-12 19:54:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:56:15Z</time>
+    <desc>2018-04-12 19:56:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T19:58:15Z</time>
+    <desc>2018-04-12 19:58:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:00:15Z</time>
+    <desc>2018-04-12 20:00:15 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:02:16Z</time>
+    <desc>2018-04-12 20:02:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:04:16Z</time>
+    <desc>2018-04-12 20:04:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:06:16Z</time>
+    <desc>2018-04-12 20:06:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:08:16Z</time>
+    <desc>2018-04-12 20:08:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:10:16Z</time>
+    <desc>2018-04-12 20:10:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651753" lon="-71.0929979">
+    <ele>-16</ele>
+    <time>2018-04-12T20:12:16Z</time>
+    <desc>2018-04-12 20:12:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651774" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T20:12:43Z</time>
+    <desc>2018-04-12 20:12:43 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651985" lon="-71.0930446">
+    <ele>2</ele>
+    <time>2018-04-12T20:13:13Z</time>
+    <desc>2018-04-12 20:13:13 (Accuracy: 19)</desc>
+  </wpt>
+  <wpt lat="42.365179" lon="-71.0930213">
+    <ele>-16</ele>
+    <time>2018-04-12T20:13:29Z</time>
+    <desc>2018-04-12 20:13:29 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651652" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T20:13:46Z</time>
+    <desc>2018-04-12 20:13:46 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:14:06Z</time>
+    <desc>2018-04-12 20:14:06 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:16:14Z</time>
+    <desc>2018-04-12 20:16:14 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:18:37Z</time>
+    <desc>2018-04-12 20:18:37 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:20:41Z</time>
+    <desc>2018-04-12 20:20:41 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:23:16Z</time>
+    <desc>2018-04-12 20:23:16 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:27:25Z</time>
+    <desc>2018-04-12 20:27:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:29:27Z</time>
+    <desc>2018-04-12 20:29:27 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:31:27Z</time>
+    <desc>2018-04-12 20:31:27 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:33:27Z</time>
+    <desc>2018-04-12 20:33:27 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651777" lon="-71.093001">
+    <ele>-16</ele>
+    <time>2018-04-12T20:35:27Z</time>
+    <desc>2018-04-12 20:35:27 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651751" lon="-71.0930155">
+    <ele>-16</ele>
+    <time>2018-04-12T20:35:54Z</time>
+    <desc>2018-04-12 20:35:54 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651737" lon="-71.0930184">
+    <ele>-16</ele>
+    <time>2018-04-12T20:36:31Z</time>
+    <desc>2018-04-12 20:36:31 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651749" lon="-71.0930162">
+    <ele>-16</ele>
+    <time>2018-04-12T20:37:34Z</time>
+    <desc>2018-04-12 20:37:34 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651749" lon="-71.0930162">
+    <ele>-16</ele>
+    <time>2018-04-12T20:39:35Z</time>
+    <desc>2018-04-12 20:39:35 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651749" lon="-71.0930162">
+    <ele>-16</ele>
+    <time>2018-04-12T20:41:35Z</time>
+    <desc>2018-04-12 20:41:35 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:42:43Z</time>
+    <desc>2018-04-12 20:42:43 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:45:58Z</time>
+    <desc>2018-04-12 20:45:58 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:48:01Z</time>
+    <desc>2018-04-12 20:48:01 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:50:02Z</time>
+    <desc>2018-04-12 20:50:02 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:52:13Z</time>
+    <desc>2018-04-12 20:52:13 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:54:49Z</time>
+    <desc>2018-04-12 20:54:49 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:56:49Z</time>
+    <desc>2018-04-12 20:56:49 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T20:58:49Z</time>
+    <desc>2018-04-12 20:58:49 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T21:00:49Z</time>
+    <desc>2018-04-12 21:00:49 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651769" lon="-71.0929991">
+    <ele>-16</ele>
+    <time>2018-04-12T21:02:50Z</time>
+    <desc>2018-04-12 21:02:50 (Accuracy: 13)</desc>
+  </wpt>
+  <wpt lat="42.3651775" lon="-71.0929988">
+    <ele>-16</ele>
+    <time>2018-04-12T21:03:09Z</time>
+    <desc>2018-04-12 21:03:09 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3652425" lon="-71.0928974">
+    <ele>-15</ele>
+    <time>2018-04-12T21:03:33Z</time>
+    <desc>2018-04-12 21:03:33 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365227" lon="-71.0929194">
+    <ele>-10</ele>
+    <time>2018-04-12T21:03:54Z</time>
+    <desc>2018-04-12 21:03:54 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:04:23Z</time>
+    <desc>2018-04-12 21:04:23 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:06:25Z</time>
+    <desc>2018-04-12 21:06:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:08:25Z</time>
+    <desc>2018-04-12 21:08:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:10:25Z</time>
+    <desc>2018-04-12 21:10:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:12:25Z</time>
+    <desc>2018-04-12 21:12:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:14:25Z</time>
+    <desc>2018-04-12 21:14:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:16:25Z</time>
+    <desc>2018-04-12 21:16:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:18:25Z</time>
+    <desc>2018-04-12 21:18:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:20:25Z</time>
+    <desc>2018-04-12 21:20:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:22:25Z</time>
+    <desc>2018-04-12 21:22:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:24:25Z</time>
+    <desc>2018-04-12 21:24:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:26:25Z</time>
+    <desc>2018-04-12 21:26:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:28:25Z</time>
+    <desc>2018-04-12 21:28:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:30:25Z</time>
+    <desc>2018-04-12 21:30:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:32:25Z</time>
+    <desc>2018-04-12 21:32:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:34:25Z</time>
+    <desc>2018-04-12 21:34:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:36:25Z</time>
+    <desc>2018-04-12 21:36:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:38:25Z</time>
+    <desc>2018-04-12 21:38:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:40:25Z</time>
+    <desc>2018-04-12 21:40:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:42:25Z</time>
+    <desc>2018-04-12 21:42:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:44:25Z</time>
+    <desc>2018-04-12 21:44:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:46:25Z</time>
+    <desc>2018-04-12 21:46:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:48:25Z</time>
+    <desc>2018-04-12 21:48:25 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651695" lon="-71.0930152">
+    <ele>-16</ele>
+    <time>2018-04-12T21:49:57Z</time>
+    <desc>2018-04-12 21:49:57 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930108">
+    <ele>-16</ele>
+    <time>2018-04-12T21:50:27Z</time>
+    <desc>2018-04-12 21:50:27 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651598" lon="-71.0930108">
+    <ele>-16</ele>
+    <time>2018-04-12T21:51:25Z</time>
+    <desc>2018-04-12 21:51:25 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651694" lon="-71.0930384">
+    <ele>-10</ele>
+    <time>2018-04-12T21:51:42Z</time>
+    <desc>2018-04-12 21:51:42 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3651627" lon="-71.0930189">
+    <ele>-16</ele>
+    <time>2018-04-12T21:54:03Z</time>
+    <desc>2018-04-12 21:54:03 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651627" lon="-71.0930189">
+    <ele>-16</ele>
+    <time>2018-04-12T21:56:30Z</time>
+    <desc>2018-04-12 21:56:30 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651572" lon="-71.092974">
+    <ele>-16</ele>
+    <time>2018-04-12T21:57:41Z</time>
+    <desc>2018-04-12 21:57:41 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651783" lon="-71.0930018">
+    <ele>-16</ele>
+    <time>2018-04-12T21:58:00Z</time>
+    <desc>2018-04-12 21:58:00 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3651831" lon="-71.0930092">
+    <ele>-21</ele>
+    <time>2018-04-12T21:58:23Z</time>
+    <desc>2018-04-12 21:58:23 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651771" lon="-71.0929811">
+    <ele>-16</ele>
+    <time>2018-04-12T22:00:15Z</time>
+    <desc>2018-04-12 22:00:15 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651788" lon="-71.0930189">
+    <ele>-19</ele>
+    <time>2018-04-12T22:00:40Z</time>
+    <desc>2018-04-12 22:00:40 (Accuracy: 21)</desc>
+  </wpt>
+  <wpt lat="42.3651756" lon="-71.0930268">
+    <ele>-21</ele>
+    <time>2018-04-12T22:01:09Z</time>
+    <desc>2018-04-12 22:01:09 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.365177" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T22:01:37Z</time>
+    <desc>2018-04-12 22:01:37 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365177" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T22:03:40Z</time>
+    <desc>2018-04-12 22:03:40 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365177" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T22:04:27Z</time>
+    <desc>2018-04-12 22:04:27 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365177" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T22:04:48Z</time>
+    <desc>2018-04-12 22:04:48 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365177" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T22:04:48Z</time>
+    <desc>2018-04-12 22:04:48 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365177" lon="-71.0930009">
+    <ele>-16</ele>
+    <time>2018-04-12T22:05:44Z</time>
+    <desc>2018-04-12 22:05:44 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3650394" lon="-71.0928188">
+    <ele>-25</ele>
+    <time>2018-04-12T22:07:25Z</time>
+    <desc>2018-04-12 22:07:25 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3639535" lon="-71.0929407">
+    <time>2018-04-12T22:09:05Z</time>
+    <desc>2018-04-12 22:09:05 (Accuracy: 17)</desc>
+  </wpt>
+  <wpt lat="42.3635931" lon="-71.0934295">
+    <ele>11</ele>
+    <time>2018-04-12T22:09:22Z</time>
+    <desc>2018-04-12 22:09:22 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630823" lon="-71.0933085">
+    <ele>-25</ele>
+    <time>2018-04-12T22:11:05Z</time>
+    <desc>2018-04-12 22:11:05 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3630829" lon="-71.0933204">
+    <ele>-25</ele>
+    <time>2018-04-12T22:12:41Z</time>
+    <desc>2018-04-12 22:12:41 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630815" lon="-71.0933083">
+    <ele>-25</ele>
+    <time>2018-04-12T22:14:41Z</time>
+    <desc>2018-04-12 22:14:41 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630803" lon="-71.0933205">
+    <ele>-25</ele>
+    <time>2018-04-12T22:16:43Z</time>
+    <desc>2018-04-12 22:16:43 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.363082" lon="-71.0933212">
+    <ele>-25</ele>
+    <time>2018-04-12T22:18:45Z</time>
+    <desc>2018-04-12 22:18:45 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630749" lon="-71.0932922">
+    <ele>-25</ele>
+    <time>2018-04-12T22:20:58Z</time>
+    <desc>2018-04-12 22:20:58 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.3630833" lon="-71.0933209">
+    <ele>-25</ele>
+    <time>2018-04-12T22:22:59Z</time>
+    <desc>2018-04-12 22:22:59 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630827" lon="-71.0933209">
+    <ele>-25</ele>
+    <time>2018-04-12T22:25:02Z</time>
+    <desc>2018-04-12 22:25:02 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.363082" lon="-71.0933207">
+    <ele>-25</ele>
+    <time>2018-04-12T22:27:02Z</time>
+    <desc>2018-04-12 22:27:02 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630803" lon="-71.0933205">
+    <ele>-25</ele>
+    <time>2018-04-12T22:29:02Z</time>
+    <desc>2018-04-12 22:29:02 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630803" lon="-71.0933205">
+    <ele>-25</ele>
+    <time>2018-04-12T22:31:21Z</time>
+    <desc>2018-04-12 22:31:21 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630803" lon="-71.0933205">
+    <ele>-25</ele>
+    <time>2018-04-12T22:33:39Z</time>
+    <desc>2018-04-12 22:33:39 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3630803" lon="-71.0933205">
+    <ele>-25</ele>
+    <time>2018-04-12T22:35:50Z</time>
+    <desc>2018-04-12 22:35:50 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3644452" lon="-71.0928473">
+    <ele>-24</ele>
+    <time>2018-04-12T22:39:16Z</time>
+    <desc>2018-04-12 22:39:16 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3651334" lon="-71.0930032">
+    <ele>-16</ele>
+    <time>2018-04-12T22:41:16Z</time>
+    <desc>2018-04-12 22:41:16 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651781" lon="-71.0929971">
+    <ele>-16</ele>
+    <time>2018-04-12T22:42:19Z</time>
+    <desc>2018-04-12 22:42:19 (Accuracy: 14)</desc>
+  </wpt>
+  <wpt lat="42.365178" lon="-71.0929984">
+    <ele>-16</ele>
+    <time>2018-04-12T22:44:19Z</time>
+    <desc>2018-04-12 22:44:19 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365178" lon="-71.0929984">
+    <ele>-16</ele>
+    <time>2018-04-12T22:46:21Z</time>
+    <desc>2018-04-12 22:46:21 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T22:48:23Z</time>
+    <desc>2018-04-12 22:48:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T22:50:23Z</time>
+    <desc>2018-04-12 22:50:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T22:52:23Z</time>
+    <desc>2018-04-12 22:52:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T22:54:23Z</time>
+    <desc>2018-04-12 22:54:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T22:56:23Z</time>
+    <desc>2018-04-12 22:56:23 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T22:58:26Z</time>
+    <desc>2018-04-12 22:58:26 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:00:26Z</time>
+    <desc>2018-04-12 23:00:26 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:02:26Z</time>
+    <desc>2018-04-12 23:02:26 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:04:28Z</time>
+    <desc>2018-04-12 23:04:28 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:06:29Z</time>
+    <desc>2018-04-12 23:06:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:06:58Z</time>
+    <desc>2018-04-12 23:06:58 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:08:29Z</time>
+    <desc>2018-04-12 23:08:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:10:29Z</time>
+    <desc>2018-04-12 23:10:29 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:12:31Z</time>
+    <desc>2018-04-12 23:12:31 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:14:31Z</time>
+    <desc>2018-04-12 23:14:31 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:16:31Z</time>
+    <desc>2018-04-12 23:16:31 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:18:31Z</time>
+    <desc>2018-04-12 23:18:31 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:20:31Z</time>
+    <desc>2018-04-12 23:20:31 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.365172" lon="-71.0929848">
+    <ele>-16</ele>
+    <time>2018-04-12T23:22:32Z</time>
+    <desc>2018-04-12 23:22:32 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651727" lon="-71.0929705">
+    <ele>-16</ele>
+    <time>2018-04-12T23:24:17Z</time>
+    <desc>2018-04-12 23:24:17 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651657" lon="-71.0930001">
+    <ele>-16</ele>
+    <time>2018-04-12T23:24:38Z</time>
+    <desc>2018-04-12 23:24:38 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3650726" lon="-71.0929936">
+    <ele>-16</ele>
+    <time>2018-04-12T23:24:58Z</time>
+    <desc>2018-04-12 23:24:58 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3650852" lon="-71.0929965">
+    <time>2018-04-12T23:25:18Z</time>
+    <desc>2018-04-12 23:25:18 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651193" lon="-71.0930083">
+    <ele>52</ele>
+    <time>2018-04-12T23:25:40Z</time>
+    <desc>2018-04-12 23:25:40 (Accuracy: 30)</desc>
+  </wpt>
+  <wpt lat="42.3651189" lon="-71.0930017">
+    <ele>47</ele>
+    <time>2018-04-12T23:26:10Z</time>
+    <desc>2018-04-12 23:26:10 (Accuracy: 16)</desc>
+  </wpt>
+  <wpt lat="42.3651217" lon="-71.0930028">
+    <ele>47</ele>
+    <time>2018-04-12T23:26:30Z</time>
+    <desc>2018-04-12 23:26:30 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3651222" lon="-71.0930086">
+    <ele>53</ele>
+    <time>2018-04-12T23:26:53Z</time>
+    <desc>2018-04-12 23:26:53 (Accuracy: 18)</desc>
+  </wpt>
+  <wpt lat="42.3651234" lon="-71.0930096">
+    <ele>49</ele>
+    <time>2018-04-12T23:27:09Z</time>
+    <desc>2018-04-12 23:27:09 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365138" lon="-71.0930131">
+    <ele>25</ele>
+    <time>2018-04-12T23:27:32Z</time>
+    <desc>2018-04-12 23:27:32 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651415" lon="-71.0930085">
+    <ele>21</ele>
+    <time>2018-04-12T23:27:53Z</time>
+    <desc>2018-04-12 23:27:53 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651375" lon="-71.0930037">
+    <time>2018-04-12T23:28:10Z</time>
+    <desc>2018-04-12 23:28:10 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651294" lon="-71.0929898">
+    <ele>21</ele>
+    <time>2018-04-12T23:28:26Z</time>
+    <desc>2018-04-12 23:28:26 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651297" lon="-71.0929899">
+    <ele>21</ele>
+    <time>2018-04-12T23:28:41Z</time>
+    <desc>2018-04-12 23:28:41 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651273" lon="-71.0929851">
+    <ele>22</ele>
+    <time>2018-04-12T23:29:05Z</time>
+    <desc>2018-04-12 23:29:05 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3651334" lon="-71.0929877">
+    <ele>21</ele>
+    <time>2018-04-12T23:29:24Z</time>
+    <desc>2018-04-12 23:29:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651287" lon="-71.0929932">
+    <ele>23</ele>
+    <time>2018-04-12T23:29:45Z</time>
+    <desc>2018-04-12 23:29:45 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365128" lon="-71.092994">
+    <time>2018-04-12T23:29:59Z</time>
+    <desc>2018-04-12 23:29:59 (Accuracy: 11)</desc>
+  </wpt>
+  <wpt lat="42.3651286" lon="-71.0929891">
+    <ele>26</ele>
+    <time>2018-04-12T23:30:25Z</time>
+    <desc>2018-04-12 23:30:25 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651131" lon="-71.0929873">
+    <ele>22</ele>
+    <time>2018-04-12T23:30:40Z</time>
+    <desc>2018-04-12 23:30:40 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651151" lon="-71.092986">
+    <ele>20</ele>
+    <time>2018-04-12T23:31:02Z</time>
+    <desc>2018-04-12 23:31:02 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651189" lon="-71.0929825">
+    <ele>18</ele>
+    <time>2018-04-12T23:31:18Z</time>
+    <desc>2018-04-12 23:31:18 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651196" lon="-71.0929808">
+    <ele>18</ele>
+    <time>2018-04-12T23:31:34Z</time>
+    <desc>2018-04-12 23:31:34 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651191" lon="-71.0929798">
+    <ele>17</ele>
+    <time>2018-04-12T23:31:56Z</time>
+    <desc>2018-04-12 23:31:56 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651227" lon="-71.0929702">
+    <ele>12</ele>
+    <time>2018-04-12T23:32:11Z</time>
+    <desc>2018-04-12 23:32:11 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651237" lon="-71.092969">
+    <ele>12</ele>
+    <time>2018-04-12T23:32:37Z</time>
+    <desc>2018-04-12 23:32:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651277" lon="-71.0929707">
+    <ele>11</ele>
+    <time>2018-04-12T23:32:52Z</time>
+    <desc>2018-04-12 23:32:52 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651283" lon="-71.0929742">
+    <ele>12</ele>
+    <time>2018-04-12T23:33:15Z</time>
+    <desc>2018-04-12 23:33:15 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651299" lon="-71.0929766">
+    <ele>9</ele>
+    <time>2018-04-12T23:33:33Z</time>
+    <desc>2018-04-12 23:33:33 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365134" lon="-71.0929815">
+    <ele>8</ele>
+    <time>2018-04-12T23:33:49Z</time>
+    <desc>2018-04-12 23:33:49 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651354" lon="-71.0929822">
+    <ele>8</ele>
+    <time>2018-04-12T23:34:04Z</time>
+    <desc>2018-04-12 23:34:04 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651352" lon="-71.092982">
+    <ele>8</ele>
+    <time>2018-04-12T23:34:26Z</time>
+    <desc>2018-04-12 23:34:26 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651354" lon="-71.0929821">
+    <ele>8</ele>
+    <time>2018-04-12T23:34:48Z</time>
+    <desc>2018-04-12 23:34:48 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651347" lon="-71.0929811">
+    <ele>7</ele>
+    <time>2018-04-12T23:35:05Z</time>
+    <desc>2018-04-12 23:35:05 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651337" lon="-71.0929772">
+    <ele>8</ele>
+    <time>2018-04-12T23:35:21Z</time>
+    <desc>2018-04-12 23:35:21 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651326" lon="-71.0929751">
+    <ele>9</ele>
+    <time>2018-04-12T23:35:37Z</time>
+    <desc>2018-04-12 23:35:37 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651324" lon="-71.092975">
+    <ele>9</ele>
+    <time>2018-04-12T23:35:52Z</time>
+    <desc>2018-04-12 23:35:52 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651321" lon="-71.0929747">
+    <ele>9</ele>
+    <time>2018-04-12T23:36:06Z</time>
+    <desc>2018-04-12 23:36:06 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651323" lon="-71.0929748">
+    <ele>9</ele>
+    <time>2018-04-12T23:36:24Z</time>
+    <desc>2018-04-12 23:36:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651325" lon="-71.092975">
+    <ele>9</ele>
+    <time>2018-04-12T23:36:39Z</time>
+    <desc>2018-04-12 23:36:39 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651332" lon="-71.0929752">
+    <ele>9</ele>
+    <time>2018-04-12T23:39:07Z</time>
+    <desc>2018-04-12 23:39:07 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651332" lon="-71.0929752">
+    <ele>9</ele>
+    <time>2018-04-12T23:41:33Z</time>
+    <desc>2018-04-12 23:41:33 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651738" lon="-71.0929655">
+    <ele>-16</ele>
+    <time>2018-04-12T23:43:00Z</time>
+    <desc>2018-04-12 23:43:00 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651793" lon="-71.0929646">
+    <ele>-16</ele>
+    <time>2018-04-12T23:43:21Z</time>
+    <desc>2018-04-12 23:43:21 (Accuracy: 15)</desc>
+  </wpt>
+  <wpt lat="42.3651681" lon="-71.092977">
+    <ele>-16</ele>
+    <time>2018-04-12T23:43:41Z</time>
+    <desc>2018-04-12 23:43:41 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651445" lon="-71.0929832">
+    <ele>3</ele>
+    <time>2018-04-12T23:44:03Z</time>
+    <desc>2018-04-12 23:44:03 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.365145" lon="-71.0929833">
+    <ele>3</ele>
+    <time>2018-04-12T23:44:24Z</time>
+    <desc>2018-04-12 23:44:24 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3651544" lon="-71.0929638">
+    <ele>-1</ele>
+    <time>2018-04-12T23:44:44Z</time>
+    <desc>2018-04-12 23:44:44 (Accuracy: 10)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:45:02Z</time>
+    <desc>2018-04-12 23:45:02 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:45:15Z</time>
+    <desc>2018-04-12 23:45:15 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:46:16Z</time>
+    <desc>2018-04-12 23:46:16 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:47:24Z</time>
+    <desc>2018-04-12 23:47:24 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:49:39Z</time>
+    <desc>2018-04-12 23:49:39 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:51:59Z</time>
+    <desc>2018-04-12 23:51:59 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:54:03Z</time>
+    <desc>2018-04-12 23:54:03 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:57:02Z</time>
+    <desc>2018-04-12 23:57:02 (Accuracy: 12)</desc>
+  </wpt>
+  <wpt lat="42.3652225" lon="-71.0929888">
+    <ele>-16</ele>
+    <time>2018-04-12T23:59:02Z</time>
+    <desc>2018-04-12 23:59:02 (Accuracy: 12)</desc>
+  </wpt>
+</gpx>
