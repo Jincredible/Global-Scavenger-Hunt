@@ -14,18 +14,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PEG_ROOT=$(dirname ${BASH_SOURCE})/../..
+# Slightly edited by Steven Jin for Insight Project - Global Scavenger Hunt
 
-CLUSTER_NAME=spark-cluster
+# PURPOSE OF THIS SCRIPT
+# call pegasus commands on the user-defined *.yml files to deploy instances
 
-peg up ${PEG_ROOT}/examples/spark/master.yml &
-peg up ${PEG_ROOT}/examples/spark/workers.yml &
+BASEDIR=$(dirname "$0")
+
+CLUSTER_NAME=ingest-cluster
+
+peg validate ${BASEDIR}/cluster-ingest-master.yml
+peg validate ${BASEDIR}/cluster-ingest-workers.yml
+
+read -p "Are you sure to deploy the clusters? Y/n" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+peg up ${BASEDIR}/cluster-ingest-master.yml &
+peg up ${BASEDIR}/cluster-ingest-workers.yml &
 
 wait
 
+print 'created all clusters'
+
 peg fetch ${CLUSTER_NAME}
 
-peg install ${CLUSTER_NAME} ssh
-peg install ${CLUSTER_NAME} aws
-peg install ${CLUSTER_NAME} hadoop
-peg install ${CLUSTER_NAME} spark
+fi
