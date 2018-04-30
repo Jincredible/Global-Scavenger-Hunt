@@ -37,28 +37,28 @@ printf '\ninstalling ssh and aws to the cluster:'
 peg install ${CLUSTER_NAME} ssh
 peg install ${CLUSTER_NAME} aws
 
-read -p "\nPress enter to install environment packages:"
+read -p "Press enter to install environment packages:"
 peg install ${CLUSTER_NAME} environment 
 #[WARNINGS WHEN INSTALLING ENVIRONMENT]:
 #1. maven can't be installed
 #2. recommend to upgrade pip
 
-read -p "\nPress enter to install hadoop:"
+read -p "Press enter to install hadoop:"
 # install and start hadoop
 peg install ${CLUSTER_NAME} hadoop
 #peg service ${CLUSTER_NAME} hadoop start
 
-read -p "\nPress enter to install spark:"
+read -p "Press enter to install spark:"
 # install and start spark
 peg install ${CLUSTER_NAME} spark
 #peg service ${CLUSTER_NAME} spark start
 
-read -p "\nPress enter to install zookeeper:"
+read -p "Press enter to install zookeeper:"
 # install and start zookeeper
 peg install ${CLUSTER_NAME} zookeeper
 #peg service ${CLUSTER_NAME} zookeeper start
 
-read -p "\nPress enter to install kafka:"
+read -p "Press enter to install kafka:"
 # install and start kafka
 peg install ${CLUSTER_NAME} kafka
 #peg service ${CLUSTER_NAME} kafka start
