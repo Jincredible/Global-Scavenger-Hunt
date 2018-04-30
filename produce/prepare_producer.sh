@@ -7,6 +7,8 @@ printf '\nUse pre-generated walking paths in the directory sim_results...'
 printf '\n...to send messages into the kafka topics in the ingestion cluster'
 printf '\n'
 
+BASEDIR=$(dirname "$0")
+
 # KAFKA_LISTENER is the hostname and port the kafka broker will advertise to producers and consumers.
 # To find this value, SSH into the master node of the ingestion cluster and type this command:
 # less /usr/local/kafka/config/server.properties
@@ -16,7 +18,7 @@ KAFKA_LISTENER=ec2-52-202-238-209.compute-1.amazonaws.com:9092
 TOPIC_NAME=user_data_01
 
 # SIM_FILE: This is the path, filename and extension of the results simulation to process
-SIM_FILE=sim_results/path0000007.csv
+SIM_FILE=${BASEDIR}/sim_results/path0000007.csv
 
 # the first step is to install kafka-python
 pip install kafka-python
