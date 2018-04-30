@@ -40,5 +40,13 @@ peg install ${CLUSTER_NAME} environment
 #1. maven can't be installed
 #2. recommend to upgrade pip
 
+# install and start zookeeper
+peg install ${CLUSTER_NAME} zookeeper
+peg service ${CLUSTER_NAME} zookeeper start
+
+# install and start kafka
+peg install ${CLUSTER_NAME} kafka
+peg service ${CLUSTER_NAME} kafka start
+
 printf '\ninstalled all packages\n'
 fi

@@ -8,7 +8,7 @@
 
 import sys
 import csv
-import six #need to figure out what this does
+#import six #need to figure out what this does
 import time
 from datetime import datetime
 from kafka.client import KafkaClient #do I need this to work?
