@@ -28,33 +28,40 @@ CLUSTER_NAME=process-cluster
 
 peg fetch ${CLUSTER_NAME}
 
-read -p "Are you sure to install packages on your instances? Y/n" -n 1 -r
+read -p "\nAre you sure to install packages on your instances? Y" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
+printf '\ninstalling ssh and aws to the cluster:'
 peg install ${CLUSTER_NAME} ssh
 peg install ${CLUSTER_NAME} aws
+
+read -p "\nPress enter to install environment packages:"
 peg install ${CLUSTER_NAME} environment 
 #[WARNINGS WHEN INSTALLING ENVIRONMENT]:
 #1. maven can't be installed
 #2. recommend to upgrade pip
 
+read -p "\nPress enter to install hadoop:"
 # install and start hadoop
 peg install ${CLUSTER_NAME} hadoop
-peg service ${CLUSTER_NAME} hadoop start
+#peg service ${CLUSTER_NAME} hadoop start
 
+read -p "\nPress enter to install spark:"
 # install and start spark
 peg install ${CLUSTER_NAME} spark
-peg service ${CLUSTER_NAME} spark start
+#peg service ${CLUSTER_NAME} spark start
 
+read -p "\nPress enter to install zookeeper:"
 # install and start zookeeper
 peg install ${CLUSTER_NAME} zookeeper
-peg service ${CLUSTER_NAME} zookeeper start
+#peg service ${CLUSTER_NAME} zookeeper start
 
+read -p "\nPress enter to install kafka:"
 # install and start kafka
 peg install ${CLUSTER_NAME} kafka
-peg service ${CLUSTER_NAME} kafka start
+#peg service ${CLUSTER_NAME} kafka start
 
 
 printf '\ninstalled all packages\n'

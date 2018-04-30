@@ -23,7 +23,7 @@ SIM_FILE=${BASEDIR}/sim_results/path0000007.csv
 # the first step is to install kafka-python
 pip install kafka-python
 
-python gps_prod_kafka.py ${KAFKA_LISTENER} ${TOPIC_NAME} ${SIM_FILE}
+python ${BASEDIR}/gps_prod_kafka.py ${KAFKA_LISTENER} ${TOPIC_NAME} ${SIM_FILE}
 
 # Testing commands:
 # Create consumer from console, read from beginning:
