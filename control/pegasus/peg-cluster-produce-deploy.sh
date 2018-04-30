@@ -19,21 +19,21 @@
 # PURPOSE OF THIS SCRIPT
 # call pegasus commands on the user-defined *.yml files to deploy instances
 
-printf '\ndeploying ingestion clusters\n'
+printf '\ndeploying producer clusters\n'
 
 BASEDIR=$(dirname "$0")
 
-CLUSTER_NAME=ingest-cluster
+CLUSTER_NAME=produce-cluster
 
-peg validate ${BASEDIR}/cluster-ingest-master.yml
-peg validate ${BASEDIR}/cluster-ingest-workers.yml
+peg validate ${BASEDIR}/cluster-produce-master.yml
+#peg validate ${BASEDIR}/cluster-produce-workers.yml
 
 read -p "Are you sure to deploy the clusters? Y/n" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-peg up ${BASEDIR}/cluster-ingest-master.yml &
-peg up ${BASEDIR}/cluster-ingest-workers.yml &
+peg up ${BASEDIR}/cluster-produce-master.yml &
+#peg up ${BASEDIR}/cluster-produce-workers.yml &
 
 wait
 

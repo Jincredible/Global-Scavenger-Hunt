@@ -19,11 +19,11 @@
 # PURPOSE OF THIS SCRIPT
 # call pegasus commands on the user-defined clusters to install packages
 
-printf '\nrunning pegasus installation scrpts on ingestion clusters\n'
+printf '\nrunning pegasus installation scrpts on producer clusters\n'
 
 BASEDIR=$(dirname "$0")
 
-CLUSTER_NAME=ingest-cluster
+CLUSTER_NAME=produce-cluster
 
 
 peg fetch ${CLUSTER_NAME}
@@ -39,23 +39,6 @@ peg install ${CLUSTER_NAME} environment
 #[WARNINGS WHEN INSTALLING ENVIRONMENT]:
 #1. maven can't be installed
 #2. recommend to upgrade pip
-
-# install and start hadoop
-peg install ${CLUSTER_NAME} hadoop
-peg service ${CLUSTER_NAME} hadoop start
-
-# install and start spark
-peg install ${CLUSTER_NAME} spark
-peg service ${CLUSTER_NAME} spark start
-
-# install and start zookeeper
-peg install ${CLUSTER_NAME} zookeeper
-peg service ${CLUSTER_NAME} zookeeper start
-
-# install and start kafka
-peg install ${CLUSTER_NAME} kafka
-peg service ${CLUSTER_NAME} kafka start
-
 
 printf '\ninstalled all packages\n'
 fi

@@ -19,11 +19,11 @@
 # PURPOSE OF THIS SCRIPT
 # call pegasus commands on the user-defined clusters to install packages
 
-printf '\nrunning pegasus installation scrpts on ingestion clusters\n'
+printf '\nrunning pegasus installation scrpts on processing clusters\n'
 
 BASEDIR=$(dirname "$0")
 
-CLUSTER_NAME=ingest-cluster
+CLUSTER_NAME=process-cluster
 
 
 peg fetch ${CLUSTER_NAME}
