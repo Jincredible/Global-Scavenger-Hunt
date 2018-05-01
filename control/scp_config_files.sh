@@ -13,9 +13,10 @@
 # peg scp to-local judit-spark 1 ./ ./first_try.py
 
 # streaming_config.py file from local to process-cluster
+BASEDIR=$(dirname "$0")
 CLUSTER_NAME_01=process-cluster
-LOCAL_FILE_PATH_01=${SCAVANGER_HOME}/process/streaming_config.py
-REMOTE_FILE_PATH_01=./process/
+LOCAL_FILE_PATH_01=${BASEDIR}/../process/streaming_config.py
+REMOTE_FILE_PATH_01=./Global-Scavenger-Hunt/process/
 peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}

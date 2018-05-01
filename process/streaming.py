@@ -48,6 +48,9 @@ import redis
 # configuration file
 import streaming_config as config
 
+def process_each(in_message):
+	print v
+	return
 
 def main():
 	# first, get the spark handler
@@ -64,9 +67,10 @@ def main():
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
     # parse each record string as ; delimited
-    data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER))
-    data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
-                   .union(data_ds).pprint()
+    #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
+    kafkaStream.map(lambda v: process_each(v))
+    #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
+    #               .union(data_ds).pprint()
     
     
     ''' Commented reference code
