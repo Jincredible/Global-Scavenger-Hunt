@@ -13,8 +13,11 @@ POI_FILE_02=${BASEDIR}/../inputs/POI_02.csv
 scp -i ~/.ssh/stevenjin-IAM-keypair.pem ${POI_FILE_01} ${DATASTORE_PUBLIC_DNS}:~/inputs/
 scp -i ~/.ssh/stevenjin-IAM-keypair.pem ${POI_FILE_02} ${DATASTORE_PUBLIC_DNS}:~/inputs/
 
-#Start the redis server
-#/usr/local/redis/src/redis-server /usr/local/redis/redis.conf
+#install redis-py
+sudo pip install redis
 
-#git clone https://github.com/Jincredible/Global-Scavenger-Hunt
+#Start the redis server
+/usr/local/redis/src/redis-server /usr/local/redis/redis.conf
+
+git clone https://github.com/Jincredible/Global-Scavenger-Hunt
 python ${BASEDIR}/import_POI_to_redis.py ${POI_FILE_O1} ${POI_FILE_O2}
