@@ -20,7 +20,7 @@ def dataframe_from_csv(fn_csv):
 def add_to_redis(df_in):
 	r = redis.StrictRedis(host='localhost', port=6379, db=0)
 
-	for index, row in df.iterrows():
+	for index, row in df_in.iterrows():
 		r.geoadd('Boston',row['X'],row['Y'],index+10000)
 
 	return
