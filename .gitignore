@@ -29,7 +29,7 @@
 
 # Config files #
 ################
-process/streaming-config.py
+process/streaming_config.py
 
 
 # OS generated files #
