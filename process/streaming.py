@@ -68,11 +68,12 @@ def main():
     
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
-    kafkaStream.map(lambda v: process_each(v))
+    #kafkaStream.map(lambda v: process_each(v))
     #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
     #               .union(data_ds).pprint()
     
-    
+    kafkaStream.pprint()
+
     ''' Commented reference code
     # use the window function to group the data by window
     dataWindow_ds = data_ds.map(lambda x: (x['userid'], (x['acc'], x['time']))).window(10,10)
