@@ -21,8 +21,8 @@ def add_to_redis(df_in,str_in):
 	r = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 	for index, row in df_in.iterrows():
-		print("row['X']: ", str(row['X']), "row['Y']: ", str(row['Y']), "index: ", str(index+10000))
-		r.geoadd('Boston',row['X'],row['Y'],str_in+str(index))
+		print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index+10000))
+		#r.geoadd('Boston',row['X'],row['Y'],str_in+str(index))
 
 	return
 
