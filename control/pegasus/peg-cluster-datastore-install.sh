@@ -19,16 +19,16 @@
 # PURPOSE OF THIS SCRIPT
 # call pegasus commands on the user-defined clusters to install packages
 
-printf '\nrunning pegasus installation scripts on producer clusters\n'
+printf '\nrunning pegasus installation scripts on datastore clusters\n'
 
 BASEDIR=$(dirname "$0")
 
-CLUSTER_NAME=produce-cluster
+CLUSTER_NAME=process-cluster
 
 
 peg fetch ${CLUSTER_NAME}
 
-read -p "Are you sure to install packages on your instances? Y/n" -n 1 -r
+read -p "Are you sure to install packages on your instances? Y" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -48,20 +48,17 @@ read -p "Press enter to install hadoop:"
 peg install ${CLUSTER_NAME} hadoop
 #peg service ${CLUSTER_NAME} hadoop start
 
-read -p "Press enter to install spark:"
-# install and start spark
-peg install ${CLUSTER_NAME} spark
-#peg service ${CLUSTER_NAME} spark start
+read -p "Press enter to install cassandra:"
+# install and start cassandra
+peg install ${CLUSTER_NAME} cassandra
+#peg service ${CLUSTER_NAME} cassandra start
 
-read -p "Press enter to install zookeeper:"
-# install and start zookeeper
-peg install ${CLUSTER_NAME} zookeeper
-#peg service ${CLUSTER_NAME} zookeeper start
+read -p "Press enter to install redis:"
+# install and start redis
+peg install ${CLUSTER_NAME} redis
+#peg service ${CLUSTER_NAME} redis start
 
-read -p "Press enter to install kafka:"
-# install and start kafka
-peg install ${CLUSTER_NAME} kafka
-#peg service ${CLUSTER_NAME} kafka start
+
 
 printf '\ninstalled all packages\n'
 fi

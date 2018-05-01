@@ -19,7 +19,7 @@
 # PURPOSE OF THIS SCRIPT
 # call pegasus commands on the user-defined clusters to install packages
 
-printf '\nrunning pegasus installation scrpts on ingestion clusters\n'
+printf '\nrunning pegasus installation scripts on ingestion clusters\n'
 
 BASEDIR=$(dirname "$0")
 
