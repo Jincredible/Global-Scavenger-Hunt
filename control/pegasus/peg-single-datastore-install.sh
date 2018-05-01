@@ -19,11 +19,11 @@
 # PURPOSE OF THIS SCRIPT
 # call pegasus commands on the user-defined clusters to install packages
 
-printf '\nrunning pegasus installation scripts on datastore clusters\n'
+printf '\nrunning pegasus installation scripts on datastore single instance\n'
 
 BASEDIR=$(dirname "$0")
 
-CLUSTER_NAME=datastore-cluster
+CLUSTER_NAME=datastore-single
 
 
 peg fetch ${CLUSTER_NAME}

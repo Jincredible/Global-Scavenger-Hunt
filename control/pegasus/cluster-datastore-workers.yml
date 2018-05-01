@@ -1,9 +1,9 @@
 purchase_type: on_demand
 subnet_id: subnet-07d506ab9c56a35da
-num_instances: 1
+num_instances: 2
 key_name: stevenjin-IAM-keypair
 security_group_ids: sg-04f79f13f885d0eb4
-instance_type: m4.large
+instance_type: t2.medium
 tag_name: datastore-cluster
 vol_size: 100
 role: worker
