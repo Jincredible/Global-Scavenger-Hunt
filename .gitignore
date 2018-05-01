@@ -29,7 +29,8 @@
 
 # Config files #
 ################
-process/streaming_config.py
+*config.py
+*config.sh
 
 
 # OS generated files #

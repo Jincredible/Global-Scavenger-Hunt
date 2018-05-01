@@ -20,3 +20,8 @@ REMOTE_FILE_PATH_01=./Global-Scavenger-Hunt/process/
 peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
 #peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
 #peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
+
+CLUSTER_NAME_02=process-cluster
+LOCAL_FILE_PATH_02=${BASEDIR}/../process/process_cluster_config.sh
+REMOTE_FILE_PATH_02=./Global-Scavenger-Hunt/process/
+peg scp to-rem ${CLUSTER_NAME_02} 1 ${LOCAL_FILE_PATH_02} ${REMOTE_FILE_PATH_02}
