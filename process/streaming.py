@@ -61,8 +61,9 @@ def getSqlContextInstance(sparkContext):
 
 
 def process_rdd(time,rdd):
-    #print "========= %s =========" % str(time)
+    print "========= %s =========" % str(time)
     
+    '''
 	try:
         # Get the singleton instance of SQLContext
         sqlContext = getSqlContextInstance(rdd.context)
@@ -78,7 +79,7 @@ def process_rdd(time,rdd):
 
     except:
         pass
-    
+    '''
 
 	return rdd
 
@@ -96,7 +97,7 @@ def main():
     # create a direct stream from kafka without using receiver
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
-    #kafkaStream.foreachRDD(process_rdd)
+    kafkaStream.foreachRDD(process_rdd)
 
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
