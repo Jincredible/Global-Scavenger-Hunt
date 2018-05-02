@@ -63,8 +63,8 @@ def getSqlContextInstance(sparkContext):
 # --------------------------------------------------------------------------------------------
 
 
-def process_rdd(time,rdd):
-    print "========= %s =========" % str(time)
+def process_rdd(rdd):
+    #print "========= %s =========" % str(time)
     
 	try:
         # Get the singleton instance of SQLContext
