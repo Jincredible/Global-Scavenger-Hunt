@@ -48,8 +48,8 @@ import redis
 # configuration file
 import streaming_config as config
 
-def process_each(in_message):
-	print v
+def split_line(in_line):
+	print in_line
 	return
 
 def main():
@@ -67,7 +67,7 @@ def main():
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
 
-    df = kafkaStream.flatMap(lambda line: line.split(";"))
+    df = kafkaStream.map(lambda line: split_line(line))
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
     #kafkaStream.map(lambda v: process_each(v))
