@@ -95,8 +95,7 @@ def main():
     longitude = StructField("longitude", DoubleType(), False)
     latitude = StructField("latitude", DoubleType(), False)
     just_logged_in = StructField("just_logged_in", BooleanType(), False)
-
-    user_schema = StructType(user_id, timestamp, longitude, latitude, just_logged_in)
+    user_schema = StructType([user_id, timestamp, longitude, latitude, just_logged_in])
 	# first, get the spark handler
     sc = SparkContext(appName="PysparkStreamingApp")
     sc.setLogLevel("WARN")
