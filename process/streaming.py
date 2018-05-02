@@ -96,7 +96,7 @@ def main():
     # create a direct stream from kafka without using receiver
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
-    kafkaStream.foreachRDD(process_rdd)
+    #kafkaStream.foreachRDD(process_rdd)
 
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
