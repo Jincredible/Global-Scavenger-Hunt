@@ -38,14 +38,7 @@ from pyspark.streaming import StreamingContext
 # Spark SQL Module
 from pyspark.sql.context import SQLContext
 from pyspark.sql import Row
-from pyspark.sql import StructField
-from pyspark.sql import StructType
-
-from pyspark.sql import StringType
-from pyspark.sql import BinaryType
-from pyspark.sql import BooleanType
-from pyspark.sql import TimestampType
-from pyspark.sql import DoubleType
+from pyspark.sql.types import *
 
 # Kafka
 from pyspark.streaming.kafka import KafkaUtils
