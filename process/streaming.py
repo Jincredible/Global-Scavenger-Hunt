@@ -62,7 +62,7 @@ def getSqlContextInstance(sparkContext):
 
 def process_rdd(time,rdd):
     #print "========= %s =========" % str(time)
-    '''
+    
 	try:
         # Get the singleton instance of SQLContext
         sqlContext = getSqlContextInstance(rdd.context)
@@ -78,17 +78,7 @@ def process_rdd(time,rdd):
 
     except:
         pass
-    '''
-    sqlContext = getSqlContextInstance(rdd.context)
-
-    # Convert RDD[String] to RDD[Row] to DataFrame
-    rowRdd = rdd.map(lambda w: Row(word=w))
-    df = sqlContext.createDataFrame(rowRdd)
-
-    # Register as table
-    #df.registerTempTable("words")
-
-    df.show()
+    
 
 	return rdd
 
@@ -107,6 +97,7 @@ def main():
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
     kafkaStream.foreachRDD(process_rdd)
+
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
