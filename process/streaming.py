@@ -62,7 +62,7 @@ def getSqlContextInstance(sparkContext):
 
 # --------------------------------------------------------------------------------------------
 
-
+'''
 def process_rdd(rdd):
     #print "========= %s =========" % str(time)
     
@@ -83,7 +83,7 @@ def process_rdd(rdd):
         pass
    
     return rdd
-
+'''
 
 def main():
 	# first, get the spark handler
@@ -100,7 +100,7 @@ def main():
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
 
-    kafkaStream.foreachRDD(process_rdd)
+    #kafkaStream.foreachRDD(process_rdd)
 
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
@@ -108,7 +108,7 @@ def main():
     #kafkaStream.map(lambda v: process_each(v))
     #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
     #               .union(data_ds).pprint()
-    #kafkaStream.pprint()
+    kafkaStream.pprint()
     #df.pprint()
 
     ''' Commented reference code
