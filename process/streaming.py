@@ -92,9 +92,9 @@ def main():
     #ssc.checkpoint(config.CHECKPOINT_DIR) 
     
     # create a direct stream from kafka without using receiver
-    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}).foreachRDD(process_rdd)
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
-
+    kafkaStream.foreachRDD(process_rdd)
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
