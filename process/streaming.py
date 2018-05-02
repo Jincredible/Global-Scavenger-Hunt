@@ -48,9 +48,37 @@ import redis
 # configuration file
 import streaming_config as config
 
-def split_line(in_line):
-	print(in_line)
-	return in_line
+# getSqlContextInstance From Spark Streaming Tutorial -----------------------------------------
+# http://spark.apache.org/docs/1.3.0/streaming-programming-guide.html#dataframe-and-sql-operations
+# Lazily instantiated global instance of SQLContext
+
+def getSqlContextInstance(sparkContext):
+    if ('sqlContextSingletonInstance' not in globals()):
+        globals()['sqlContextSingletonInstance'] = SQLContext(sparkContext)
+    return globals()['sqlContextSingletonInstance']
+
+# --------------------------------------------------------------------------------------------
+
+
+def process_rdd(time,rdd):
+    print "========= %s =========" % str(time)
+	try:
+        # Get the singleton instance of SQLContext
+        sqlContext = getSqlContextInstance(rdd.context)
+
+        # Convert RDD[String] to RDD[Row] to DataFrame
+        rowRdd = rdd.map(lambda w: Row(word=w))
+        df = sqlContext.createDataFrame(rowRdd)
+
+        # Register as table
+        #df.registerTempTable("words")
+
+        df.show()
+
+    except:
+        pass
+        
+	return rdd
 
 def main():
 	# first, get the spark handler
@@ -64,17 +92,17 @@ def main():
     #ssc.checkpoint(config.CHECKPOINT_DIR) 
     
     # create a direct stream from kafka without using receiver
-    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}).foreachRDD(process_rdd)
     
 
-    df = kafkaStream.map(lambda line: split_line(line[1]))
+    #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
     #kafkaStream.map(lambda v: process_each(v))
     #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
     #               .union(data_ds).pprint()
-    
-    df.pprint()
+    kafkaStream.pprint()
+    #df.pprint()
 
     ''' Commented reference code
     # use the window function to group the data by window
