@@ -57,8 +57,8 @@ def main():
     sc = SparkContext(appName="PysparkStreamingApp")
     sc.setLogLevel("WARN")
     
-    # set microbatch interval as 5 seconds
-    ssc = StreamingContext(sc, 5)
+    # set microbatch interval as X seconds
+    ssc = StreamingContext(sc, 3)
 
     #would have to set up a checkpoint directory, a check point folder for window process to run this command
     #ssc.checkpoint(config.CHECKPOINT_DIR) 
@@ -66,13 +66,15 @@ def main():
     # create a direct stream from kafka without using receiver
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
+
+    df = kafkaStream.flatMap(lambda line: line.split(";"))
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
     #kafkaStream.map(lambda v: process_each(v))
     #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
     #               .union(data_ds).pprint()
     
-    kafkaStream.pprint()
+    df.pprint()
 
     ''' Commented reference code
     # use the window function to group the data by window
