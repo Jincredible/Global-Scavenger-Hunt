@@ -32,6 +32,10 @@
 *config.py
 *config.sh
 
+# TEMP SCRIPTS #
+################
+*TEMP*.sh
+
 
 # OS generated files #
 ######################
