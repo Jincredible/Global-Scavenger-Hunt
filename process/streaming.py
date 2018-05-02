@@ -49,8 +49,8 @@ import redis
 import streaming_config as config
 
 def split_line(in_line):
-	print in_line
-	return
+	print(in_line)
+	return in_line
 
 def main():
 	# first, get the spark handler
@@ -67,7 +67,7 @@ def main():
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
     
 
-    df = kafkaStream.map(lambda line: split_line(line))
+    df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
     #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
     #kafkaStream.map(lambda v: process_each(v))
