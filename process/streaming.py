@@ -90,11 +90,11 @@ def process_rdd(rdd):
 
 def main():
 
-    user_id = StructField("user_id", StringType, False)
-    timestamp = StructField("timestamp", TimestampType, False)
-    longitude = StructField("longitude", DoubleType, False)
-    latitude = StructField("latitude", DoubleType, False)
-    just_logged_in = StructField("just_logged_in", BooleanType, False)
+    user_id = StructField("user_id", StringType(), False)
+    timestamp = StructField("timestamp", TimestampType(), False)
+    longitude = StructField("longitude", DoubleType(), False)
+    latitude = StructField("latitude", DoubleType(), False)
+    just_logged_in = StructField("just_logged_in", BooleanType(), False)
 
     user_schema = StructType(user_id, timestamp, longitude, latitude, just_logged_in)
 	# first, get the spark handler
