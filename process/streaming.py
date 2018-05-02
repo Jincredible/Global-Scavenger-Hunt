@@ -59,10 +59,9 @@ def getSqlContextInstance(sparkContext):
 
 # --------------------------------------------------------------------------------------------
 
-
+'''
 def process_rdd(time,rdd):
     print "========= %s =========" % str(time)
-    
     '''
 	try:
         # Get the singleton instance of SQLContext
@@ -80,8 +79,8 @@ def process_rdd(time,rdd):
     except:
         pass
     '''
-
-	return rdd
+    return rdd
+'''
 
 def main():
 	# first, get the spark handler
