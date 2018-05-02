@@ -62,6 +62,7 @@ def getSqlContextInstance(sparkContext):
 
 def process_rdd(time,rdd):
     #print "========= %s =========" % str(time)
+    '''
 	try:
         # Get the singleton instance of SQLContext
         sqlContext = getSqlContextInstance(rdd.context)
@@ -77,6 +78,17 @@ def process_rdd(time,rdd):
 
     except:
         pass
+    '''
+    sqlContext = getSqlContextInstance(rdd.context)
+
+    # Convert RDD[String] to RDD[Row] to DataFrame
+    rowRdd = rdd.map(lambda w: Row(word=w))
+    df = sqlContext.createDataFrame(rowRdd)
+
+    # Register as table
+    #df.registerTempTable("words")
+
+    df.show()
 
 	return rdd
 
