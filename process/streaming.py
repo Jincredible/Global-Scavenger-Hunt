@@ -35,8 +35,18 @@ import numpy as np
 from pyspark import SparkContext
 # Spark Streaming
 from pyspark.streaming import StreamingContext
+# Spark SQL Module
 from pyspark.sql.context import SQLContext
 from pyspark.sql import Row
+from pyspark.sql import StructField
+from pyspark.sql import StructType
+
+from pyspark.sql import StringType
+from pyspark.sql import BinaryType
+from pyspark.sql import BooleanType
+from pyspark.sql import TimestampType
+from pyspark.sql import DoubleType
+
 # Kafka
 from pyspark.streaming.kafka import KafkaUtils
 from pyspark.sql import Row, SparkSession
@@ -86,6 +96,14 @@ def process_rdd(rdd):
 '''
 
 def main():
+
+    user_id = StructField("user_id", StringType, False)
+    timestamp = StructField("timestamp", TimestampType, False)
+    longitude = StructField("longitude", DoubleType, False)
+    latitude = StructField("latitude", DoubleType, False)
+    just_logged_in = StructField("just_logged_in", BooleanType, False)
+
+    user_schema = StructType(user_id, timestamp, longitude, latitude, just_logged_in)
 	# first, get the spark handler
     sc = SparkContext(appName="PysparkStreamingApp")
     sc.setLogLevel("WARN")
@@ -98,7 +116,7 @@ def main():
     
     # create a direct stream from kafka without using receiver
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
-    
+    #kafkaRDD=kafkaStream.map(lambda r: get_tuple(r))
 
     #kafkaStream.foreachRDD(process_rdd)
 
