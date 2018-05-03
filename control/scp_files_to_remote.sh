@@ -12,32 +12,42 @@
 # example
 # peg scp to-local judit-spark 1 ./ ./first_try.py
 
-# streaming_config.py file from local to process-cluster
 BASEDIR=$(dirname "$0")
+
+# PROCESS CLUSTER ----------------------------------------------------------
+
 CLUSTER_NAME_01=process-cluster
-LOCAL_FILE_PATH_01=${BASEDIR}/../process/streaming_config.py
 REMOTE_FILE_PATH_01=./Global-Scavenger-Hunt/process/
-peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
+
+# streaming_config.py file from local to process-cluster
+LOCAL_FILE_PATH_01A=${BASEDIR}/../process/streaming_config.py
+peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01A} ${REMOTE_FILE_PATH_01}
 
 # process_cluster_config.sh from local to process-cluster
-CLUSTER_NAME_02=process-cluster
-LOCAL_FILE_PATH_02=${BASEDIR}/../process/process_cluster_config.sh
-REMOTE_FILE_PATH_02=./Global-Scavenger-Hunt/process/
-peg scp to-rem ${CLUSTER_NAME_02} 1 ${LOCAL_FILE_PATH_02} ${REMOTE_FILE_PATH_02}
+LOCAL_FILE_PATH_01B=${BASEDIR}/../process/process_cluster_config.sh
+peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01B} ${REMOTE_FILE_PATH_01}
+
+# DATASTORE CLUSTER ----------------------------------------------------------
+
+CLUSTER_NAME_03=datastore-single
+REMOTE_FILE_PATH_03=./Global-Scavenger-Hunt/datastore/
 
 #POI_INPUT files from local into datastore
-CLUSTER_NAME_03=datastore-single
 LOCAL_FILE_PATH_03A=${BASEDIR}/../inputs/POI_01.csv
 LOCAL_FILE_PATH_03B=${BASEDIR}/../inputs/POI_02.csv
-REMOTE_FILE_PATH_03=./Global-Scavenger-Hunt/datastore/
 peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03A} ${REMOTE_FILE_PATH_03}
 peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03B} ${REMOTE_FILE_PATH_03}
 
-# produce_cluster_config.sh from local to produce-cluster
+#datastore_config.py file from local into datastore
+LOCAL_FILE_PATH_03C=${BASEDIR}/../datastore/datastore_config.py
+peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03C} ${REMOTE_FILE_PATH_03}
+
+# PRODUCE CLUSTER ----------------------------------------------------------
+
 CLUSTER_NAME_04=produce-cluster
-LOCAL_FILE_PATH_04=${BASEDIR}/../produce/produce_cluster_config.sh
 REMOTE_FILE_PATH_04=./Global-Scavenger-Hunt/produce/
+
+# produce_cluster_config.sh from local to produce-cluster
+LOCAL_FILE_PATH_04=${BASEDIR}/../produce/produce_cluster_config.sh
 peg scp to-rem ${CLUSTER_NAME_04} 1 ${LOCAL_FILE_PATH_04} ${REMOTE_FILE_PATH_04}
 
