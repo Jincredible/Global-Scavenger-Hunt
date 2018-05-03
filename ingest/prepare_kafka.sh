@@ -13,7 +13,10 @@ TOPIC_NAME=user_data_01
 #pip install kafka-python
 
 # This shell script is created to create a topic in kafka named 'user_data_01'
-/usr/local/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 1 --topic ${TOPIC_NAME}
+/usr/local/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 18 --topic ${TOPIC_NAME}
+
+#if needed, run this command to change the number of partitions
+#/usr/local/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --alter --topic ${TOPIC_NAME} --partitions 18
 
 # this command gets all of the topics
 /usr/local/kafka/bin/kafka-topics.sh --list --zookeeper localhost:2181
