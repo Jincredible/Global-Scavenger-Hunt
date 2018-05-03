@@ -31,7 +31,7 @@ peg scp to-rem ${CLUSTER_NAME_02} 1 ${LOCAL_FILE_PATH_02} ${REMOTE_FILE_PATH_02}
 CLUSTER_NAME_03=datastore-single
 LOCAL_FILE_PATH_03A=${BASEDIR}/../inputs/POI_01.csv
 LOCAL_FILE_PATH_03B=${BASEDIR}/../inputs/POI_02.csv
-REMOTE_FILE_PATH_03=./datastore/
+REMOTE_FILE_PATH_03=./Global-Scavenger-Hunt/datastore/
 peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03A} ${REMOTE_FILE_PATH_03}
 peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03B} ${REMOTE_FILE_PATH_03}
 
