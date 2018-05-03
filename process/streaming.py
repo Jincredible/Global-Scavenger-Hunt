@@ -38,17 +38,18 @@ from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 # Spark SQL Module
 from pyspark.sql.context import SQLContext
-from pyspark.sql import Row
 from pyspark.sql.types import *
-
-# Kafka
-from pyspark.streaming.kafka import KafkaUtils
 from pyspark.sql import Row, SparkSession
 from pyspark.sql.window import Window
 from pyspark.sql.functions import *
-from pyspark.sql.types import *
-import json, math, datetime
 
+# Kafka
+from pyspark.streaming.kafka import KafkaUtils
+
+# General imports
+from math import sin, cos, sqrt, atan2
+import json, math, datetime
+import decimal
 # redis
 import redis
 
@@ -58,9 +59,13 @@ import streaming_config as config
 
 # Global variables
 REDIS_DATABASE = 7 #7 is for testing, 0 is for production
-NUM_LOC_PER_USER = 1 #This is the number of target locations for each user at each time
-OUTER_RADIUS = 1000 #in meters, this is the max distance'
-
+NUM_LOC_PER_USER = 3 #This is the number of target locations for each user at each time
+MIN_LOC_PER_USER = 1 # this is in case there aren't enough target locations within the MAX_OUTER_RADIUS
+OUTER_RADIUS = 600 #in meters, this is the outer bound distance to fetch target location
+MAX_OUTER_RADIUS = 2500 #in meters, this is the maximum distance to fetch targets
+INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target location
+SCORE_DIST = 30 #in meters, distance a player must be to score the point
+REDIS_LOCATION_NAME='Boston'
 
 
 
@@ -75,8 +80,58 @@ def getSqlContextInstance(sparkContext):
 
 # --------------------------------------------------------------------------------------------
 
-#def redis_get_targets(row,r):
-    #outerset = 
+def get_distance(lon_1, lat_1, lon_2, lat_2): #inputs must be in degrees
+    
+    ''' approximation source: http://jonisalonen.com/2014/computing-distance-between-coordinates-can-be-simple-and-fast/
+    distance(lat, lng, lat0, lng0):
+    deglen := 110.25
+    x := lat - lat0
+    y := (lng - lng0)*cos(lat0)
+    return deglen*sqrt(x*x + y*y)
+    '''
+    #We can use approximations because these distances will be relatively close
+    length_degree = 110250 #meters per degree
+    lat_diff = lat_2 - lat_1
+    long_diff = (lon_2 - lon_1)*decimal.Decimal(math.cos(math.radians(lat_2)))
+    distance = length_degree*decimal.Decimal(math.sqrt(lat_diff*lat_diff + long_diff*long_diff))
+
+    ''' Haversine formula
+    #first, convert to radians
+    lon_1 = math.radians(lon_1)
+    lon_2 = math.radians(lon_2)
+    lat_1 = math.radians(lat_1)
+    lat_2 = math.radians(lat_2)
+
+    lon_diff = lon_2 - lon_1
+    lat_diff = lat_2 - lat_1
+    a = (sin(lat_diff/2))**2 + cos(lat_1) * cos(lat_2) * (sin(lon_diff/2))**2
+    c = 2 * atan2(sqrt(a), sqrt(1-a))
+    distance = 6373.0 * c
+    '''
+    return distance
+
+
+def redis_get_new_targets(r,row,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS): #returns a set of possible locations
+    set_outer = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=out_radius, unit='m'))
+    set_inner = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=in_radius, unit='m'))
+    #also, implement add another set of 'SOLVED' targets for this particular user
+    set_targets = set_outer - set_inner
+    if (len(set_targets) < MIN_LOC_PER_USER) or (out_radius >= MAX_OUTER_RADIUS):
+        return redis_get_new_targets(r,row,out_radius+100, in_radius)
+    else:
+        return set_targets
+
+def redis_populate_targets(r,row):
+    possible_target_set = redis_get_new_targets(r,row)
+    print('fetched a possible set of',len(possible_target_set),'target locations')
+
+    #We need to add a check to make sure that the possible_target_set has one or more targets in it!
+
+    while (r.scard(row.userid) < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
+        new_target = possible_target_set.pop()
+        print('adding member:', new_target,'to user:',row.userid)
+        r.sadd(row.userid,new_target)
+
 
 def process_row_redis(row):
     #processes the row, writes to redis
@@ -85,17 +140,26 @@ def process_row_redis(row):
     # 2. encountered difficulty passing the redis handler in lambda. This is because we can't really broadcast this handler
     r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS) #OBVIOUSLY GOING TO BE A BOTTLENECK
 
-    #first, check if the user_id exists in redis
-    #command is r.exists(key_name)
+    # Debugging: Print to stderr if this doesn't exist
     if r.exists(row.userid): #does the user exist in the database?
         print('user:',row.userid,'does exist in database')
-        #if r.scard(row.userid) < NUM_LOC_PER_USER: #is the number of target locations less than the number of targets the user is supposed to have?
-
+        print('user targets:',r.smembers(row.userid))
     else:
         print('user:',row.userid,'does NOT exist in database')
-        #if this key doesn't exist in the database, we're going to have to"
-        #   1. get N neighbors
-        #   2. populate the Hash Set
+
+    if r.scard(row.userid) < NUM_LOC_PER_USER:
+        redis_populate_targets(r,row)
+
+    #Now, calculate distances between the user and his targets
+    for target in r.smembers(row.userid):
+        target_position = r.geopos(REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+        print('target id:',target, 'position:',target_position)
+        print('type of variable: ',type(target_position))
+        print('longitude:',target_position[0],'latitude:',target_position[1])
+        print('distance between user:',row.userid,'and target:',target,'....')
+        target_distance = get_distance(lon_1=decimal.Decimal(row.longitude),lat_1=decimal.Decimal(row.latitude),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
+        print('....',str(target_distance))
+        
 
 
 def process_row(row):
