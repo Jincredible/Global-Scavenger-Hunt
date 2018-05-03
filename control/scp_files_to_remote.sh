@@ -21,7 +21,23 @@ peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
 #peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
 #peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01} ${REMOTE_FILE_PATH_01}
 
+# process_cluster_config.sh from local to process-cluster
 CLUSTER_NAME_02=process-cluster
 LOCAL_FILE_PATH_02=${BASEDIR}/../process/process_cluster_config.sh
 REMOTE_FILE_PATH_02=./Global-Scavenger-Hunt/process/
 peg scp to-rem ${CLUSTER_NAME_02} 1 ${LOCAL_FILE_PATH_02} ${REMOTE_FILE_PATH_02}
+
+#POI_INPUT files from local into datastore
+CLUSTER_NAME_03=datastore-single
+LOCAL_FILE_PATH_03A=${BASEDIR}/../inputs/POI_01.csv
+LOCAL_FILE_PATH_03B=${BASEDIR}/../inputs/POI_02.csv
+REMOTE_FILE_PATH_03=./datastore/
+peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03A} ${REMOTE_FILE_PATH_03}
+peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03B} ${REMOTE_FILE_PATH_03}
+
+# produce_cluster_config.sh from local to produce-cluster
+CLUSTER_NAME_04=produce-cluster
+LOCAL_FILE_PATH_04=${BASEDIR}/../produce/produce_cluster_config.sh
+REMOTE_FILE_PATH_04=./Global-Scavenger-Hunt/produce/
+peg scp to-rem ${CLUSTER_NAME_04} 1 ${LOCAL_FILE_PATH_04} ${REMOTE_FILE_PATH_04}
+

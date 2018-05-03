@@ -17,8 +17,8 @@ def dataframe_from_csv(fn_csv):
 		df = pandas.read_csv(fn_csv, sep=',', header=0)
 	return df[[0,1]]
 
-def add_to_redis(df_in,str_in):
-	r = redis.StrictRedis(host='localhost', port=6379, db=0)
+def add_to_redis(df_in,str_in,database_in):
+	r = redis.StrictRedis(host='localhost', port=6379, db=database_in)
 
 	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
@@ -31,8 +31,9 @@ def add_to_redis(df_in,str_in):
 if __name__ == "__main__":
 	fn_csv_Boston = sys.argv[1]
 	fn_csv_Cambridge = sys.argv[2]
-	add_to_redis(dataframe_from_csv(fn_csv_Boston),'bos')
-	add_to_redis(dataframe_from_csv(fn_csv_Cambridge),'cam')
+	database_num = sys.argv[3]
+	add_to_redis(dataframe_from_csv(fn_csv_Boston),'bos',database_num)
+	add_to_redis(dataframe_from_csv(fn_csv_Cambridge),'cam',database_num)
 	#df_POI = dataframe_from_csv(fn_csv_Boston).append(dataframe_from_csv(fn_csv_Cambridge),ignore_index=True)
 	#print df_POI_01
 	#print df_POI_02

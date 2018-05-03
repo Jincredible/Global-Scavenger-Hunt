@@ -18,10 +18,11 @@
 # 5a If Yes: add the 
 
 #
-# The parameters
+# The parameters in streaming_config
 # streaming_config.KAFKA_TOPIC: name of kafka topic for upstream queue
 # streaming_config.KAFKA_DNS: public DNS and port for Kafka messages
-# streaming_config.REDIS_DNS: public DNS and port for Redis instance
+# streaming_config.REDIS_DNS: public DNS for Redis instance
+# streaming_config.REDIS_PORT: public port for Redis instance
 # streaming_config.REDIS_PASS: password for redis authentication
 # were written in a separate "streaming-config.py".
 ############################################################
@@ -65,38 +66,59 @@ def getSqlContextInstance(sparkContext):
 
 # --------------------------------------------------------------------------------------------
 
-'''
-def process_rdd(rdd):
-    #print "========= %s =========" % str(time)
-    
-	try:
-        # Get the singleton instance of SQLContext
-        sqlContext = getSqlContextInstance(rdd.context)
+def process_row(row,r):
+    #row_string = 'userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4]
+    #SparkContext(appName="PysparkStreamingApp").parallelize(row)
+    #re_row = Row(row_string=row_string)
+    #re_row_rdd = SparkContext(appName="PysparkStreamingApp").parallelize(re_row)
+    #re_row_rdd.take(5)
+    #print('userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4])
+    print('using row.<column_name> convention:')
+    print('userid: '+row.userid+' time: '+row.time+' longitude: '+ DoubleType(row.longitude)+ ' latitude: '+ DoubleType(row.latitude)+ ' just_logged_in: '+ BooleanType(row.just_logged_in))
 
-        # Convert RDD[String] to RDD[Row] to DataFrame
-        rowRdd = rdd.map(lambda w: Row(word=w))
-        df = sqlContext.createDataFrame(rowRdd)
 
-        # Register as table
-        #df.registerTempTable("words")
+def getSparkSessionInstance(sparkConf):
+    if ("sparkSessionSingletonInstance" not in globals()):
+        globals()["sparkSessionSingletonInstance"] = SparkSession \
+            .builder \
+            .config(conf=sparkConf) \
+            .getOrCreate()
+    return globals()["sparkSessionSingletonInstance"]
 
+
+def process_rdd(rdd,r):
+
+    #first, need to check if RDD has any elements
+    if rdd.isEmpty():
+        return
+    else:
+        spark = getSparkSessionInstance(rdd.context.getConf())
+
+        
+       
+        # convert RDD[String] to RDD[Row] to DataFrame
+        rowRdd = rdd.map(lambda x: Row(userid=x[0], time=x[1], longitude=x[2],latitude=x[3],just_logged_in=x[4]))
+        df = spark.createDataFrame(rowRdd)
         df.show()
+        df.foreach(process_row,r)
 
-    except:
-        pass
-   
-    return rdd
-'''
+
+
 
 def main():
 
-    user_id = StructField("user_id", StringType(), False)
-    timestamp = StructField("timestamp", TimestampType(), False)
-    longitude = StructField("longitude", DoubleType(), False)
-    latitude = StructField("latitude", DoubleType(), False)
-    just_logged_in = StructField("just_logged_in", BooleanType(), False)
-    user_schema = StructType([user_id, timestamp, longitude, latitude, just_logged_in])
-	# first, get the spark handler
+    #get redis handler
+    # db=0 is production
+    # db=7 is testing
+    redis_handler = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=0, password=config.REDIS_PASS)
+    #user_id = StructField("user_id", StringType(), False)
+    #timestamp = StructField("timestamp", TimestampType(), False)
+    #longitude = StructField("longitude", DoubleType(), False)
+    #latitude = StructField("latitude", DoubleType(), False)
+    #just_logged_in = StructField("just_logged_in", BooleanType(), False)
+    #user_schema = StructType([user_id, timestamp, longitude, latitude, just_logged_in])
+	
+    # first, get the spark handler
     sc = SparkContext(appName="PysparkStreamingApp")
     sc.setLogLevel("WARN")
     
@@ -106,11 +128,53 @@ def main():
     #would have to set up a checkpoint directory, a check point folder for window process to run this command
     #ssc.checkpoint(config.CHECKPOINT_DIR) 
     
-    # create a direct stream from kafka without using receiver
-    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS})
-    #kafkaRDD=kafkaStream.map(lambda r: get_tuple(r))
+    # create a direct stream from kafka without using receiver. Each message is coming in as a tuple of pairs. Because no key was specified
+    # in kafka, the kafka messages look like this (NONE, <message as unicode>). 
+    '''
+    -------------------------------------------
+    Time: 2018-05-02 19:18:48
+    -------------------------------------------
+    (None, u'0007.csv;20180502 191845;-71.1436077241;42.3948464553;0')
+    (None, u'0007.csv;20180502 191847;-71.1435865867;42.3948374514;0')
+    '''
+    #This is why we need to get the second half of the tuple pair by
+    # mapping it as *.map(lambda x: x[1]).
+    # As a result, the resulting stream looks like this:
+    '''
+    -------------------------------------------
+    Time: 2018-05-02 19:27:18
+    -------------------------------------------
+    0007.csv;20180502 192715;-71.144326396;42.3951525891;0
+    0007.csv;20180502 192717;-71.1443052585;42.3951435852;0
+    '''
+    # Then, we also add a .split(';') to each message so that the results look like this:
+    '''
+    -------------------------------------------
+    Time: 2018-05-02 19:42:03
+    -------------------------------------------
+    [u'0007.csv', u'20180502 194200', u'-71.1441784341', u'42.3950895616', u'0']
+    [u'0007.csv', u'20180502 194202', u'-71.1441572967', u'42.3950805576', u'0']
+    '''
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
+                            .map(lambda message: message[1].split(';'))
+    
+    #Now that we've applied a map to the Direct stream, this object is now a KafkaTransformedDStream object
+    
 
-    #kafkaStream.foreachRDD(process_rdd)
+    #When we create the foreachRDD command, we're going to remove the .pprint() command. What we're doing here is
+    #Creating dataframes from the datastream, then printing the dataframes. This is what the results look like:
+    '''
+    +--------------+-------------+--------------+---------------+--------+
+    |just_logged_in|     latitude|     longitude|           time|  userid|
+    +--------------+-------------+--------------+---------------+--------+
+    |             0|42.3950895616|-71.1441784341|20180502 200851|0007.csv|
+    |             0|42.3950805576|-71.1441572967|20180502 200853|0007.csv|
+    +--------------+-------------+--------------+---------------+--------+
+    '''
+
+
+    #we're going to use the .foreachRDD function to get the RDD of the datastream
+    kafkaStream.foreachRDD(process_rdd,redis_handler)
 
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited
@@ -118,7 +182,7 @@ def main():
     #kafkaStream.map(lambda v: process_each(v))
     #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
     #               .union(data_ds).pprint()
-    kafkaStream.pprint()
+    #kafkaStream.pprint()
     #df.pprint()
 
     ''' Commented reference code
