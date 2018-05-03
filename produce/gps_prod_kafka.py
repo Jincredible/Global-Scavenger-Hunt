@@ -32,13 +32,14 @@ class Producer(object):
     			timestamp = datetime.now().strftime("%Y%m%d %H%M%S")
     			str_fmt = "{};{};{};{};{}"
     			message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(just_logged_in))
-    			self.send_message(message_to_send)
+    			self.send_message(message_to_send,user_id)
     			just_logged_in = False
     			time.sleep(2) #sleep for 2 seconds
             
-    def send_message(self,out_message):
+    def send_message(self,out_message,user_id):
     	print out_message
-    	self._producer.send(self._topic,out_message)
+        #Kafka producer send documentation: send(topic, value=None, key=None, partition=None, timestamp_ms=None)[source]
+    	self._producer.send(topic=self._topic,value=out_message,key=unicode(user_id))
 
 
 if __name__ == "__main__":
@@ -47,4 +48,6 @@ if __name__ == "__main__":
     topic = str(args[2])
     input_path_file = str(args[3])
     prod = Producer(ip_addr,topic, input_path_file)
-    prod.start_sending(input_path_file[-8:]) 
+    print input_path_file
+    user_id = 'user0000007'
+    prod.start_sending(user_id) 

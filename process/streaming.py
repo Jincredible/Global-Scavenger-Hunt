@@ -66,6 +66,11 @@ def getSqlContextInstance(sparkContext):
 
 # --------------------------------------------------------------------------------------------
 
+def process_row_redis(row,r):
+    #processes the row, writes to redis
+    
+
+
 def process_row(row,r):
     #row_string = 'userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4]
     #SparkContext(appName="PysparkStreamingApp").parallelize(row)
