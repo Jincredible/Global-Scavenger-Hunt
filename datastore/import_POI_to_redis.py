@@ -11,6 +11,12 @@ import redis
 import csv
 import numpy
 import pandas
+#datastore_config has the following variables:
+#REDIS_PORT
+#REDIS_DNS
+#REDIS_PASS
+import datastore_config as config
+
 
 def dataframe_from_csv(fn_csv):
 	if os.path.exists(fn_csv):
@@ -18,7 +24,7 @@ def dataframe_from_csv(fn_csv):
 	return df[[0,1]]
 
 def add_to_redis(df_in,str_in,database_in):
-	r = redis.StrictRedis(host='localhost', port=6379, db=database_in)
+	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_in, password=config.REDIS_PASS)
 
 	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
