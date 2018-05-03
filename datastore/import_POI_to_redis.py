@@ -36,13 +36,17 @@ if __name__ == "__main__":
 	fn_csv_Boston = sys.argv[1]
 	fn_csv_Cambridge = sys.argv[2]
 	database_num = sys.argv[3]
+
+	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_in, password=config.REDIS_PASS)
+
+	if config.REDIS_RESET:
+		print('flushing database:', database_in)
+		r.flushdb()
+	
 	add_to_redis(r,dataframe_from_csv(fn_csv_Boston),'bos')
 	add_to_redis(r,dataframe_from_csv(fn_csv_Cambridge),'cam')
 
-	if config.REDIS_RESET:
-		r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_in, password=config.REDIS_PASS)
-		print('flushing database:', database_in)
-		r.flushdb()
+	
 	#df_POI = dataframe_from_csv(fn_csv_Boston).append(dataframe_from_csv(fn_csv_Cambridge),ignore_index=True)
 	#print df_POI_01
 	#print df_POI_02
