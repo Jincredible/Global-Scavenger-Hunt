@@ -55,6 +55,15 @@ import redis
 # custom python configuration file we made to store the kafka parameters
 import streaming_config as config
 
+
+# Global variables
+REDIS_DATABASE = 7 #7 is for testing, 0 is for production
+NUM_LOC_PER_USER = 1 #This is the number of target locations for each user at each time
+OUTER_RADIUS = 1000 #in meters, this is the max distance'
+
+
+
+
 # getSqlContextInstance From Spark Streaming Tutorial -----------------------------------------
 # http://spark.apache.org/docs/1.3.0/streaming-programming-guide.html#dataframe-and-sql-operations
 # Lazily instantiated global instance of SQLContext
@@ -66,12 +75,30 @@ def getSqlContextInstance(sparkContext):
 
 # --------------------------------------------------------------------------------------------
 
-def process_row_redis(row,r):
+#def redis_get_targets(row,r):
+    #outerset = 
+
+def process_row_redis(row):
     #processes the row, writes to redis
-    
+
+    # 1. can't pass any additional parameters to the foreach commands,
+    # 2. encountered difficulty passing the redis handler in lambda. This is because we can't really broadcast this handler
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS) #OBVIOUSLY GOING TO BE A BOTTLENECK
+
+    #first, check if the user_id exists in redis
+    #command is r.exists(key_name)
+    if r.exists(row.userid): #does the user exist in the database?
+        print('user:',row.userid,'does exist in database')
+        #if r.scard(row.userid) < NUM_LOC_PER_USER: #is the number of target locations less than the number of targets the user is supposed to have?
+
+    else:
+        print('user:',row.userid,'does NOT exist in database')
+        #if this key doesn't exist in the database, we're going to have to"
+        #   1. get N neighbors
+        #   2. populate the Hash Set
 
 
-def process_row(row,r):
+def process_row(row):
     #row_string = 'userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4]
     #SparkContext(appName="PysparkStreamingApp").parallelize(row)
     #re_row = Row(row_string=row_string)
@@ -91,8 +118,9 @@ def getSparkSessionInstance(sparkConf):
     return globals()["sparkSessionSingletonInstance"]
 
 
-def process_rdd(rdd,r):
-
+def process_rdd(rdd):
+    # this is the redis handler
+    
     #first, need to check if RDD has any elements
     if rdd.isEmpty():
         return
@@ -105,23 +133,13 @@ def process_rdd(rdd,r):
         rowRdd = rdd.map(lambda x: Row(userid=x[0], time=x[1], longitude=x[2],latitude=x[3],just_logged_in=x[4]))
         df = spark.createDataFrame(rowRdd)
         df.show()
-        df.foreach(process_row,r)
+        #df.foreach(process_row)
+        #can only pass one argument into the foreach command. try using lambda
+        df.foreach(process_row_redis)
 
 
 
-
-def main():
-
-    #get redis handler
-    # db=0 is production
-    # db=7 is testing
-    redis_handler = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=0, password=config.REDIS_PASS)
-    #user_id = StructField("user_id", StringType(), False)
-    #timestamp = StructField("timestamp", TimestampType(), False)
-    #longitude = StructField("longitude", DoubleType(), False)
-    #latitude = StructField("latitude", DoubleType(), False)
-    #just_logged_in = StructField("just_logged_in", BooleanType(), False)
-    #user_schema = StructType([user_id, timestamp, longitude, latitude, just_logged_in])
+def main():    
 	
     # first, get the spark handler
     sc = SparkContext(appName="PysparkStreamingApp")
@@ -179,7 +197,7 @@ def main():
 
 
     #we're going to use the .foreachRDD function to get the RDD of the datastream
-    kafkaStream.foreachRDD(process_rdd,redis_handler)
+    kafkaStream.foreachRDD(process_rdd)
 
     #df = kafkaStream.map(lambda line: split_line(line[1]))
     # parse each record string as ; delimited

@@ -17,7 +17,6 @@ import pandas
 #REDIS_PASS
 import datastore_config as config
 
-
 def dataframe_from_csv(fn_csv):
 	if os.path.exists(fn_csv):
 		df = pandas.read_csv(fn_csv, sep=',', header=0)
@@ -25,6 +24,10 @@ def dataframe_from_csv(fn_csv):
 
 def add_to_redis(df_in,str_in,database_in):
 	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_in, password=config.REDIS_PASS)
+
+	if config.REDIS_RESET:
+		print('flushing database:', database_in)
+		r.flushdb()
 
 	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
