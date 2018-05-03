@@ -39,7 +39,7 @@ class Producer(object):
     def send_message(self,out_message,user_id):
     	print out_message
         #Kafka producer send documentation: send(topic, value=None, key=None, partition=None, timestamp_ms=None)[source]
-    	self._producer.send(topic=self._topic,value=out_message,key=unicode(user_id))
+    	self._producer.send(topic=self._topic,value=out_message,key=user_id.encode('utf-8'))
 
 
 if __name__ == "__main__":
