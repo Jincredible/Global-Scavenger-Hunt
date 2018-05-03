@@ -37,10 +37,10 @@ if __name__ == "__main__":
 	fn_csv_Cambridge = sys.argv[2]
 	database_num = sys.argv[3]
 
-	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_in, password=config.REDIS_PASS)
+	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_num, password=config.REDIS_PASS)
 
 	if config.REDIS_RESET:
-		print('flushing database:', database_in)
+		print('flushing database:', database_num)
 		r.flushdb()
 	
 	add_to_redis(r,dataframe_from_csv(fn_csv_Boston),'bos')
