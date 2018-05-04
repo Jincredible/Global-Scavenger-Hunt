@@ -24,6 +24,8 @@
 # streaming_config.REDIS_DNS: public DNS for Redis instance
 # streaming_config.REDIS_PORT: public port for Redis instance
 # streaming_config.REDIS_PASS: password for redis authentication
+# streaming_config.CASSANDRA_DNS: public DNS of cassandra seed
+# streaming_config.CASSANDRA_NAMESPACE: namespace for cassandra
 # were written in a separate "streaming-config.py".
 ############################################################
 
@@ -52,6 +54,10 @@ import json, math, datetime
 import decimal
 # redis
 import redis
+
+#cassandra
+from cassandra.cluster import Cluster
+from cassandra import ConsistencyLevel
 
 # custom python configuration file we made to store the kafka parameters
 import streaming_config as config
