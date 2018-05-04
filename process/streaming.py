@@ -1,6 +1,6 @@
 ############################################################
 # This python script is the main script for spark streaming. 
-# Here is the JSON format of the data from kafka:
+# Here is the format of the data from kafka:
 #
 # [user_id; timestamp; longitude; latitude; int(just_logged_in)]
 # The "acc" column is the acceleration of the user.

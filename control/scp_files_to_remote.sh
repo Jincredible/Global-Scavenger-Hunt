@@ -12,6 +12,13 @@
 # example
 # peg scp to-local judit-spark 1 ./ ./first_try.py
 
+# TEMP COMMANDS
+# produce-cluster 1:~> mkdir TEMP
+# produce-cluster 1:~> cp /usr/local/kafka/bin/kafka-topics.sh TEMP
+# control-machine:~>peg scp to-local produce-cluster 1 Documents/Insight/Development/Global-Scavenger-Hunt/ingest/ ./TEMP/kafka-topics.sh
+# control-machine:~>peg scp to-rem ingest-cluster 1 ./ingest/kafka-topics.sh ./Global-Scavenger-Hunt/ingest
+# ingest-cluster 1:~>sudo mv -f ./Global-Scavenger-Hunt/ingest/kafka-topics.sh /usr/local/kafka/bin/
+
 BASEDIR=$(dirname "$0")
 
 # PROCESS CLUSTER ----------------------------------------------------------
@@ -50,4 +57,19 @@ REMOTE_FILE_PATH_04=./Global-Scavenger-Hunt/produce/
 # produce_cluster_config.sh from local to produce-cluster
 LOCAL_FILE_PATH_04=${BASEDIR}/../produce/produce_cluster_config.sh
 peg scp to-rem ${CLUSTER_NAME_04} 1 ${LOCAL_FILE_PATH_04} ${REMOTE_FILE_PATH_04}
+
+# CASSANDRA CLUSTER ----------------------------------------------------------
+
+CLUSTER_NAME_05=cassandra-cluster
+REMOTE_FILE_PATH_05=./Global-Scavenger-Hunt/cassandra/
+
+# cassandra_config.py from local to cassandra-cluster
+LOCAL_FILE_PATH_05=${BASEDIR}/../cassandra/cassandra_config.py
+peg scp to-rem ${CLUSTER_NAME_05} 1 ${LOCAL_FILE_PATH_05} ${REMOTE_FILE_PATH_05}
+
+
+
+
+
+
 
