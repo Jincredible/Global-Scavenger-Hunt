@@ -141,11 +141,17 @@ def redis_populate_targets(r,c,row):
     query_add = "INSERT INTO user_target (user_id,target_id,time_stamp,transaction_type) VALUES (?,?,?,?);"
     #for this cassandra table (user_target), it's important to remember that a transaction_type is 1 if we add a target and -1 if we remove it
     
+    print ('r.scard(row.userid)', r.scard(row.userid))
+    print ('NUM_LOC_PER_USER: ', NUM_LOC_PER_USER)
     while (r.scard(row.userid) < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
         new_target = possible_target_set.pop()
         print('adding member:', new_target,'to user:',row.userid)
         r.sadd(row.userid,new_target)
-        #!c.execute(c.prepare(query_add), (row.userid, new_target, bigint(row.time), 1))
+        print(query_add)
+        print('userid:',row.userid)
+        print('targetid:',new_target)
+        print('time:', long(row.time))
+        c.execute(c.prepare(query_add), (row.userid, new_target, long(row.time), 1))
 
 
 def process_row_redis(row):
@@ -165,14 +171,27 @@ def process_row_redis(row):
     else:
         print('user:',row.userid,'does NOT exist in database')
 
+    #if the user JUST logged and he/she already has members saved, remove those members
+    if r.exists(row.userid) and int(row.just_logged_in):
+        print('user just logged in and has targets from previous app session')
+        print('row.just_logged_in: ',row.just_logged_in)
+        while r.scard(row.userid) >0:
+            r.spop(row.userid)
+
     if r.scard(row.userid) < NUM_LOC_PER_USER:
         redis_populate_targets(r,c,row)
+
+
 
     #now that the user has his/her targets, we're goint to populate the correct cassandra database
     query_location = "INSERT INTO user_location (user_id,time_stamp,longitude,latitude) VALUES (?,?,?,?);"
     print(query_location)
-    print(row.userid, bigint(row.time), double(row.longitude), double(row.latitude))
-    c.execute(c.prepare(query_location), (row.userid, bigint(row.time), double(row.longitude), double(row.latitude)))
+
+    print('userid:',row.userid)
+    print('time:', long(row.time))
+    print('lon:', decimal.Decimal(row.longitude))
+    print('lat:', decimal.Decimal(row.latitude))
+    c.execute(c.prepare(query_location), (row.userid, long(row.time), decimal.Decimal(row.longitude), decimal.Decimal(row.latitude)))
 
     query_remove = "INSERT INTO user_target (user_id,target_id,time_stamp,transaction_type) VALUES (?,?,?,?);"
 
@@ -187,22 +206,22 @@ def process_row_redis(row):
         print('....',str(target_distance))
         if target_position <=SCORE_DIST:
             #if the user is within scoring distance, first make that call into cassandra
-            #!c.execute(c.prepare(query_add), (row.userid, new_target, bigint(row.time), -1))
+            c.execute(c.prepare(query_add), (row.userid, new_target, long(row.time), -1))
             #then, fetch a new target
             redis_populate_targets(r,c,row)
 
     c.shutdown()
 
 
-def process_row(row):
+#def process_row(row):
     #row_string = 'userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4]
     #SparkContext(appName="PysparkStreamingApp").parallelize(row)
     #re_row = Row(row_string=row_string)
     #re_row_rdd = SparkContext(appName="PysparkStreamingApp").parallelize(re_row)
     #re_row_rdd.take(5)
     #print('userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4])
-    print('using row.<column_name> convention:')
-    print('userid: '+row.userid+' time: '+row.time+' longitude: '+ DoubleType(row.longitude)+ ' latitude: '+ DoubleType(row.latitude)+ ' just_logged_in: '+ BooleanType(row.just_logged_in))
+    #print('using row.<column_name> convention:')
+    #print('userid: '+row.userid+' time: '+row.time+' longitude: '+ DoubleType(row.longitude)+ ' latitude: '+ DoubleType(row.latitude)+ ' just_logged_in: '+ BooleanType(row.just_logged_in))
 
 
 def getSparkSessionInstance(sparkConf):
