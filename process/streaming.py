@@ -261,7 +261,7 @@ def main():
     sc.setLogLevel("WARN")
     
     # set microbatch interval as X seconds
-    ssc = StreamingContext(sc, 3)
+    ssc = StreamingContext(sc, 1)
 
     #would have to set up a checkpoint directory, a check point folder for window process to run this command
     #ssc.checkpoint(config.CHECKPOINT_DIR) 

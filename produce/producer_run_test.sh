@@ -18,7 +18,8 @@ source ${BASEDIR}/produce_cluster_config.sh
 # SIM_FILE: This is the path, filename and extension of the results simulation to process
 SIM_FILE=${BASEDIR}/sim_results/path0000007.csv
 
-python ${BASEDIR}/gps_prod_kafka.py $KAFKA_LISTENER $TOPIC_NAME ${SIM_FILE}
+#python ${BASEDIR}/gps_prod_kafka.py $KAFKA_LISTENER $TOPIC_NAME ${SIM_FILE}
+python ${BASEDIR}/start_producer.py $KAFKA_LISTENER $TOPIC_NAME
 
 # Testing commands:
 # Create consumer from console, read from beginning:
