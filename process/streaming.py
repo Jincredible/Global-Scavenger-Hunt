@@ -127,16 +127,25 @@ def redis_get_new_targets(r,row,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS):
     else:
         return set_targets
 
-def redis_populate_targets(r,row):
+def redis_populate_targets(r,c,row):
+    #r is the redis handler
+    #c is the cassandra handler
+    #row is the row object from the spark dataframe object
+
     possible_target_set = redis_get_new_targets(r,row)
     print('fetched a possible set of',len(possible_target_set),'target locations')
 
     #We need to add a check to make sure that the possible_target_set has one or more targets in it!
 
+    #prepare query for cassandra insert
+    query_add = "INSERT INTO user_target (user_id,target_id,time_stamp,transaction_type) VALUES (?,?,?,?);"
+    #for this cassandra table (user_target), it's important to remember that a transaction_type is 1 if we add a target and -1 if we remove it
+    
     while (r.scard(row.userid) < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
         new_target = possible_target_set.pop()
         print('adding member:', new_target,'to user:',row.userid)
         r.sadd(row.userid,new_target)
+        #!c.execute(c.prepare(query_add), (row.userid, new_target, bigint(row.time), 1))
 
 
 def process_row_redis(row):
@@ -145,6 +154,9 @@ def process_row_redis(row):
     # 1. can't pass any additional parameters to the foreach commands,
     # 2. encountered difficulty passing the redis handler in lambda. This is because we can't really broadcast this handler
     r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS) #OBVIOUSLY GOING TO BE A BOTTLENECK
+    #cluster = Cluster(config.CASSANDRA_DNS)
+    #in this case, c is session (session=cluster.connect(<namespace>))
+    c = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
 
     # Debugging: Print to stderr if this doesn't exist
     if r.exists(row.userid): #does the user exist in the database?
@@ -154,7 +166,15 @@ def process_row_redis(row):
         print('user:',row.userid,'does NOT exist in database')
 
     if r.scard(row.userid) < NUM_LOC_PER_USER:
-        redis_populate_targets(r,row)
+        redis_populate_targets(r,c,row)
+
+    #now that the user has his/her targets, we're goint to populate the correct cassandra database
+    query_location = "INSERT INTO user_location (user_id,time_stamp,longitude,latitude) VALUES (?,?,?,?);"
+    print(query_location)
+    print(row.userid, bigint(row.time), double(row.longitude), double(row.latitude))
+    c.execute(c.prepare(query_location), (row.userid, bigint(row.time), double(row.longitude), double(row.latitude)))
+
+    query_remove = "INSERT INTO user_target (user_id,target_id,time_stamp,transaction_type) VALUES (?,?,?,?);"
 
     #Now, calculate distances between the user and his targets
     for target in r.smembers(row.userid):
@@ -165,7 +185,13 @@ def process_row_redis(row):
         print('distance between user:',row.userid,'and target:',target,'....')
         target_distance = get_distance(lon_1=decimal.Decimal(row.longitude),lat_1=decimal.Decimal(row.latitude),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
         print('....',str(target_distance))
-        
+        if target_position <=SCORE_DIST:
+            #if the user is within scoring distance, first make that call into cassandra
+            #!c.execute(c.prepare(query_add), (row.userid, new_target, bigint(row.time), -1))
+            #then, fetch a new target
+            redis_populate_targets(r,c,row)
+
+    c.shutdown()
 
 
 def process_row(row):
@@ -200,7 +226,7 @@ def process_rdd(rdd):
         
        
         # convert RDD[String] to RDD[Row] to DataFrame
-        rowRdd = rdd.map(lambda x: Row(userid=x[0], time=x[1], longitude=x[2],latitude=x[3],just_logged_in=x[4]))
+        rowRdd = rdd.map(lambda x: Row(userid=x[0], time=x[1].replace(" ",""), longitude=x[2],latitude=x[3],just_logged_in=x[4]))
         df = spark.createDataFrame(rowRdd)
         df.show()
         #df.foreach(process_row)
