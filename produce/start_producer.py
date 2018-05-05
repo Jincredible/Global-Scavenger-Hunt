@@ -23,7 +23,7 @@ if __name__ == "__main__":
     producer = KafkaProducer(bootstrap_servers=ip_addr)
 
     num_rows = 500
-    num_files= 450 #number of files we're going to process
+    num_files= 10 #number of files we're going to process
 
     df = pandas.DataFrame.from_csv('sim_results/path0000999.csv',header=0,sep='/',index_col=None).head(num_rows)
     df.columns = ['user0000999']
