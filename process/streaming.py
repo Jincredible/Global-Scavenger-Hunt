@@ -153,7 +153,7 @@ def redis_populate_targets(r,c,row):
         print('userid:',row.userid)
         print('targetid:',new_target)
         print('time:', long(row.time))
-        c.execute(c.prepare(query_add), (row.userid, new_target, long(row.time),long(datetime.now().strftime("%Y%m%d%H%M%S%f")), 1))
+        c.execute(c.prepare(query_add), (row.userid, new_target, long(row.time),long(datetime.now().strftime("%H%M%S%f")), 1))
 
 
 def process_row_redis(row):
@@ -193,7 +193,7 @@ def process_row_redis(row):
     print('time:', long(row.time))
     print('lon:', decimal.Decimal(row.longitude))
     print('lat:', decimal.Decimal(row.latitude))
-    c.execute(c.prepare(query_location), (row.userid, long(row.time),long(datetime.now().strftime("%Y%m%d%H%M%S%f")), decimal.Decimal(row.longitude), decimal.Decimal(row.latitude)))
+    c.execute(c.prepare(query_location), (row.userid, long(row.time),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(row.longitude), decimal.Decimal(row.latitude)))
 
     query_remove = "INSERT INTO user_target (user_id,target_id,timestamp_produced, timestamp_spark,transaction_type) VALUES (?,?,?,?,?);"
 
@@ -208,7 +208,7 @@ def process_row_redis(row):
         print('....',str(target_distance))
         if target_position <=SCORE_DIST:
             #if the user is within scoring distance, first make that call into cassandra
-            c.execute(c.prepare(query_remove), (row.userid, new_target, long(row.time),long(datetime.now().strftime("%Y%m%d%H%M%S%f")), -1))
+            c.execute(c.prepare(query_remove), (row.userid, new_target, long(row.time),long(datetime.now().strftime("%H%M%S%f")), -1))
             #then, fetch a new target
             redis_populate_targets(r,c,row)
 

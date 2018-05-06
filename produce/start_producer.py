@@ -64,7 +64,7 @@ if __name__ == "__main__":
     	for row in df[column]:
     		#print('row:',row_i)
     		#print('col:',column)
-    		timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f") #There used to be a space in here!
+    		timestamp = datetime.now().strftime("%H%M%S%f") #There used to be a space in here!
     		longitude = row.split(',')[0]
     		latitude = row.split(',')[1]
     		user_id = filenames[row_i]
