@@ -60,6 +60,7 @@ if __name__ == "__main__":
 
     for column in df:
     	row_i = 0
+        time.sleep(1)
     	for row in df[column]:
     		#print('row:',row_i)
     		#print('col:',column)
@@ -72,7 +73,6 @@ if __name__ == "__main__":
 
     		producer.send(topic=topic,value=message_to_send,key=user_id.encode('utf-8'))
     		row_i +=1
-            time.sleep(2)
 
 	
 
