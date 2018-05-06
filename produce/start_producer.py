@@ -22,7 +22,7 @@ if __name__ == "__main__":
     input_path = 'sim_results' #this is the directory of sim_results
     producer = KafkaProducer(bootstrap_servers=ip_addr)
 
-    num_rows = 500
+    num_rows = 3
     num_files= 10 #number of files we're going to process
 
     df = pandas.DataFrame.from_csv('sim_results/path0000999.csv',header=0,sep='/',index_col=None).head(num_rows)
@@ -68,10 +68,11 @@ if __name__ == "__main__":
     		latitude = row.split(',')[1]
     		user_id = filenames[row_i]
     		message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(column==0))
-    		#print message_to_send
+    		print message_to_send
 
     		producer.send(topic=topic,value=message_to_send,key=user_id.encode('utf-8'))
     		row_i +=1
+            time.sleep(2)
 
 	
 

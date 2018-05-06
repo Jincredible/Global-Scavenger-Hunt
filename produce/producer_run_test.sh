@@ -15,9 +15,6 @@ source ${BASEDIR}/produce_cluster_config.sh
 # TOPIC_NAME is the name of the topic as defined in the bash script prepare_kafka.sh in the ingestion cluster main node
 #TOPIC_NAME=user_data_01
 
-# SIM_FILE: This is the path, filename and extension of the results simulation to process
-SIM_FILE=${BASEDIR}/sim_results/path0000007.csv
-
 #python ${BASEDIR}/gps_prod_kafka.py $KAFKA_LISTENER $TOPIC_NAME ${SIM_FILE}
 python ${BASEDIR}/start_producer.py $KAFKA_LISTENER $TOPIC_NAME
 
