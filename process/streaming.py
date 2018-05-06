@@ -138,7 +138,7 @@ def redis_populate_targets(r,c,row):
     #We need to add a check to make sure that the possible_target_set has one or more targets in it!
 
     #prepare query for cassandra insert
-    query_add = "INSERT INTO user_target (user_id,target_id, timestamp_produced, timestamp_spark,transaction_type) VALUES (?,?,?,?);"
+    query_add = "INSERT INTO user_target (user_id, target_id, timestamp_produced, timestamp_spark, transaction_type) VALUES (?,?,?,?,?);"
     #for this cassandra table (user_target), it's important to remember that a transaction_type is 1 if we add a target and -1 if we remove it
     
     print ('r.scard(row.userid)', r.scard(row.userid))
@@ -184,7 +184,7 @@ def process_row_redis(row):
 
 
     #now that the user has his/her targets, we're goint to populate the correct cassandra database
-    query_location = "INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?);"
+    query_location = "INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);"
     print(query_location)
 
     print('userid:',row.userid)
@@ -193,7 +193,7 @@ def process_row_redis(row):
     print('lat:', decimal.Decimal(row.latitude))
     c.execute(c.prepare(query_location), (row.userid, long(row.time),long(datetime.now().strftime("%Y%m%d%H%M%S%f")), decimal.Decimal(row.longitude), decimal.Decimal(row.latitude)))
 
-    query_remove = "INSERT INTO user_target (user_id,target_id,timestamp_produced, timestamp_spark,transaction_type) VALUES (?,?,?,?);"
+    query_remove = "INSERT INTO user_target (user_id,target_id,timestamp_produced, timestamp_spark,transaction_type) VALUES (?,?,?,?,?);"
 
     #Now, calculate distances between the user and his targets
     for target in r.smembers(row.userid):
