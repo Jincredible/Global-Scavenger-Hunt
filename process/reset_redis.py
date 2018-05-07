@@ -11,11 +11,11 @@ import redis
 import csv
 import numpy
 import pandas
-#datastore_config has the following variables:
+#redis_config has the following variables:
 #REDIS_PORT
 #REDIS_DNS
 #REDIS_PASS
-import redis_config as config
+import streaming_config as config
 
 def dataframe_from_csv(fn_csv):
 	if os.path.exists(fn_csv):

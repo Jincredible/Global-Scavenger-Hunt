@@ -251,7 +251,18 @@ def process_rdd(rdd):
         
         df.foreach(process_row_redis)
 
-def write_user_timeseries_to_cassandra(iter):
+
+def debug_save_user_in_redis(iter):
+    member_list_name = 'member_list'
+    if iter.isEmpty():
+        return
+    else:
+        r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+        for record in iter:
+            r.sadd(member_list_name,record[0])
+
+
+def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find out how to speed up cassandra writes
 	#cluster = Cluster(config.CASSANDRA_DNS)
     #in this case, c is session (session=cluster.connect(<namespace>))
     cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
@@ -278,9 +289,9 @@ def main():
     
     
     #write to cassandra: put on hold for now
-    kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
+    #kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
-    
+    kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(debug_save_user_in_redis))
 
     ssc.start()
     ssc.awaitTermination()
@@ -288,3 +299,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+
+
+

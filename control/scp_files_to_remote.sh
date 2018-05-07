@@ -47,6 +47,8 @@ peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01
 # redis_config.py file from local to process-cluster
 LOCAL_FILE_PATH_01E=${BASEDIR}/../process/redis_config.py
 peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
 
 # DATASTORE CLUSTER ----------------------------------------------------------
 
