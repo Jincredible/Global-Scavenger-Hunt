@@ -257,12 +257,10 @@ def debug_empty_rdd():
 
 def debug_save_user_in_redis(iter):
     member_list_name = 'member_list'
-    if iter.isEmpty():
-        return
-    else:
-        r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
-        for record in iter:
-            r.sadd(member_list_name,record[0])
+
+    r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    for record in iter:
+        r.sadd(member_list_name,record[0])
 
 
 def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find out how to speed up cassandra writes
@@ -294,7 +292,7 @@ def main():
     #write to cassandra: put on hold for now
     #kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
-    kafkaStream.foreachRDD(lambda rdd : debug_empty_rdd() if rdd.isEmpty() else rdd.foreachPartition(debug_save_user_in_redis))
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(debug_save_user_in_redis))
 
     ssc.start()
     ssc.awaitTermination()
