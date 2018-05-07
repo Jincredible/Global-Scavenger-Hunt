@@ -259,7 +259,7 @@ def write_user_timeseries_to_cassandra(iter):
     insert_query = cassandra_session.prepare("INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
 
     for record in iter:
-    	cassandra_session.execute_async(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
+    	cassandra_session.execute(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
 
     cassandra_session.shutdown()
 
@@ -272,95 +272,15 @@ def main():
     # set microbatch interval as X seconds
     ssc = StreamingContext(sc, 1)
 
-    #would have to set up a checkpoint directory, a check point folder for window process to run this command
-    #ssc.checkpoint(config.CHECKPOINT_DIR) 
     
-    # create a direct stream from kafka without using receiver. Each message is coming in as a tuple of pairs. Because no key was specified
-    # in kafka, the kafka messages look like this (NONE, <message as unicode>). 
-    '''
-    -------------------------------------------
-    Time: 2018-05-02 19:18:48
-    -------------------------------------------
-    (None, u'0007.csv;20180502 191845;-71.1436077241;42.3948464553;0')
-    (None, u'0007.csv;20180502 191847;-71.1435865867;42.3948374514;0')
-    '''
-    #This is why we need to get the second half of the tuple pair by
-    # mapping it as *.map(lambda x: x[1]).
-    # As a result, the resulting stream looks like this:
-    '''
-    -------------------------------------------
-    Time: 2018-05-02 19:27:18
-    -------------------------------------------
-    0007.csv;20180502 192715;-71.144326396;42.3951525891;0
-    0007.csv;20180502 192717;-71.1443052585;42.3951435852;0
-    '''
-    # Then, we also add a .split(';') to each message so that the results look like this:
-    '''
-    -------------------------------------------
-    Time: 2018-05-02 19:42:03
-    -------------------------------------------
-    [u'0007.csv', u'20180502 194200', u'-71.1441784341', u'42.3950895616', u'0']
-    [u'0007.csv', u'20180502 194202', u'-71.1441572967', u'42.3950805576', u'0']
-    '''
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
                             .map(lambda message: message[1].split(';'))
     
-    #Now that we've applied a map to the Direct stream, this object is now a KafkaTransformedDStream object
     
-
-    #When we create the foreachRDD command, we're going to remove the .pprint() command. What we're doing here is
-    #Creating dataframes from the datastream, then printing the dataframes. This is what the results look like:
-    '''
-    +--------------+-------------+--------------+---------------+--------+
-    |just_logged_in|     latitude|     longitude|           time|  userid|
-    +--------------+-------------+--------------+---------------+--------+
-    |             0|42.3950895616|-71.1441784341|20180502 200851|0007.csv|
-    |             0|42.3950805576|-71.1441572967|20180502 200853|0007.csv|
-    +--------------+-------------+--------------+---------------+--------+
-    '''
-
+    #write to cassandra: put on hold for now
     kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
-    #we're going to use the .foreachRDD function to get the RDD of the datastream
-    #kafkaStream.foreachRDD(process_rdd)
-
-    #df = kafkaStream.map(lambda line: split_line(line[1]))
-    # parse each record string as ; delimited
-    #data_ds = kafkaStream.map(lambda v: v[1].split(config.MESSAGE_DELIMITER)) #reference code, slightly edited
-    #kafkaStream.map(lambda v: process_each(v))
-    #data_ds.count().map(lambda x:'Records in this batch: %s' % x)\
-    #               .union(data_ds).pprint()
-    #kafkaStream.pprint()
-    #df.pprint()
-
-    ''' Commented reference code
-    # use the window function to group the data by window
-    dataWindow_ds = data_ds.map(lambda x: (x['userid'], (x['acc'], x['time']))).window(10,10)
     
-    '''
-    ''' This section was previously commented as well
-    calculate the window-avg and window-std
-    1st map: get the tuple (key, (val, val*val, 1)) for each record
-    reduceByKey: for each key (user ID), sum up (val, val*val, 1) by column
-    2nd map: for each key (user ID), calculate window-avg and window-std, return (key, (avg, std)) 
-    '''
-    ''' Commented reference code
-    dataWindowAvgStd_ds = dataWindow_ds\
-           .map(getSquared)\
-           .reduceByKey(lambda a, b: (a[0] + b[0], a[1] + b[1], a[2] + b[2]))\
-           .map(getAvgStd)
-    
-    # join the original Dstream with individual record and the aggregated Dstream with window-avg and window-std 
-    joined_ds = dataWindow_ds.join(dataWindowAvgStd_ds)
-
-    # label each record 'safe' or 'danger' by comparing the data with the window-avg and window-std    
-    result_ds = joined_ds.map(labelAnomaly)
-    resultSimple_ds = result_ds.map(lambda x: (x[0], x[1], x[5]))
-
-    # Send the status table to rethinkDB and all data to cassandra    
-    result_ds.foreachRDD(lambda rdd: rdd.foreachPartition(sendCassandra))
-    resultSimple_ds.foreachRDD(sendRethink)
-    '''
 
     ssc.start()
     ssc.awaitTermination()

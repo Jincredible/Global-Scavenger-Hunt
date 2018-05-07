@@ -34,6 +34,20 @@ peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01A} ${REMOTE_FILE_PATH_01
 LOCAL_FILE_PATH_01B=${BASEDIR}/../process/process_cluster_config.sh
 peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01B} ${REMOTE_FILE_PATH_01}
 
+#POI_INPUT files from local into process-cluster
+LOCAL_FILE_PATH_01C=${BASEDIR}/../inputs/POI_01.csv
+LOCAL_FILE_PATH_01D=${BASEDIR}/../inputs/POI_02.csv
+peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
+peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
+
+# redis_config.py file from local to process-cluster
+LOCAL_FILE_PATH_01E=${BASEDIR}/../process/redis_config.py
+peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
+
 # DATASTORE CLUSTER ----------------------------------------------------------
 
 CLUSTER_NAME_03=datastore-single
