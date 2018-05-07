@@ -22,7 +22,7 @@ if __name__ == "__main__":
     input_path = 'sim_results' #this is the directory of sim_results
     producer = KafkaProducer(bootstrap_servers=ip_addr)
 
-    num_rows = 20
+    num_rows = 200
     num_files= 300 #number of files we're going to process
 
     df = pandas.DataFrame.from_csv('sim_results/path0000999.csv',header=0,sep='/',index_col=None).head(num_rows)

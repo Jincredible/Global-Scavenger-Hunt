@@ -254,14 +254,14 @@ def process_rdd(rdd):
 def write_user_timeseries_to_cassandra(iter):
 	#cluster = Cluster(config.CASSANDRA_DNS)
     #in this case, c is session (session=cluster.connect(<namespace>))
-    cassandra_connection = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
+    cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
 
-    insert_query = cassandra_connection.prepare("INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
+    insert_query = cassandra_session.prepare("INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
 
     for record in iter:
-    	cassandra_connection.execute(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
+    	cassandra_session.execute_async(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
 
-    cassandra_connection.shutdown()
+    cassandra_session.shutdown()
 
 def main():    
 	
