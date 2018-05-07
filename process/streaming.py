@@ -252,6 +252,9 @@ def process_rdd(rdd):
         df.foreach(process_row_redis)
 
 
+def debug_empty_rdd():
+    print('received empty rdd')
+
 def debug_save_user_in_redis(iter):
     member_list_name = 'member_list'
     if iter.isEmpty():
@@ -291,7 +294,7 @@ def main():
     #write to cassandra: put on hold for now
     #kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
-    kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(debug_save_user_in_redis))
+    kafkaStream.foreachRDD(lambda rdd : debug_empty_rdd() if rdd.isEmpty() else rdd.foreachPartition(debug_save_user_in_redis))
 
     ssc.start()
     ssc.awaitTermination()
