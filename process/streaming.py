@@ -45,6 +45,7 @@ from pyspark.sql import Row, SparkSession
 from pyspark.sql.window import Window
 from pyspark.sql.functions import *
 
+
 # Kafka
 from pyspark.streaming.kafka import KafkaUtils
 
@@ -74,7 +75,20 @@ MAX_OUTER_RADIUS = 2500 #in meters, this is the maximum distance to fetch target
 INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target location
 SCORE_DIST = 30 #in meters, distance a player must be to score the point
 REDIS_LOCATION_NAME='Boston'
+NUM_PARTITIONS = 18
 
+
+
+#class ExactPartitioner[V](partitions: Int, elements: Int) extends Partitioner {
+#  def getPartition(key: Any): Int = {
+#    val k = key.asInstanceOf[Int]
+#    //0 and 1 are partition number
+#    return ( k < 30 )? 0 : 1
+#  }
+#} 
+
+
+#class UserPartitioner(partitions,elements) extends Partitioner:
 
 
 # getSqlContextInstance From Spark Streaming Tutorial -----------------------------------------
@@ -119,6 +133,8 @@ def get_distance(lon_1, lat_1, lon_2, lat_2): #inputs must be in degrees
     return distance
 
 
+# ========================== TO REMOVE ===================================
+
 def redis_get_new_targets(r,row,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS): #returns a set of possible locations
     set_outer = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=out_radius, unit='m'))
     set_inner = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=in_radius, unit='m'))
@@ -128,6 +144,8 @@ def redis_get_new_targets(r,row,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS):
         return redis_get_new_targets(r,row,out_radius+100, in_radius)
     else:
         return set_targets
+
+# ========================== TO REMOVE ===================================
 
 def redis_populate_targets(r,c,row):
     #r is the redis handler
@@ -155,6 +173,8 @@ def redis_populate_targets(r,c,row):
         print('time:', long(row.time))
         c.execute(c.prepare(query_add), (row.userid, new_target, long(row.time),long(datetime.now().strftime("%H%M%S%f")), 1))
 
+
+# ========================== TO REMOVE ===================================
 
 def process_row_redis(row):
     #processes the row, writes to redis
@@ -215,52 +235,49 @@ def process_row_redis(row):
     c.shutdown()
 
 
-#def process_row(row):
-    #row_string = 'userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4]
-    #SparkContext(appName="PysparkStreamingApp").parallelize(row)
-    #re_row = Row(row_string=row_string)
-    #re_row_rdd = SparkContext(appName="PysparkStreamingApp").parallelize(re_row)
-    #re_row_rdd.take(5)
-    #print('userid: '+row[0]+' time: '+row[1]+' longitude: '+ row[2]+ ' latitude: '+ row[3]+ ' just_logged_in: '+ row[4])
-    #print('using row.<column_name> convention:')
-    #print('userid: '+row.userid+' time: '+row.time+' longitude: '+ DoubleType(row.longitude)+ ' latitude: '+ DoubleType(row.latitude)+ ' just_logged_in: '+ BooleanType(row.just_logged_in))
-
-
-def getSparkSessionInstance(sparkConf):
-    if ("sparkSessionSingletonInstance" not in globals()):
-        globals()["sparkSessionSingletonInstance"] = SparkSession \
-            .builder \
-            .config(conf=sparkConf) \
-            .getOrCreate()
-    return globals()["sparkSessionSingletonInstance"]
-
-
-def process_rdd(rdd):
-    # this is the redis handler
-    
-    #first, need to check if RDD has any elements
-    if rdd.isEmpty():
-        return
-    else:
-        spark = getSparkSessionInstance(rdd.context.getConf())
-
-        # convert RDD[String] to RDD[Row] to DataFrame
-        rowRdd = rdd.map(lambda x: Row(userid=x[0], time=x[1].replace(" ",""), longitude=x[2],latitude=x[3],just_logged_in=x[4]))
-        df = spark.createDataFrame(rowRdd)
-        #df.show()
-        
-        df.foreach(process_row_redis)
-
 
 def debug_empty_rdd():
     print('received empty rdd')
 
 def debug_save_user_in_redis(iter):
     member_list_name = 'member_list'
-
-    r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    
+    #r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
     for record in iter:
+        timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+        print('saving user:',record[0], 'timestamp_produced: ', float(record[1]), timestamp_spark_s)
         r.sadd(member_list_name,record[0])
+
+
+def get_candidate_targets_with_redis(r,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS):
+    set_outer = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=out_radius, unit='m'))
+    set_inner = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=in_radius, unit='m'))
+    #also, implement add another set of 'SOLVED' targets for this particular user
+    set_targets = set_outer - set_inner
+    if (len(set_targets) < MIN_LOC_PER_USER) or (out_radius >= MAX_OUTER_RADIUS):
+        return redis_get_new_targets(r,record,out_radius+100, in_radius)
+    else:
+        return set_targets
+
+
+def populate_user_targets_with_redis(r,record):
+    possible_target_set = get_candidate_targets_with_redis(r,record)
+    print('fetched a possible set of',len(possible_target_set),'target locations')
+    
+    while (r.scard(record[0]) < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
+        new_target = possible_target_set.pop()
+        print('adding member:', new_target,'to user:',record[0])
+        r.sadd(record[0],new_target)
+
+
+def process_partition_with_redis(iter):
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    
+    for record in iter:
+        #first, populate targets for the user if needed
+        if r.scard(record[0]) < NUM_LOC_PER_USER:
+            populate_user_targets_with_redis(r,record)
 
 
 def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find out how to speed up cassandra writes
@@ -271,7 +288,9 @@ def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find ou
     insert_query = cassandra_session.prepare("INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
 
     for record in iter:
-    	cassandra_session.execute(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
+    	#cassandra_session.execute(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
+        timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+        cassandra_session.execute(insert_query,(record[0], float(record[1]), timestamp_spark_s, decimal.Decimal(record[2]), decimal.Decimal(record[3])))
 
     cassandra_session.shutdown()
 
@@ -286,13 +305,14 @@ def main():
 
     
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
+                            .partitionBy(NUM_PARTITIONS) \
                             .map(lambda message: message[1].split(';'))
     
     
     #write to cassandra: put on hold for now
     #kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(debug_save_user_in_redis))
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis))
 
     ssc.start()
     ssc.awaitTermination()

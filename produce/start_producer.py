@@ -55,31 +55,22 @@ if __name__ == "__main__":
     str_fmt = "{};{};{};{};{}"
 
     #print df
-    
-	
 
     for column in df:
     	row_i = 0
         time.sleep(1)
     	for row in df[column]:
-    		#print('row:',row_i)
-    		#print('col:',column)
-    		timestamp = datetime.now().strftime("%H%M%S%f") #There used to be a space in here!
-    		longitude = row.split(',')[0]
-    		latitude = row.split(',')[1]
-    		user_id = filenames[row_i]
-    		message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(column==0))
-    		print message_to_send
-
-    		producer.send(topic=topic,value=message_to_send,key=user_id.encode('utf-8'))
-    		row_i +=1
-
-	
-
-
-
-
-
-
+            #print('row:',row_i)
+            #print('col:',column)
+            #timestamp = datetime.now().strftime("%H%M%S%f")
+            timestamp_s = float(datetime.now().strftime("%M"))*60 + float(datetime.now().strftime("%S.%f"))
+            longitude = row.split(',')[0]
+            latitude = row.split(',')[1]
+            user_id = filenames[row_i]
+            #message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(column==0))
+            message_to_send = str_fmt.format(user_id, timestamp_s, longitude, latitude, int(column==0))
+            print(int(user_id[-6:]), message_to_send)
+            producer.send(topic=topic,value=message_to_send,key=user_id[-6:].encode('utf-8'))
+            row_i +=1
 
     
