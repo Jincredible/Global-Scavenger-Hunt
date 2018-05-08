@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ############################################################
 # This python script is the main script for spark streaming. 
 # Here is the format of the data from kafka:
@@ -265,10 +266,10 @@ def populate_user_targets_with_redis(r,record):
     possible_target_set = get_candidate_targets_with_redis(r,record)
     print('fetched a possible set of',len(possible_target_set),'target locations')
     
-    while (r.scard(record[0]) < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
+    while (r.scard(record[0]+'_targets') < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
         new_target = possible_target_set.pop()
         #print('adding member:', new_target,'to user:',record[0]) #I need to fix this anyway
-        r.sadd(record[0],new_target)
+        r.sadd(record[0]+'_targets',new_target)
 
 
 def process_partition_with_redis(iter):
@@ -276,14 +277,22 @@ def process_partition_with_redis(iter):
 
     for record in iter:
         #first, populate targets for the user if needed
-        if r.scard(record[0]) < NUM_LOC_PER_USER:
+        if r.scard(record[0]+'_targets') < NUM_LOC_PER_USER:
             populate_user_targets_with_redis(r,record)
         #second, add the user location to the location timeseries database
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
-        print('adding user:',record[0],'lon: ',record[2],'lat: ',record[2],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
+        print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
         r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
         r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
+        r.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000))
 
+        for target in r.smembers(record[0]+'_targets'):
+            target_position = r.geopos(REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+            target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
+            if target_position <=SCORE_DIST:
+                #POP target
+                r.srem(record[0]+'_targets',target)
+                populate_user_targets_with_redis(r,record)
 
 def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find out how to speed up cassandra writes
 	#cluster = Cluster(config.CASSANDRA_DNS)

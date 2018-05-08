@@ -43,10 +43,7 @@ peg install ${CLUSTER_NAME} environment
 #1. maven can't be installed
 #2. recommend to upgrade pip
 
-read -p "Press enter to install flask:"
-# install and start flask
-peg install ${CLUSTER_NAME} flask
-#peg service ${CLUSTER_NAME} flask start
+#NEED TO INSTALL FLASK MANUALLY
 
 
 
