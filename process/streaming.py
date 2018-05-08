@@ -267,17 +267,22 @@ def populate_user_targets_with_redis(r,record):
     
     while (r.scard(record[0]) < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
         new_target = possible_target_set.pop()
-        print('adding member:', new_target,'to user:',record[0])
+        #print('adding member:', new_target,'to user:',record[0]) #I need to fix this anyway
         r.sadd(record[0],new_target)
 
 
 def process_partition_with_redis(iter):
     r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
-    
+
     for record in iter:
         #first, populate targets for the user if needed
         if r.scard(record[0]) < NUM_LOC_PER_USER:
             populate_user_targets_with_redis(r,record)
+        #second, add the user location to the location timeseries database
+        timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+        print('adding user:'record[0],'lon: ',record[2],'lat: ',record[2],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
+        r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
+        r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
 
 
 def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find out how to speed up cassandra writes
@@ -305,7 +310,6 @@ def main():
 
     
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
-                            .partitionBy(NUM_PARTITIONS) \
                             .map(lambda message: message[1].split(';'))
     
     
