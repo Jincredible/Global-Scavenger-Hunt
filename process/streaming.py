@@ -280,7 +280,7 @@ def process_partition_with_redis(iter):
             populate_user_targets_with_redis(r,record)
         #second, add the user location to the location timeseries database
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
-        print('adding user:'record[0],'lon: ',record[2],'lat: ',record[2],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
+        print('adding user:',record[0],'lon: ',record[2],'lat: ',record[2],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
         r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
         r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
 
