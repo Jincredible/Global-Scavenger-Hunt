@@ -1,5 +1,5 @@
-# Global Scavenger Hunt
-This is a multiplayer online game where a large number of users compete to score points by traveling to specific target locations based on each user's GPS coordinates. For each target location, users are provided with clues in an image, through which, the user must deduce the location.
+# Scavenger Hunt
+This is a multiplayer online game in which players use clues to identify and travel to target locations around them.
 
 ## Project Background
 **Pokemon Go** In July 2016, the location-based augmented-reality game Pokemon Go was released and became a global phenomenon. The rapid adoption of this game demonstrates the space for social location-based gaming. Soon after its inception, technical challenges arose in its infrastructure. Due to the large scale of usage, Pokemon go was unable to calculate approximate distances between individual users and points in space in a fast and reliable way, and eventually removed the feature entirely.
