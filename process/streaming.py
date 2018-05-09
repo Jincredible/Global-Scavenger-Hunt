@@ -296,10 +296,8 @@ def process_partition_with_redis(iter):
 
 def write_user_timeseries_to_cassandra(iter): 
 
-    cassandra_cluster = Cluster().builder().addContactPoint(config.CASSANDRA_DNS) \
-                                           .set_max_connections_per_host(HostDistance.LOCAL, 36) \
-                                           .set_max_connections_per_host(HostDistance.REMOTE, 36) \
-                                           .build()
+    cassandra_cluster = Cluster(contact_points=config.CASSANDRA_DNS).set_max_connections_per_host(HostDistance.LOCAL, 36) \
+                                                                    .set_max_connections_per_host(HostDistance.REMOTE, 36)
 
     #cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
     cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
