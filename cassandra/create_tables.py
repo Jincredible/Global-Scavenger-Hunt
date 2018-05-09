@@ -7,7 +7,7 @@
 ############################################################
 
 from cassandra.cluster import Cluster
-import cassandra_config as config
+import global_config as config
 
 cluster = Cluster(config.CASSANDRA_DNS)
 session = cluster.connect(config.CASSANDRA_NAMESPACE)

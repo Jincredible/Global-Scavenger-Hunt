@@ -13,14 +13,16 @@ from datetime import datetime
 #from kafka.client import KafkaClient #do I need this to work?
 from kafka.producer import KafkaProducer
 import pandas
-
+import global_config as config
 
 if __name__ == "__main__":
     args = sys.argv
-    ip_addr = str(args[1])
-    topic = str(args[2])
+    #ip_addr = str(args[1])
+    #ip_addr = config.KAFKA_DNS #moved from a config file in shell to a python config file called global_config, scp'ed into each cluster from control/local
+    #topic = str(args[2])
+    #topic = config.KAFKA_TOPIC #same thing with the kafka topic
     input_path = 'sim_results' #this is the directory of sim_results
-    producer = KafkaProducer(bootstrap_servers=ip_addr)
+    producer = KafkaProducer(bootstrap_servers=config.KAFKA_DNS)
 
     num_rows = 200
     num_files= 300 #number of files we're going to process
@@ -70,7 +72,7 @@ if __name__ == "__main__":
             #message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(column==0))
             message_to_send = str_fmt.format(user_id, timestamp_s, longitude, latitude, int(column==0))
             print(int(user_id[-6:]), message_to_send)
-            producer.send(topic=topic,value=message_to_send,key=user_id[-6:].encode('utf-8'))
+            producer.send(topic=config.KAFKA_TOPIC,value=message_to_send,key=user_id[-6:].encode('utf-8'))
             row_i +=1
 
     

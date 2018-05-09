@@ -64,7 +64,7 @@ from cassandra.cluster import Cluster
 from cassandra import ConsistencyLevel
 
 # custom python configuration file we made to store the kafka parameters
-import streaming_config as config
+import global_config as config
 
 
 # Global variables
@@ -357,6 +357,7 @@ def write_user_timeseries_to_cassandra(iter):
     #cassandra_session.cluster.set_max_connections_per_host(0, 36).set_max_connections_per_host(1, 36)
 
     insert_query = cassandra_session.prepare("INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
+    
     insert_query.consistency_level = ConsistencyLevel.ANY
 
     for record in iter:

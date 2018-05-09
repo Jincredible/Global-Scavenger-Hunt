@@ -11,11 +11,13 @@ import redis
 import csv
 import numpy
 import pandas
-#datastore_config has the following variables:
+#global_config has the following variables:
 #REDIS_PORT
 #REDIS_DNS
 #REDIS_PASS
-import datastore_config as config
+#REDIS_RESET
+#REDIS_DATABASE
+import global_config as config
 
 def dataframe_from_csv(fn_csv):
 	if os.path.exists(fn_csv):
@@ -35,12 +37,12 @@ def add_to_redis(r,df_in,str_in):
 if __name__ == "__main__":
 	fn_csv_Boston = sys.argv[1]
 	fn_csv_Cambridge = sys.argv[2]
-	database_num = sys.argv[3]
+	#database_num = sys.argv[3] #moved this from being defined in the shell script to the global_config.py file
 
-	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=database_num, password=config.REDIS_PASS)
+	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
 	if config.REDIS_RESET:
-		print('flushing database:', database_num)
+		print('flushing database:', config.REDIS_DATABASE)
 		r.flushdb()
 	
 	add_to_redis(r,dataframe_from_csv(fn_csv_Boston),'bos')
