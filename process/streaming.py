@@ -294,17 +294,24 @@ def process_partition_with_redis(iter):
                 r.srem(record[0]+'_targets',target)
                 populate_user_targets_with_redis(r,record)
 
-def write_user_timeseries_to_cassandra(iter): #This is too slow. need to find out how to speed up cassandra writes
-	#cluster = Cluster(config.CASSANDRA_DNS)
-    #in this case, c is session (session=cluster.connect(<namespace>))
-    cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
+def write_user_timeseries_to_cassandra(iter): 
+
+    cassandra_pooling_options = PoolingOptions().setMaxRequestsPerConnection(HostDistance.LOCAL, 32768) \
+                                                .setMaxRequestsPerConnection(HostDistance.REMOTE, 200000) \
+                                                .setConnectionsPerHost(HostDistance.REMOTE, 1, 36) \
+                                                .setIdleTimeoutSeconds(30)
+
+    cassandra_cluster = Cluster().builder().addContactPoint(config.CASSANDRA_DNS).withPoolingOptions(cassandra_pooling_options).build()
+
+    #cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
+    cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
 
     insert_query = cassandra_session.prepare("INSERT INTO user_location (user_id,timestamp_produced, timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
 
     for record in iter:
     	#cassandra_session.execute(insert_query,(record[0], long(record[1]),long(datetime.now().strftime("%H%M%S%f")), decimal.Decimal(record[2]), decimal.Decimal(record[3])))
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
-        cassandra_session.execute(insert_query,(record[0], float(record[1]), timestamp_spark_s, decimal.Decimal(record[2]), decimal.Decimal(record[3])))
+        cassandra_session.execute(insert_query,(record[0], float(record[1])*1000, timestamp_spark_s*1000, decimal.Decimal(record[2]), decimal.Decimal(record[3])))
 
     cassandra_session.shutdown()
 
