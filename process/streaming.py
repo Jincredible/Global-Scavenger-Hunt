@@ -298,7 +298,7 @@ def write_user_timeseries_to_cassandra(iter):
 
     #set_max_connections_per_host(host_distance.LOCAL,36) host_distance.LOCAL = 0
     #set_max_connections_per_host(host_distance.REMOTE,36) host_distance.REMOTE = 1
-    cassandra_cluster = Cluster(contact_points=config.CASSANDRA_DNS,protocol_version=2).set_max_connections_per_host(0, 36) \
+    cassandra_cluster = Cluster(config.CASSANDRA_DNS,protocol_version=2).set_max_connections_per_host(0, 36) \
                                                                     .set_max_connections_per_host(1, 36)
 
     #cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
