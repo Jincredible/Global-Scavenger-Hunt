@@ -35,6 +35,7 @@ REMOTE_PATH_CASSANDRA=./Global-Scavenger-Hunt/cassandra/
 
 CLUSTER_NAME_FLASK=flask-single
 REMOTE_PATH_FLASK=./Global-Scavenger-Hunt/flask/
+REMOTE_PATH_FLASK_APP=./Global-Scavenger-Hunt/flask/app/
 
 # FIRST, MOVE THE GLOBAL CONFIG FILES TO EVERY MASTER NODE --------------------------
 LOCAL_FILE_PATH_CONFIG=${BASEDIR}/global_config.py #this config file has all the sensitive info needed for any cluster, for python scripts
@@ -45,6 +46,7 @@ peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH
 peg scp to-rem ${CLUSTER_NAME_REDIS} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_REDIS}
 peg scp to-rem ${CLUSTER_NAME_CASSANDRA} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_CASSANDRA}
 peg scp to-rem ${CLUSTER_NAME_FLASK} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_FLASK}
+peg scp to-rem ${CLUSTER_NAME_FLASK} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_FLASK_APP}
 
 LOCAL_FILE_PATH_CONFIG_SH=${BASEDIR}/global_config.sh #this config file has all the sensitive info needed for any cluster, for shell scripts
 peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG_SH} ${REMOTE_PATH_PROCESS}
