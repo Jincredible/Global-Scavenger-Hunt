@@ -17,13 +17,14 @@ from cassandra.cluster import Cluster
 
 # Setting up connections to cassandra
 cassandra_cluster = Cluster(config.CASSANDRA_DNS)
-cassandra_session = cluster.connect(config.CASSANDRA_NAMESPACE)
+cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
 
 @app.route('/')
 @app.route('/index')
 def index():
-	user = { 'nickname': 'Miguel' } # fake user
-	return render_template("index.html", title = 'Home', user = user)
+	user = { 'nickname': 'Steven' } # sample user
+	mylist = [1,2,3,4]
+	return render_template("index.html", title = 'Home', user = user, mylist = mylist)
 
 
 #can we keep this line of code or does views have to continuously run?
