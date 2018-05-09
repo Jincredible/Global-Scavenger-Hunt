@@ -283,8 +283,6 @@ def populate_user_targets_with_redis_and_cassandra(r,c,record):
         c.execute(query_insert_user_target,(record[0], new_target, float(record[1])*1000, timestamp_spark_s*1000, 1))
         r.sadd(record[0]+'_targets',new_target)
 
-
-
 def process_partition_with_redis(iter):
     r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
 
@@ -311,6 +309,7 @@ def process_partition_with_redis_and_cassandra(iter):
     redis_driver = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
     cassandra_cluster = Cluster(config.CASSANDRA_DNS,protocol_version=3)
     cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
+
     query_insert_user_location = cassandra_session.prepare("INSERT INTO user_location (user_id,timestamp_produced,timestamp_spark,longitude,latitude) VALUES (?,?,?,?,?);")
     query_insert_user_location.consistency_level = ConsistencyLevel.ANY
 
@@ -319,7 +318,14 @@ def process_partition_with_redis_and_cassandra(iter):
 
     for record in iter:
         if redis_driver.scard(record[0]+'_targets') < NUM_LOC_PER_USER:
-            populate_user_targets_with_redis_and_cassandra(redis_driver,cassandra_session,record)
+            #populate_user_targets_with_redis_and_cassandra(redis_driver,cassandra_session,record)
+            possible_target_set = get_candidate_targets_with_redis(redis_driver,record)
+            while (redis_driver.scard(record[0]+'_targets') < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
+                new_target = possible_target_set.pop()
+                timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+                cassandra_session.execute(query_insert_user_target,(record[0], new_target, float(record[1])*1000, timestamp_spark_s*1000, 1))
+                redis_driver.sadd(record[0]+'_targets',new_target)
+
         #second, add the user location to the location timeseries database
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
         cassandra_session.execute(query_insert_user_location,(record[0], float(record[1])*1000, timestamp_spark_s*1000, decimal.Decimal(record[2]), decimal.Decimal(record[3])))
@@ -335,7 +341,7 @@ def process_partition_with_redis_and_cassandra(iter):
                 redis_driver.srem(record[0]+'_targets',target)
                 populate_user_targets_with_redis_and_cassandra(redis_driver,record)
 
-        cassandra_cluster.shutdown()
+    cassandra_cluster.shutdown()
 
 
 
@@ -376,13 +382,13 @@ def main():
     
     
     #write to cassandra: used to be slow, set quorum to ANY
-    #kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
+    kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
     #writing to redis
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis))
 
     #writing to redis and cassandra
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis_and_cassandra))
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis_and_cassandra))
 
     ssc.start()
     ssc.awaitTermination()
