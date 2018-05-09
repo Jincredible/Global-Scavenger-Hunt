@@ -61,7 +61,6 @@ import redis
 
 #cassandra
 from cassandra.cluster import Cluster
-from cassandra.
 from cassandra import ConsistencyLevel
 
 # custom python configuration file we made to store the kafka parameters
