@@ -61,6 +61,7 @@ import redis
 
 #cassandra
 from cassandra.cluster import Cluster
+from cassandra.
 from cassandra import ConsistencyLevel
 
 # custom python configuration file we made to store the kafka parameters
@@ -296,12 +297,10 @@ def process_partition_with_redis(iter):
 
 def write_user_timeseries_to_cassandra(iter): 
 
-    cassandra_pooling_options = PoolingOptions().setMaxRequestsPerConnection(HostDistance.LOCAL, 32768) \
-                                                .setMaxRequestsPerConnection(HostDistance.REMOTE, 200000) \
-                                                .setConnectionsPerHost(HostDistance.REMOTE, 1, 36) \
-                                                .setIdleTimeoutSeconds(30)
-
-    cassandra_cluster = Cluster().builder().addContactPoint(config.CASSANDRA_DNS).withPoolingOptions(cassandra_pooling_options).build()
+    cassandra_cluster = Cluster().builder().addContactPoint(config.CASSANDRA_DNS) \
+                                           .set_max_connections_per_host(HostDistance.LOCAL, 36) \
+                                           .set_max_connections_per_host(HostDistance.REMOTE, 36) \
+                                           .build()
 
     #cassandra_session = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
     cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
