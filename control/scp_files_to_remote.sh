@@ -36,8 +36,9 @@ REMOTE_PATH_CASSANDRA=./Global-Scavenger-Hunt/cassandra/
 CLUSTER_NAME_FLASK=flask-single
 REMOTE_PATH_FLASK=./Global-Scavenger-Hunt/flask/
 
-# FIRST, MOVE THE GLOBAL CONFIG FILE TO EVERY MASTER NODE --------------------------
-LOCAL_FILE_PATH_CONFIG=${BASEDIR}/global_config.py #this config file has all the sensitive info needed for any cluster
+# FIRST, MOVE THE GLOBAL CONFIG FILES TO EVERY MASTER NODE --------------------------
+LOCAL_FILE_PATH_CONFIG=${BASEDIR}/global_config.py #this config file has all the sensitive info needed for any cluster, for python scripts
+#We're going to typically try to put information in global_config.py instead of global_config.sh unless it is absolutely necessary
 
 peg scp to-rem ${CLUSTER_NAME_PRODUCE} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_PRODUCE}
 peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_PROCESS}
@@ -45,40 +46,10 @@ peg scp to-rem ${CLUSTER_NAME_REDIS} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_R
 peg scp to-rem ${CLUSTER_NAME_CASSANDRA} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_CASSANDRA}
 peg scp to-rem ${CLUSTER_NAME_FLASK} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_FLASK}
 
-LOCAL_FILE_PATH_CONFIG_SH=${BASEDIR}/global_config.sh #this config file has all the sensitive info needed for any cluster
+LOCAL_FILE_PATH_CONFIG_SH=${BASEDIR}/global_config.sh #this config file has all the sensitive info needed for any cluster, for shell scripts
 peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG_SH} ${REMOTE_PATH_PROCESS}
 
 
-# PROCESS CLUSTER ------------------------------------------------------------------
-
-CLUSTER_NAME_01=process-cluster
-REMOTE_FILE_PATH_01=./Global-Scavenger-Hunt/process/
-
-# streaming_config.py file from local to process-cluster
-#LOCAL_FILE_PATH_01A=${BASEDIR}/../process/streaming_config.py
-#peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01A} ${REMOTE_FILE_PATH_01}
-
-# process_cluster_config.sh from local to process-cluster
-LOCAL_FILE_PATH_01B=${BASEDIR}/../process/process_cluster_config.sh
-peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01B} ${REMOTE_FILE_PATH_01}
-
-#NO LONGER USING REDIS LOCALLY IN PROCESS-CLUSTER
-#POI_INPUT files from local into process-cluster
-#LOCAL_FILE_PATH_01C=${BASEDIR}/../produce/inputs/POI_01.csv
-#LOCAL_FILE_PATH_01D=${BASEDIR}/../produce/inputs/POI_02.csv
-#peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
-
-#NO LONGER USING REDIS LOCALLY IN PROCESS-CLUSTER
-# redis_config.py file from local to process-cluster
-#LOCAL_FILE_PATH_01E=${BASEDIR}/../process/redis_config.py
-#peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
-#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01E} ${REMOTE_FILE_PATH_01}
 
 # DATASTORE CLUSTER ----------------------------------------------------------
 

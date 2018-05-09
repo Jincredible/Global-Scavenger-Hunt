@@ -68,15 +68,15 @@ import global_config as config
 
 
 # Global variables
-REDIS_DATABASE = 7 #7 is for testing, 0 is for production
+#REDIS_DATABASE = 7 #7 is for testing, 0 is for production #moved to config file
 NUM_LOC_PER_USER = 3 #This is the number of target locations for each user at each time
 MIN_LOC_PER_USER = 1 # this is in case there aren't enough target locations within the MAX_OUTER_RADIUS
 OUTER_RADIUS = 600 #in meters, this is the outer bound distance to fetch target location
 MAX_OUTER_RADIUS = 2500 #in meters, this is the maximum distance to fetch targets
 INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target location
 SCORE_DIST = 30 #in meters, distance a player must be to score the point
-REDIS_LOCATION_NAME='Boston'
-NUM_PARTITIONS = 18
+#REDIS_LOCATION_NAME='Boston' #moved to config file
+#NUM_PARTITIONS = 18 #No longer needed, spark automates this
 
 
 
@@ -137,8 +137,8 @@ def get_distance(lon_1, lat_1, lon_2, lat_2): #inputs must be in degrees
 # ========================== TO REMOVE ===================================
 
 def redis_get_new_targets(r,row,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS): #returns a set of possible locations
-    set_outer = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=out_radius, unit='m'))
-    set_inner = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=in_radius, unit='m'))
+    set_outer = set(r.georadius(name=config.REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=out_radius, unit='m'))
+    set_inner = set(r.georadius(name=config.REDIS_LOCATION_NAME, longitude=row.longitude, latitude=row.latitude, radius=in_radius, unit='m'))
     #also, implement add another set of 'SOLVED' targets for this particular user
     set_targets = set_outer - set_inner
     if (len(set_targets) < MIN_LOC_PER_USER) or (out_radius >= MAX_OUTER_RADIUS):
@@ -182,7 +182,7 @@ def process_row_redis(row):
 
     # 1. can't pass any additional parameters to the foreach commands,
     # 2. encountered difficulty passing the redis handler in lambda. This is because we can't really broadcast this handler
-    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS) #OBVIOUSLY GOING TO BE A BOTTLENECK
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS) #OBVIOUSLY GOING TO BE A BOTTLENECK
     #cluster = Cluster(config.CASSANDRA_DNS)
     #in this case, c is session (session=cluster.connect(<namespace>))
     c = Cluster(config.CASSANDRA_DNS).connect(config.CASSANDRA_NAMESPACE)
@@ -220,7 +220,7 @@ def process_row_redis(row):
 
     #Now, calculate distances between the user and his targets
     for target in r.smembers(row.userid):
-        target_position = r.geopos(REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+        target_position = r.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
         print('target id:',target, 'position:',target_position)
         print('type of variable: ',type(target_position))
         print('longitude:',target_position[0],'latitude:',target_position[1])
@@ -243,8 +243,8 @@ def debug_empty_rdd():
 def debug_save_user_in_redis(iter):
     member_list_name = 'member_list'
     
-    #r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
-    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    #r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     for record in iter:
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
         print('saving user:',record[0], 'timestamp_produced: ', float(record[1]), timestamp_spark_s)
@@ -252,8 +252,8 @@ def debug_save_user_in_redis(iter):
 
 
 def get_candidate_targets_with_redis(r,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS):
-    set_outer = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=out_radius, unit='m'))
-    set_inner = set(r.georadius(name=REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=in_radius, unit='m'))
+    set_outer = set(r.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=out_radius, unit='m'))
+    set_inner = set(r.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=in_radius, unit='m'))
     #also, implement add another set of 'SOLVED' targets for this particular user
     set_targets = set_outer - set_inner
     if (len(set_targets) < MIN_LOC_PER_USER) or (out_radius >= MAX_OUTER_RADIUS):
@@ -284,7 +284,7 @@ def populate_user_targets_with_redis_and_cassandra(r,c,record):
         r.sadd(record[0]+'_targets',new_target)
 
 def process_partition_with_redis(iter):
-    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
     for record in iter:
         #first, populate targets for the user if needed
@@ -298,7 +298,7 @@ def process_partition_with_redis(iter):
         r.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000))
 
         for target in r.smembers(record[0]+'_targets'):
-            target_position = r.geopos(REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+            target_position = r.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
             if target_position <=SCORE_DIST:
                 #POP target
@@ -306,7 +306,7 @@ def process_partition_with_redis(iter):
                 populate_user_targets_with_redis(r,record)
 
 def process_partition_with_redis_and_cassandra(iter):
-    redis_driver = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=REDIS_DATABASE, password=config.REDIS_PASS)
+    redis_driver = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     cassandra_cluster = Cluster(config.CASSANDRA_DNS,protocol_version=3)
     cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
 
@@ -332,7 +332,7 @@ def process_partition_with_redis_and_cassandra(iter):
         #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
 
         for target in redis_driver.smembers(record[0]+'_targets'):
-            target_position = redis_driver.geopos(REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+            target_position = redis_driver.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
             if target_position <=SCORE_DIST:
                 #POP target
