@@ -45,8 +45,8 @@ peg scp to-rem ${CLUSTER_NAME_REDIS} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_R
 peg scp to-rem ${CLUSTER_NAME_CASSANDRA} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_CASSANDRA}
 peg scp to-rem ${CLUSTER_NAME_FLASK} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_FLASK}
 
-
-
+LOCAL_FILE_PATH_CONFIG_SH=${BASEDIR}/global_config.sh #this config file has all the sensitive info needed for any cluster
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG_SH} ${REMOTE_PATH_PROCESS}
 
 
 # PROCESS CLUSTER ------------------------------------------------------------------
@@ -62,15 +62,16 @@ REMOTE_FILE_PATH_01=./Global-Scavenger-Hunt/process/
 LOCAL_FILE_PATH_01B=${BASEDIR}/../process/process_cluster_config.sh
 peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01B} ${REMOTE_FILE_PATH_01}
 
+#NO LONGER USING REDIS LOCALLY IN PROCESS-CLUSTER
 #POI_INPUT files from local into process-cluster
-LOCAL_FILE_PATH_01C=${BASEDIR}/../inputs/POI_01.csv
-LOCAL_FILE_PATH_01D=${BASEDIR}/../inputs/POI_02.csv
-peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
-peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
+#LOCAL_FILE_PATH_01C=${BASEDIR}/../produce/inputs/POI_01.csv
+#LOCAL_FILE_PATH_01D=${BASEDIR}/../produce/inputs/POI_02.csv
+#peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01C} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 1 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 2 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
+#peg scp to-rem ${CLUSTER_NAME_01} 3 ${LOCAL_FILE_PATH_01D} ${REMOTE_FILE_PATH_01}
 
 #NO LONGER USING REDIS LOCALLY IN PROCESS-CLUSTER
 # redis_config.py file from local to process-cluster
@@ -85,8 +86,8 @@ CLUSTER_NAME_03=datastore-single
 REMOTE_FILE_PATH_03=./Global-Scavenger-Hunt/datastore/
 
 #POI_INPUT files from local into datastore
-LOCAL_FILE_PATH_03A=${BASEDIR}/../inputs/POI_01.csv
-LOCAL_FILE_PATH_03B=${BASEDIR}/../inputs/POI_02.csv
+LOCAL_FILE_PATH_03A=${BASEDIR}/../produce/inputs/POI_01.csv
+LOCAL_FILE_PATH_03B=${BASEDIR}/../produce/inputs/POI_02.csv
 peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03A} ${REMOTE_FILE_PATH_03}
 peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03B} ${REMOTE_FILE_PATH_03}
 
@@ -96,17 +97,17 @@ peg scp to-rem ${CLUSTER_NAME_03} 1 ${LOCAL_FILE_PATH_03B} ${REMOTE_FILE_PATH_03
 
 # PRODUCE CLUSTER ----------------------------------------------------------
 
-CLUSTER_NAME_04=produce-cluster
-REMOTE_FILE_PATH_04=./Global-Scavenger-Hunt/produce/
+#CLUSTER_NAME_04=produce-cluster
+#REMOTE_FILE_PATH_04=./Global-Scavenger-Hunt/produce/
 
 # produce_cluster_config.sh from local to produce-cluster
-LOCAL_FILE_PATH_04=${BASEDIR}/../produce/produce_cluster_config.sh
-peg scp to-rem ${CLUSTER_NAME_04} 1 ${LOCAL_FILE_PATH_04} ${REMOTE_FILE_PATH_04}
+#LOCAL_FILE_PATH_04=${BASEDIR}/../produce/produce_cluster_config.sh
+#peg scp to-rem ${CLUSTER_NAME_04} 1 ${LOCAL_FILE_PATH_04} ${REMOTE_FILE_PATH_04}
 
 # CASSANDRA CLUSTER ----------------------------------------------------------
 
-CLUSTER_NAME_05=cassandra-cluster
-REMOTE_FILE_PATH_05=./Global-Scavenger-Hunt/cassandra/
+#CLUSTER_NAME_05=cassandra-cluster
+#REMOTE_FILE_PATH_05=./Global-Scavenger-Hunt/cassandra/
 
 # cassandra_config.py from local to cassandra-cluster
 #LOCAL_FILE_PATH_05=${BASEDIR}/../cassandra/cassandra_config.py
