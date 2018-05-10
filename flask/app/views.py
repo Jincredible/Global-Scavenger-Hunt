@@ -6,7 +6,7 @@
 # jsonify creates a json representation of the response
 from flask import jsonify
 
-from flask import render_template
+from flask import render_template, request
 
 from app import app
 
@@ -25,10 +25,28 @@ def index():
 	user = { 'nickname': 'Steven' } # sample user
 	mylist = [1,2,3,4]
 	return render_template("index.html", title = 'Home', user = user, mylist = mylist)
+@app.route('/base')
+def base():
+	return render_template("user_location_in.html")
+
+# Cassandra user_location table column names:
+# user_id | timestamp_produced | latitude | longitude | timestamp_spark
+
+
+@app.route("/base", methods=['POST'])
+def base_post():
+	user_id = request.form["user_id"]
+	querystatement_select_user_location = "SELECT * FROM user_location WHERE user_id=%s;"
+	cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=[user_id])
+	response_list = []
+	for val in cassandra_response:
+		response_list.append(val)
+	jsonresponse = [{"user_id": x.user_id, "timestamp_produced": x.timestamp_produced, "latitude": x.latitude, "longitude": x.longitude, "timestamp_spark": x.timestamp_spark} for x in response_list]
+	return render_template("user_location_out.html", output=jsonresponse)
 
 
 #can we keep this line of code or does views have to continuously run?
-cassandra_cluster.shutdown()
+#cassandra_cluster.shutdown()
 
 
 # EXAMPLE API IMPEMENTATION FROM WIKI ===================================

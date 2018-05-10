@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block user_location_out %}
+<div class="container">
+  <div class="starter-template">
+    <div class="row" style="height:100vh;">
+      <div class="col-md-10 col-md-offset-1">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>user_id</th>
+              <th>timestamp_produced</th>
+              <th>latitude</th>
+              <th>longitude</th>
+              <th>timestamp_spark</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for val in output %}
+            <tr>
+              <td>{{val.user_id}}</td>
+              <td>{{val.timestamp_produced}}</td>
+              <td>{{val.latitude}}</td>
+              <td>{{val.longitude}}</td>
+              <td>{{val.timestamp_spark}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
