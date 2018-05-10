@@ -30,9 +30,27 @@ GoogleMaps(app, key=config.GOOGLE_MAPS_API_KEY)
 @app.route('/')
 @app.route('/index')
 def index():
-	user = { 'nickname': 'Steven' } # sample user
-	mylist = [1,2,3,4]
-	return render_template("index.html", title = 'Home', user = user, mylist = mylist)
+	return render_template("data_input.html")
+
+@app.route('/index', methods=['POST'])
+def index_post():
+	user_id = request.form["user_id"]
+	if not user_id:
+		user_id="user0000000"
+	querystatement_select_user_location = "SELECT * FROM user_location WHERE user_id=%s ORDER BY timestamp_produced DESC LIMIT 100"
+	cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=[user_id])
+	response_list = []
+	for val in cassandra_response:
+		response_list.append(val)
+
+	user_location_output = [{"user_id": x.user_id, 
+				  			 "timestamp_produced": x.timestamp_produced, 
+				  			 "latitude": x.latitude, 
+				  			 "longitude": x.longitude, 
+				  			 "timestamp_spark": x.timestamp_spark} for x in response_list]
+
+	return render_template("data_output.html", user_location_output=user_location_output)
+
 
 @app.route('/base')
 def base():
@@ -59,52 +77,23 @@ def realtime_example():
 @app.route('/map_example')
 def mapview():
     # creating a map in the view
-    mymap = Map(
-        identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
-    )
-    sndmap = Map(
-        identifier="sndmap",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-             'lat': 37.4419,
-             'lng': -122.1419,
-             'infobox': "<b>Hello World</b>"
-          },
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-             'lat': 37.4300,
-             'lng': -122.1400,
-             'infobox': "<b>Hello World from other place</b>"
-          }
-        ]
-    )
-    return render_template('map_example.html', mymap=mymap, sndmap=sndmap)
+    querystatement_select_user_location = "SELECT * FROM user_location WHERE user_id=%s ORDER BY timestamp_produced DESC LIMIT 100"
+    cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=['user0000007'])
+    response_list = []
+
+    for val in cassandra_response:
+    	#print('val user_id:', val.user_id, 'timestamp:', val.timestamp_produced)
+        response_list.append(val)
+
+    user_location_output = [{"user_id": x.user_id, 
+				  			 "timestamp_produced": x.timestamp_produced, 
+				  			 "latitude": x.latitude, 
+				  			 "longitude": x.longitude, 
+				  			 "timestamp_spark": x.timestamp_spark} for x in response_list]
+    return render_template('map_example.html',user_location_output=user_location_output)
 
 
 
 #can we keep this line of code or does views have to continuously run? Answer: No.
 #cassandra_cluster.shutdown()
-
-
-# EXAMPLE API IMPEMENTATION FROM WIKI ===================================
-# wiki URL: https://github.com/InsightDataScience/data-engineering-ecosystem/wiki/Flask
-'''
-@app.route('/api/<email>/<date>')
-def get_email(email,date):
-	querystatement_select_email = "SELECT * FROM email WHERE id=%s AND date=$s"
-	#query_select_email = cassandra_session.prepare("SELECT * FROM frontend_email WHERE id=%s AND date=%s;")
-	response = cassandra_session.execute(querystatement_select_email, parameters=[email,date])
-	response_list=[]
-	for val in response:
-		response_list.append(val)
-	jsonresponse=[{"first name": x.fname, "last name": x.lname, "id": x.id, "message": x.message, "time": x.time} for x in response_list]
-	return jsonify(emails=jsonresponse)
-'''
-
 

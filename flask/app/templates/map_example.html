@@ -23,6 +23,7 @@
 		<script>
 
 			function initMap(){
+				console.log('running initMap');
 				var mapCenter = new google.maps.LatLng(42.3601,-71.0589);
 				var mapCanvas = document.getElementById("map");
 				var mapOptions = {center: mapCenter, zoom: 12};
@@ -47,15 +48,7 @@
 				['bos13300', 42.36109774021571, -71.12413913011551, 10]
 			];
 
-			var player_01_positions = [
-				[42.35163, -71.08693],
-				[42.35163, -71.08691],
-				[42.35164, -71.08688],
-				[42.35165, -71.08686],
-				[42.35165, -71.08684]
-			];
-
-			
+			var player_positions = {{ user_location_output | tojson | safe }};
 			var target_markers=[];
 			var player_markers=[];
 
@@ -110,6 +103,7 @@
 			}
 
 			function setPlayerMarkerAndPositions(map) {
+				console.log('running setPlayerMarkerAndPositions');
 				var player_marker_image = {
 					url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
 					size: new google.maps.Size(32, 32),
@@ -119,9 +113,11 @@
 
 				var player_route = [];
 
-				for (var i = 0; i < player_01_positions.length; i++) {
-					player_route.push({lat: player_01_positions[i][0], lng: player_01_positions[i][1]});
-				};
+				for (var i = 0; i<player_positions.length; i++) {
+					//console.log('i.user_id:', player_positions[i].user_id);
+					//console.log('i.timestamp_produced:', player_positions[i].timestamp_produced);
+					player_route.push({lat: player_positions[i].latitude, lng: player_positions[i].longitude});
+				}
 
 				var player_route_line = new google.maps.Polyline({
 					path: player_route,
@@ -164,73 +160,10 @@
 					},3000);
 				});
 			}
-			
+
 		</script>
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm6ZsW6Y0deu7u1fSgYZHYtn30UyMcZ18&callback=initMap"></script>
 
 	</body>
 </html>
-
-
-<!-- Sampe Script from Flask-GoogleMaps
-<!DOCTYPE html>
-    <html>
-    <head>
-            {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419, -122.1419)])}}
-            {{mymap.js}}
-            {{sndmap.js}}
-    </head>
-    <body>
-        <h1>Flask Google Maps Example</h1>
-
-        <h2> Template function centered, no marker </h2>
-        {{googlemap("simple-map", 37.4419, -122.1419)}}
-
-        <h2> Template filter decoupled with single marker </h2>
-        {{"decoupled-map"|googlemap_html(37.4419, -122.1419)}}
-
-        <h2> Template function with multiple markers </h2>
-        {% with map=googlemap_obj("another-map", 37.4419, -122.1419, markers=[(37.4419, -122.1419), (37.4300, -122.1400)]) %}
-            {{map.html}}
-            {{map.js}}
-        {% endwith %}
-
-        <h2> First map generated in view</h2>
-        {{mymap.html}}
-
-        <h2> Second map generated in view</h2>
-        <h3> Example for different icons in multiple markers with infoboxes</h3>
-        {{sndmap.html}}
-
-    </body>
-</html>
-
--->
-
-<!-- Sample Script with AJAX
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-</script>
-
-<script>
-
-function anyFunction()
-{
-	function fixTimeFormat(i) {
-		return ( i < 10 ) ? "0" + i : i;
-	}
-	var today = new Date(),
-		h = fixTimeFormat(today.getHours()),
-		m = fixTimeFormat(today.getMinutes()),
-		s = fixTimeFormat(today.getSeconds());
-
-	document.getElementById("map").innerHTML = h + ":" + m + ":" + s;
-}
-
-$(function () {
-	setInterval(anyFunction, 1000);
-});
-
-</script>
-
--->

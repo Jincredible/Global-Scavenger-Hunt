@@ -1,18 +1,47 @@
-<html>
-<head>
-   <title>{{title}} - microblog</title>
-</head>
-<body>
-   {% if user %}
-   <h1>Hello, {{user.nickname}}!</h1>
-   {% else %}
-   <h1>Hello, Insight Fellow!</h1>
-   {% endif %}
-   <br />
-   <ul>
-   {% for num in mylist %}
-      <li>{{num}}</li>
-   {% endfor %}
-   </ul>
-</body>
+<!doctype html> 
+ <!-- I downloaded this starter template from: view-source:https://getbootstrap.com/docs/4.1/examples/starter-template/ -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Scavenger Hunt Demo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="../static/css/starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <main role="main" class="container">
+      <div class="starter-template">
+
+        <!-- testing subdirectory files
+        <img href="{{url_for('static', filename='img01.jpg')}}" alt="test"></img>
+        -->
+        
+        <h1>Scavenger Hunt</h1>
+          {% block data_input %}{% endblock %}
+          {% block data_output %}{% endblock %}
+        
+      </div>
+    </main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- old code from the previous template. didn't use this because we don't have an assets folder
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    -->
+    <script src="../static/js/bootstrap.js"></script>
+  </body>
 </html>

@@ -1,0 +1,166 @@
+{% extends "index.html" %}
+{% block user_location_out %}
+<div class="container">
+  <div class="starter-template">
+    <div id="map" style="width:100%;height:500px"></div>
+      <script>
+
+      function initMap(){
+        console.log('running initMap');
+        var mapCenter = new google.maps.LatLng(42.3601,-71.0589);
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {center: mapCenter, zoom: 12};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+        setTargetMarkers(map);
+        setPlayerMarkerAndPositions(map);
+      }
+
+      // Data for the markers consisting of a name, a LatLng and a zIndex for the
+      // order in which these markers should display on top of each other.
+      var target_positions = [
+        ['bos1', 42.38011575307423, -71.07341855764389, 1],
+        ['bos2', 42.37138617340147, -71.03800266981125, 2],
+        ['bos100', 42.38936495058466, -70.99628359079361, 3],
+        ['cam1', 42.3701619030815, -71.11695617437363, 4],
+        ['cam10', 42.38215366888634, -71.12560361623764, 5],
+        ['cam100', 42.39278935887093, -71.12230449914932, 6],
+        ['bos12186', 42.359285414586786, -71.05991095304489, 7],
+        ['bos11204', 42.25951372031289, -71.11711174249649, 8],
+        ['bos1108', 42.35543263842459, -71.16173297166824, 9],
+        ['bos13300', 42.36109774021571, -71.12413913011551, 10]
+      ];
+
+      var player_positions = {{ user_location_output | tojson | safe }};
+
+      var player_01_positions = [
+        [42.35163, -71.08693],
+        [42.35163, -71.08691],
+        [42.35164, -71.08688],
+        [42.35165, -71.08686],
+        [42.35165, -71.08684]
+      ];
+
+      
+      var target_markers=[];
+      var player_markers=[];
+
+      function setTargetMarkers(map){
+        // Marker sizes are expressed as a Size of X,Y where the origin of the image
+            // (0,0) is located in the top left of the image.
+        // Origins, anchor positions and coordinates of the marker increase in the X
+            // direction to the right and in the Y direction down.
+        var target_marker_image = {
+          url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+          // This marker is 32 pixels wide by 32 pixels high.
+          size: new google.maps.Size(32, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the marker at (32/2, 32).
+          anchor: new google.maps.Point(16, 32)
+        };
+
+        for (var i = 0; i < target_positions.length; i++) {
+          var target_position = target_positions[i];
+          var target_marker = new google.maps.Marker({
+            position: {lat: target_position[1], lng: target_position[2]},
+            map: map,
+            icon: target_marker_image,
+            title: target_position[0],
+            zIndex: target_position[3]
+          });
+          target_marker.setMap(map);
+          attach_target_event_listener(target_marker,map);
+          target_markers.push(target_marker);
+        };
+      }
+
+      function attach_target_event_listener(target_marker,map) {
+
+        var target_infowindow = new google.maps.InfoWindow({
+          content:target_marker.getTitle()
+        });
+
+        target_marker.addListener('click', function() {
+          var original_map_position = map.getZoom();
+          map.setZoom(16);
+          map.setCenter(target_marker.getPosition());
+          target_infowindow.open(target_marker.get('map'), target_marker);
+          window.setTimeout(function() {
+            map.setZoom(original_map_position);
+            if (target_infowindow){
+              target_infowindow.close();
+            }
+          },3000);
+        });
+      }
+
+      function setPlayerMarkerAndPositions(map) {
+        console.log('running setPlayerMarkerAndPositions');
+        
+        var player_marker_image = {
+          url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+          size: new google.maps.Size(32, 32),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(16, 32)
+        };
+
+        var player_route = [];
+
+        for (var i = 0; i<player_positions.length; i++) {
+          console.log('i.user_id:', i.user_id);
+          console.log('i.timestamp_produced:', i.timestamp_produced);
+        }
+
+        for (var i = 0; i < player_01_positions.length; i++) {
+          player_route.push({lat: player_01_positions[i][0], lng: player_01_positions[i][1]});
+        };
+
+        var player_route_line = new google.maps.Polyline({
+          path: player_route,
+          geodesic: false,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        player_route_line.setMap(map);
+
+        var player_marker = new google.maps.Marker({
+          position: player_route[0],
+          map: map,
+          icon: player_marker_image,
+          title: 'user0000000'
+          //zIndex: target_position[3]
+        });
+        player_marker.setMap(map);
+        attach_player_event_listener(player_marker,map);
+        player_markers.push(player_marker);
+      }
+
+      function attach_player_event_listener(player_marker,map) {
+
+        var player_infowindow = new google.maps.InfoWindow({
+          content:player_marker.getTitle()
+        });
+
+        player_marker.addListener('click', function() {
+          var original_map_position = map.getZoom();
+          map.setZoom(18);
+          map.setCenter(player_marker.getPosition());
+          player_infowindow.open(player_marker.get('map'), player_marker);
+          window.setTimeout(function() {
+            map.setZoom(original_map_position);
+            if (player_infowindow){
+              player_infowindow.close();
+            }
+          },3000);
+        });
+      }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm6ZsW6Y0deu7u1fSgYZHYtn30UyMcZ18&callback=initMap"></script>
+  </div>
+</div>
+{% endblock %}
