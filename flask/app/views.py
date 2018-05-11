@@ -19,15 +19,19 @@ import global_config as config
 # importing Cassandra modules from the driver we just installed
 from cassandra.cluster import Cluster
 
+# redis
+import redis
 
 # Setting up connections to cassandra
 cassandra_cluster = Cluster(config.CASSANDRA_DNS)
 cassandra_session = cassandra_cluster.connect(config.CASSANDRA_NAMESPACE)
 
+redis_driver = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+
 #initialize GoogleMaps extension
 GoogleMaps(app, key=config.GOOGLE_MAPS_API_KEY)
 
-@app.route('/')
+
 @app.route('/index')
 def index():
 	return render_template("data_input.html")
@@ -74,26 +78,58 @@ def base_post():
 def realtime_example():
 	return render_template("realtime_example.html")
 
+@app.route('/')
 @app.route('/map_example')
 def mapview():
-    # creating a map in the view
+    
     querystatement_select_user_location = "SELECT * FROM user_location WHERE user_id=%s ORDER BY timestamp_produced DESC LIMIT 100"
-    cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=['user0000007'])
-    response_list = []
+    
+    num_users_to_simulate = 100
+    user_location_output=[]
+    user_id_output=[]
 
-    for val in cassandra_response:
-    	#print('val user_id:', val.user_id, 'timestamp:', val.timestamp_produced)
-        response_list.append(val)
+    for i in range(num_users_to_simulate):
+    	user_location_output.append([])
+    	username = 'user' + str("%07d" % (i,))
+    	user_id_output.append(username)
+    	cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=[username])
+    	for val in cassandra_response:
+			#this json structure exists specifically because it's what google maps api accepts for their polyline obj
+			user_location_output[i].append({"lat": val.latitude, 
+					  			 			"lng": val.longitude})
+    return render_template('map_example.html',user_location_output=user_location_output,user_id_output=user_id_output)
 
-    user_location_output = [{"user_id": x.user_id, 
-				  			 "timestamp_produced": x.timestamp_produced, 
-				  			 "latitude": x.latitude, 
-				  			 "longitude": x.longitude, 
-				  			 "timestamp_spark": x.timestamp_spark} for x in response_list]
-    return render_template('map_example.html',user_location_output=user_location_output)
+@app.route('/map')
+def map_user():
+	username = request.args.get('username')
 
+	querystatement_select_user_location = "SELECT * FROM user_location WHERE user_id=%s ORDER BY timestamp_produced DESC LIMIT 300"
 
+	num_targets = redis_driver.scard(username+'_targets')
+	target_names = redis_driver.smembers(username+'_targets')
 
+	user_location_output=[]
+	target_location_output=[]
+	target_name_output=[]
+
+	try:
+		cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=[username])
+	except:
+		username = 'user0000001'
+		cassandra_response = cassandra_session.execute(querystatement_select_user_location, parameters=[username])
+
+	for val in cassandra_response:
+		#this json structure exists specifically because it's what google maps api accepts for their polyline obj
+		user_location_output.append({"lat": val.latitude, 
+				  			 		 "lng": val.longitude})
+
+	for name in target_names:
+		target_name_output.append(name)
+		target_position = redis_driver.geopos(config.REDIS_LOCATION_NAME,name)[0]
+		target_location_output.append({"lat": target_position[1], 
+				  			 		   "lng": target_position[0]})
+
+	return render_template('map.html',user_location_output=user_location_output,user_id_output=username,target_location_output=target_location_output,target_name_output=target_name_output)
 #can we keep this line of code or does views have to continuously run? Answer: No.
 #cassandra_cluster.shutdown()
 

@@ -4,52 +4,28 @@
 	<body>
 
 		<div id="map" style="width:100%;height:500px"></div>
-			<!-- Target Locations from redis:
-			r.geopos('Boston','bos1','bos2','bos100','cam1','cam10','cam100')
-			[(-71.07341855764389, 42.38011575307423),
-			 (-71.03800266981125, 42.37138617340147),
-			 (-70.99628359079361, 42.38936495058466),
-			 (-71.11695617437363, 42.3701619030815),
-			 (-71.12560361623764, 42.38215366888634),
-			 (-71.12230449914932, 42.39278935887093)]
-
-			 r.geopos('Boston','bos12186','bos11204','bos1108', 'bos13300')
-			[(-71.05991095304489, 42.359285414586786),
-			 (-71.11711174249649, 42.25951372031289),
-			 (-71.16173297166824, 42.35543263842459),
-			 (-71.12413913011551, 42.36109774021571)]
-			-->
 
 		<script>
 
+			// Data for the markers consisting of a name, a LatLng and a zIndex for the
+      		// order in which these markers should display on top of each other.
+			var target_positions = {{ target_location_output | tojson | safe }};
+			var target_names = {{ target_name_output | tojson | safe }};
+
+			var player_route = {{ user_location_output | tojson | safe }};
+			var user_id = {{ user_id_output | tojson | safe }};
+
 			function initMap(){
 				console.log('running initMap');
-				var mapCenter = new google.maps.LatLng(42.3601,-71.0589);
+				var mapCenter = player_route[0];
 				var mapCanvas = document.getElementById("map");
-				var mapOptions = {center: mapCenter, zoom: 12};
+				var mapOptions = {center: mapCenter, zoom: 13};
 				var map = new google.maps.Map(mapCanvas, mapOptions);
 
 				setTargetMarkers(map);
 				setPlayerMarkerAndPositions(map);
 			}
 
-			// Data for the markers consisting of a name, a LatLng and a zIndex for the
-      		// order in which these markers should display on top of each other.
-			var target_positions = [
-				['bos1', 42.38011575307423, -71.07341855764389, 1],
-				['bos2', 42.37138617340147, -71.03800266981125, 2],
-				['bos100', 42.38936495058466, -70.99628359079361, 3],
-				['cam1', 42.3701619030815, -71.11695617437363, 4],
-				['cam10', 42.38215366888634, -71.12560361623764, 5],
-				['cam100', 42.39278935887093, -71.12230449914932, 6],
-				['bos12186', 42.359285414586786, -71.05991095304489, 7],
-				['bos11204', 42.25951372031289, -71.11711174249649, 8],
-				['bos1108', 42.35543263842459, -71.16173297166824, 9],
-				['bos13300', 42.36109774021571, -71.12413913011551, 10]
-			];
-
-			var player_routes = {{ user_location_output | tojson | safe }};
-			var user_ids = {{ user_id_output | tojson | safe }};
 			var target_markers=[];
 			var player_markers=[];
 
@@ -69,13 +45,11 @@
 				};
 
 				for (var i = 0; i < target_positions.length; i++) {
-					var target_position = target_positions[i];
 					var target_marker = new google.maps.Marker({
-						position: {lat: target_position[1], lng: target_position[2]},
+						position: target_positions[i],
 						map: map,
 						icon: target_marker_image,
-						title: target_position[0],
-						zIndex: target_position[3]
+						title: target_names[i]
 					});
 					target_marker.setMap(map);
 					attach_target_event_listener(target_marker,map);
@@ -91,7 +65,7 @@
 
 				target_marker.addListener('click', function() {
 					var original_map_position = map.getZoom();
-					map.setZoom(16);
+					map.setZoom(14);
 					map.setCenter(target_marker.getPosition());
 					target_infowindow.open(target_marker.get('map'), target_marker);
 					window.setTimeout(function() {
@@ -112,28 +86,28 @@
 					anchor: new google.maps.Point(16, 32)
 				};
 				
-				for (var i = 0; i < user_ids.length; i++){
-					var player_route_line = new google.maps.Polyline({
-						path: player_routes[i],
-						geodesic: false,
-						strokeColor: '#FF0000',
-						strokeOpacity: 1.0,
-						strokeWeight: 3
-					});
+			
+				var player_route_line = new google.maps.Polyline({
+					path: player_route,
+					geodesic: false,
+					strokeColor: '#FF0000',
+					strokeOpacity: 1.0,
+					strokeWeight: 3
+				});
 
-					player_route_line.setMap(map);
+				player_route_line.setMap(map);
 
-					var player_marker = new google.maps.Marker({
-						position: player_routes[i][0],
-						map: map,
-						icon: player_marker_image,
-						title: user_ids[i]
-						//zIndex: target_position[3]
-					});
-					player_marker.setMap(map);
-					attach_player_event_listener(player_marker,map);
-					player_markers.push(player_marker);
-				};
+				var player_marker = new google.maps.Marker({
+					position: player_route[0],
+					map: map,
+					icon: player_marker_image,
+					title: user_id
+					//zIndex: target_position[3]
+				});
+				player_marker.setMap(map);
+				attach_player_event_listener(player_marker,map);
+				player_markers.push(player_marker);
+			
 			}
 
 			function attach_player_event_listener(player_marker,map) {
