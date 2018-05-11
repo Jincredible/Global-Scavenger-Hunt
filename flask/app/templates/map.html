@@ -28,6 +28,9 @@
 
 			var target_markers=[];
 			var player_markers=[];
+			var target_images=["<div><img src='https://www.usnews.com/img/college-photo_30513_256x256mm.jpg'></div>",
+								"<div><img src='https://www.usnews.com/img/college-photo_24199_256x256mm.jpg'></div>",
+								"<div><img src='https://www.usnews.com/img/college-photo_5281_256x256mm.jpg'></div>"];
 
 			function setTargetMarkers(map){
 				// Marker sizes are expressed as a Size of X,Y where the origin of the image
@@ -52,15 +55,17 @@
 						title: target_names[i]
 					});
 					target_marker.setMap(map);
-					attach_target_event_listener(target_marker,map);
+					attach_target_event_listener(target_marker,target_images[i],map);
 					target_markers.push(target_marker);
 				};
 			}
 
-			function attach_target_event_listener(target_marker,map) {
+			function attach_target_event_listener(target_marker,target_image_link,map) {
 
 				var target_infowindow = new google.maps.InfoWindow({
-					content:target_marker.getTitle()
+					//"<div><img src='http://www.gstatic.com/webp/gallery/1.jpg'></div>"
+					//content:target_marker.getTitle()
+					content:target_image_link
 				});
 
 				target_marker.addListener('click', function() {
@@ -113,6 +118,7 @@
 			function attach_player_event_listener(player_marker,map) {
 
 				var player_infowindow = new google.maps.InfoWindow({
+
 					content:player_marker.getTitle()
 				});
 
