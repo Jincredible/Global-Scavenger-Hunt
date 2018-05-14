@@ -53,14 +53,16 @@ if __name__ == "__main__":
     #print(df.columns.values.tolist())
     
     #print df
-
+    start_time = float(datetime.now().strftime("%M"))*60 + float(datetime.now().strftime("%S.%f"))
+    print('start time: ',start_time)
     str_fmt = "{};{};{};{};{}"
 
     #print df
 
     for column in df:
     	row_i = 0
-        time.sleep(1)
+        time.sleep(.25)
+        print('column:', column)
     	for row in df[column]:
             #print('row:',row_i)
             #print('col:',column)
@@ -71,8 +73,15 @@ if __name__ == "__main__":
             user_id = filenames[row_i]
             #message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(column==0))
             message_to_send = str_fmt.format(user_id, timestamp_s, longitude, latitude, int(column==0))
-            print(int(user_id[-6:]), message_to_send)
+            #print(int(user_id[-6:]), message_to_send)
+
             producer.send(topic=config.KAFKA_TOPIC,value=message_to_send,key=user_id[-6:].encode('utf-8'))
             row_i +=1
 
+    end_time = float(datetime.now().strftime("%M"))*60 + float(datetime.now().strftime("%S.%f"))
+    print('end time: ',end_time)
+    total_time = end_time - start_time
+    messages_per_second = (num_rows * num_files)/total_time
+    print('total_time: ', total_time)
+    print('messages_per_second: ', messages_per_second)
     

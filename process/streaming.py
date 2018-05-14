@@ -264,7 +264,7 @@ def get_candidate_targets_with_redis(r,record,out_radius=OUTER_RADIUS,in_radius=
 
 def populate_user_targets_with_redis(r,record):
     possible_target_set = get_candidate_targets_with_redis(r,record)
-    print('fetched a possible set of',len(possible_target_set),'target locations')
+    #print('fetched a possible set of',len(possible_target_set),'target locations')
     
     while (r.scard(record[0]+'_targets') < NUM_LOC_PER_USER) and (len(possible_target_set)>0):
         new_target = possible_target_set.pop()
@@ -285,20 +285,20 @@ def populate_user_targets_with_redis_and_cassandra(r,c,record):
 
 def process_partition_with_redis(iter):
     r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
-
+    r_local = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     for record in iter:
         #first, populate targets for the user if needed
         if r.scard(record[0]+'_targets') < NUM_LOC_PER_USER:
             populate_user_targets_with_redis(r,record)
         #second, add the user location to the location timeseries database
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
-        print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
-        r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
-        r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
-        r.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000))
+        #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
+        #r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
+        #r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
+        #r.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000))
 
         for target in r.smembers(record[0]+'_targets'):
-            target_position = r.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+            target_position = r_local.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
             if target_position <=SCORE_DIST:
                 #POP target
@@ -383,10 +383,10 @@ def main():
     
     
     #write to cassandra: used to be slow, set quorum to ANY
-    kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
+    #kafkaStream.foreachRDD(lambda rdd : rdd.foreachPartition(write_user_timeseries_to_cassandra))
 
     #writing to redis
-    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis))
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis))
 
     #writing to redis and cassandra
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis_and_cassandra))

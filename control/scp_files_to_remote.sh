@@ -48,10 +48,26 @@ peg scp to-rem ${CLUSTER_NAME_CASSANDRA} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PA
 peg scp to-rem ${CLUSTER_NAME_FLASK} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_FLASK}
 peg scp to-rem ${CLUSTER_NAME_FLASK} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_FLASK_APP}
 
+#We're also going to have to move the global config files to the datastore folders on the process cluster, to localize redis
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 2 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 3 ${LOCAL_FILE_PATH_CONFIG} ${REMOTE_PATH_REDIS}
+
+
 LOCAL_FILE_PATH_CONFIG_SH=${BASEDIR}/global_config.sh #this config file has all the sensitive info needed for any cluster, for shell scripts
 peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_CONFIG_SH} ${REMOTE_PATH_PROCESS}
 
 
+# MOVING REDIS RESET DATA TO PROCESS CLUSTERS ----------------------------------
+LOCAL_FILE_PATH_REDIS_RESET_DATA_A=${BASEDIR}/../produce/inputs/POI_01.csv
+LOCAL_FILE_PATH_REDIS_RESET_DATA_B=${BASEDIR}/../produce/inputs/POI_02.csv
+
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_A} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 2 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_A} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 3 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_A} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 1 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_B} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 2 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_B} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_PROCESS} 3 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_B} ${REMOTE_PATH_REDIS}
 
 # DATASTORE CLUSTER ----------------------------------------------------------
 
