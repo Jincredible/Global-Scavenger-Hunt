@@ -284,12 +284,12 @@ def populate_user_targets_with_redis_and_cassandra(r,c,record):
         r.sadd(record[0]+'_targets',new_target)
 
 def process_partition_with_redis(iter):
-    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    #r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     r_local = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     for record in iter:
         #first, populate targets for the user if needed
-        if r.scard(record[0]+'_targets') < NUM_LOC_PER_USER:
-            populate_user_targets_with_redis(r,record)
+        if r_local.scard(record[0]+'_targets') < NUM_LOC_PER_USER: #EDITED THIS FOR TESTING!! Need to revert later
+            populate_user_targets_with_redis(r_local,record)
         #second, add the user location to the location timeseries database
         timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
         #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
@@ -297,13 +297,13 @@ def process_partition_with_redis(iter):
         #r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
         #r.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000))
 
-        for target in r.smembers(record[0]+'_targets'):
+        for target in r_local.smembers(record[0]+'_targets'): #EDITED THIS FOR TESTING!! Need to revert later
             target_position = r_local.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
             if target_position <=SCORE_DIST:
                 #POP target
-                r.srem(record[0]+'_targets',target)
-                populate_user_targets_with_redis(r,record)
+                r_local.srem(record[0]+'_targets',target) #EDITED THIS FOR TESTING!! Need to revert later
+                populate_user_targets_with_redis(r_local,record) #EDITED THIS FOR TESTING!! Need to revert later
 
 def process_partition_with_redis_and_cassandra(iter):
     redis_driver = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
