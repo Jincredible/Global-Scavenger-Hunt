@@ -23,7 +23,7 @@ if __name__ == "__main__":
     #topic = str(args[2])
     #topic = config.KAFKA_TOPIC #same thing with the kafka topic
     input_path = 'simulations' #this is the directory of sim_results
-    producer = KafkaProducer(bootstrap_servers=config.KAFKA_DNS)
+    producer = KafkaProducer(bootstrap_servers=config.KAFKA_DNS_LOCAL)
 
     num_rows = config.PRODUCER_NUM_ROWS
     num_files= config.PRODUCER_NUM_FILES #number of files we're going to process
