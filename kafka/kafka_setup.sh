@@ -35,13 +35,13 @@
 
 # TOPIC_NAME=user_data_01
 
-# This shell script is created to create a topic in kafka named 'user_data_01'
+# This shell script is created to create a topic in kafka named 'topic_p4_r1'
 # /usr/local/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 18 --topic ${TOPIC_NAME}
 
 #if needed, run this command to change the number of partitions
 #/usr/local/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --alter --topic ${TOPIC_NAME} --partitions 18
 
-# this command gets specific details on the topic 'user_data_01'
+# this command gets specific details on the topic 'topic_p4_r1'
 # /usr/local/kafka/bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic ${TOPIC_NAME}
 
 # Testing commands:

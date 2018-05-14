@@ -25,8 +25,8 @@ if __name__ == "__main__":
     input_path = 'simulations' #this is the directory of sim_results
     producer = KafkaProducer(bootstrap_servers=config.KAFKA_DNS)
 
-    num_rows = 200
-    num_files= 300 #number of files we're going to process
+    num_rows = config.PRODUCER_NUM_ROWS
+    num_files= config.PRODUCER_NUM_FILES #number of files we're going to process
 
     df = pandas.DataFrame.from_csv('simulations/path0000999.csv',header=0,sep='/',index_col=None).head(num_rows)
     df.columns = ['user0000999']
@@ -50,21 +50,21 @@ if __name__ == "__main__":
     filenames =df.columns.values.tolist()
     df =df.transpose()
 
-    print('rows:',df.shape[0])
-    print('cols:',df.shape[1])
+    #print('rows:',df.shape[0])
+    #print('cols:',df.shape[1])
     #print(df.columns.values.tolist())
     
     #print df
     start_time = float(datetime.now().strftime("%M"))*60 + float(datetime.now().strftime("%S.%f"))
     print('start time: ',start_time)
-    str_fmt = "{};{};{};{};{}"
+    str_fmt = "{}"+config.MESSAGE_DELIMITER+"{}"+config.MESSAGE_DELIMITER+"{}"+config.MESSAGE_DELIMITER+"{}"+config.MESSAGE_DELIMITER+"{}"
 
     #print df
 
     for column in df:
     	row_i = 0
-        time.sleep(.25)
-        print('column:', column)
+        time.sleep(config.PRODUCER_SLEEP_TIME)
+        #print('column:', column)
     	for row in df[column]:
             #print('row:',row_i)
             #print('col:',column)
