@@ -295,7 +295,7 @@ def process_partition_with_redis(iter):
         #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
         #r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
         #r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
-        #r.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000))
+        r_local.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000)) #EDITED THIS FOR TESTING!! Need to revert later
 
         for target in r_local.smembers(record[0]+'_targets'): #EDITED THIS FOR TESTING!! Need to revert later
             target_position = r_local.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
