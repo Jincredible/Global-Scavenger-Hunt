@@ -77,7 +77,6 @@ INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target 
 SCORE_DIST = 30 #in meters, distance a player must be to score the point
 #REDIS_LOCATION_NAME='Boston' #moved to config file
 #NUM_PARTITIONS = 18 #No longer needed, spark automates this
-LOG_FILE_PATH = '~/Global-Scavenger-Hunt/spark/logs/'
 
 
 #class ExactPartitioner[V](partitions: Int, elements: Int) extends Partitioner {
@@ -388,7 +387,9 @@ def main():
     #writing to redis #tested this but it was too slow
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis))
 
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile(LOG_FILE_PATH+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))+".txt"))
+    #The following saves the text file in a folder named the timestamp in the logs folder of the working directory, which for each worker is ~/Global-Scavenger-Hunt/spark,
+    #because this is where it is run in the master node
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
 
     #writing to redis and cassandra
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis_and_cassandra))
