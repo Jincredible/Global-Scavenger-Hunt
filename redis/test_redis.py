@@ -60,7 +60,7 @@ if __name__ == "__main__":
 	df_cam = dataframe_from_csv(fn_csv_Cambridge)
 
 	print 'test adding to sorted set'
-	num_loops=30
+	num_loops=10
 
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
@@ -70,10 +70,10 @@ if __name__ == "__main__":
 
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
-
-	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + 'records/s ' + str(float(num_records)/duration)
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
 	
-	num_loops=30
+	num_loops=10
 	print 'test reading geoposition from sorted set'
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
@@ -83,7 +83,8 @@ if __name__ == "__main__":
 
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
-	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + 'records/s ' + str(float(num_records)/duration)
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
 
 	print 'fetching targets from sorted set using georadius'
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
@@ -93,7 +94,8 @@ if __name__ == "__main__":
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
-	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + 'records/s ' + str(float(num_records)/duration)
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
 	#df_POI = dataframe_from_csv(fn_csv_Boston).append(dataframe_from_csv(fn_csv_Cambridge),ignore_index=True)
 	#print df_POI_01
 	#print df_POI_02

@@ -387,10 +387,6 @@ def main():
     #writing to redis #tested this but it was too slow
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis))
 
-    #The following saves the text file in a folder named the timestamp in the logs folder of the working directory, which for each worker is ~/Global-Scavenger-Hunt/spark,
-    #because this is where it is run in the master node
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
-
     #writing to redis and cassandra
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_partition_with_redis_and_cassandra))
 
@@ -398,11 +394,32 @@ def main():
     ssc.awaitTermination()
     return
 
+# the purpose of test_save_to_txt is to test the raw speed of spark when it has no functions or external connections
+def test_save_to_txt(ssc):
+
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
+                            .map(lambda message: message[1].split(';'))
+    #The following saves the text file in a folder named the timestamp in the logs folder of the working directory, which for each worker is ~/Global-Scavenger-Hunt/spark,
+    #because this is where it is run in the master node
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
+
+    ssc.start()
+    ssc.awaitTermination()
+
+    return
+
+
 if __name__ == '__main__':
 
+    # first, get the spark handler
+    sc = SparkContext(appName="PysparkStreamingApp")
+    sc.setLogLevel("WARN")
 
-    
-    main()
+    # set microbatch interval as X seconds
+    ssc = StreamingContext(sc, 1)
+
+    test_save_to_txt(ssc)
+    #main()
 
 
 
