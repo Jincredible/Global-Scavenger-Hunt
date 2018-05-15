@@ -32,7 +32,8 @@ peg scp to-rem ${CLUSTER_NAME_REDIS} 1 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_A} ${R
 peg scp to-rem ${CLUSTER_NAME_REDIS} 1 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_B} ${REMOTE_PATH_REDIS}
 
 
-
-
-
+#also, move this into the spark master for testing latency ====================================================================================
+CLUSTER_NAME_SPARK=spark
+peg scp to-rem ${CLUSTER_NAME_SPARK} 1 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_A} ${REMOTE_PATH_REDIS}
+peg scp to-rem ${CLUSTER_NAME_SPARK} 1 ${LOCAL_FILE_PATH_REDIS_RESET_DATA_B} ${REMOTE_PATH_REDIS}
 

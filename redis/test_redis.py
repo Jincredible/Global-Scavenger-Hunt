@@ -50,7 +50,7 @@ if __name__ == "__main__":
 	fn_csv_Cambridge = 'POI_02.csv'
 	#database_num = sys.argv[3] #moved this from being defined in the shell script to the global_config.py file
 
-	r = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+	r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
 	if config.REDIS_RESET:
 		print('flushing database:', config.REDIS_DATABASE)
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
 
-	print 'duration: ' + str(duration) + 'records: ' + str(num_records) + 'records/s' + str(float(num_records)/duration)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + 'records/s ' + str(float(num_records)/duration)
 	
 	num_loops=30
 	print 'test reading geoposition from sorted set'
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
-	print 'duration: ' + str(duration) + 'records: ' + str(num_records) + 'records/s' + str(float(num_records)/duration)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + 'records/s ' + str(float(num_records)/duration)
 
 	print 'fetching targets from sorted set using georadius'
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
@@ -93,7 +93,7 @@ if __name__ == "__main__":
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
-	print 'duration: ' + str(duration) + 'records: ' + str(num_records) + 'records/s' + str(float(num_records)/duration)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + 'records/s ' + str(float(num_records)/duration)
 	#df_POI = dataframe_from_csv(fn_csv_Boston).append(dataframe_from_csv(fn_csv_Cambridge),ignore_index=True)
 	#print df_POI_01
 	#print df_POI_02
