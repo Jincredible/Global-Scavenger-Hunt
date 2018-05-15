@@ -473,6 +473,16 @@ def test_redis_connection_per_partition(iter):
     r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     return
 
+def test_speeds(ssc):
+# This method simply tests spark speeds for different functions
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
+                            .map(lambda message: message[1].split(';'))
+
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition))
+    ssc.start()
+    ssc.awaitTermination()
+    return
+
 if __name__ == '__main__':
 
     # first, get the spark handler
@@ -484,7 +494,7 @@ if __name__ == '__main__':
 
     #test_save_to_txt(ssc)
     #test_redis_writes(ssc)
-    test_redis_connection(ssc)
+    test_speeds(ssc)
     #main()
 
 
