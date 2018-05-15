@@ -77,7 +77,7 @@ INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target 
 SCORE_DIST = 30 #in meters, distance a player must be to score the point
 #REDIS_LOCATION_NAME='Boston' #moved to config file
 #NUM_PARTITIONS = 18 #No longer needed, spark automates this
-
+REDIS_CONNECTION_POOL =  redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
 #class ExactPartitioner[V](partitions: Int, elements: Int) extends Partitioner {
 #  def getPartition(key: Any): Int = {
@@ -284,7 +284,7 @@ def populate_user_targets_with_redis_and_cassandra(r,c,record):
 
 def process_partition_with_redis(iter):
     #r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
-    r_local = redis.StrictRedis(host='localhost', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    r_local = redis.StrictRedis(host='REDIS_DNS', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     for record in iter:
         #first, populate targets for the user if needed
         if r_local.scard(record[0]+'_targets') < NUM_LOC_PER_USER: #EDITED THIS FOR TESTING!! Need to revert later
@@ -394,8 +394,8 @@ def main():
     ssc.awaitTermination()
     return
 
-# the purpose of test_save_to_txt is to test the raw speed of spark when it has no functions or external connections
 def test_save_to_txt(ssc):
+# objective of test_save_to_txt: test the raw speed of spark when it has no functions or downstream database connections
 
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
                             .map(lambda message: message[1].split(';'))
@@ -409,6 +409,70 @@ def test_save_to_txt(ssc):
     return
 
 
+def test_redis_writes(ssc):
+# objective of test_save_to_txt: test the write speed to redis cluster
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
+                            .map(lambda message: message[1].split(';'))
+
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_writes_per_partition))
+
+    ssc.start()
+    ssc.awaitTermination()
+
+    return
+
+def test_redis_writes_per_partition(iter):
+
+#   spark streaming documentation for correct connection handling
+#   def sendPartition(iter):
+#       ConnectionPool is a static, lazily initialized pool of connections
+#       connection = ConnectionPool.getConnection()
+#       for record in iter:
+#           connection.send(record)
+#       return to the pool for future reuse
+#       ConnectionPool.returnConnection(connection)
+
+#   dstream.foreachRDD(lambda rdd: rdd.foreachPartition(sendPartition))
+    
+    #redis_connection = REDIS_CONNECTION_POOL.get_connection()
+    #r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    #r_local = redis.StrictRedis(host='REDIS_DNS', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    for record in iter:
+        #first, populate targets for the user if needed
+        if redis_connection.scard(record[0]+'_targets') < NUM_LOC_PER_USER: #EDITED THIS FOR TESTING!! Need to revert later
+            populate_user_targets_with_redis(redis_connection,record)
+        #second, add the user location to the location timeseries database
+        timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+        #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
+        #r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
+        #r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
+        r_local.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000)) #EDITED THIS FOR TESTING!! Need to revert later
+
+        for target in r_local.smembers(record[0]+'_targets'): #EDITED THIS FOR TESTING!! Need to revert later
+            target_position = r_local.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+            target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
+            if target_position <=SCORE_DIST:
+                #POP target
+                r_local.srem(record[0]+'_targets',target) #EDITED THIS FOR TESTING!! Need to revert later
+                populate_user_targets_with_redis(r_local,record) #EDITED THIS FOR TESTING!! Need to revert later
+
+    #REDIS_CONNECTION_POOL.release(redis_connection)
+    return
+
+def test_redis_connection(ssc):
+# objective of test_redis_connection: test the time needed to make connection to redis using StrictRedis vs Connection Pooling
+    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
+                            .map(lambda message: message[1].split(';'))
+
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition))
+    ssc.start()
+    ssc.awaitTermination()
+    return
+
+def test_redis_connection_per_partition(iter):
+    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    return
+
 if __name__ == '__main__':
 
     # first, get the spark handler
@@ -418,7 +482,9 @@ if __name__ == '__main__':
     # set microbatch interval as X seconds
     ssc = StreamingContext(sc, 1)
 
-    test_save_to_txt(ssc)
+    #test_save_to_txt(ssc)
+    #test_redis_writes(ssc)
+    test_redis_connection(ssc)
     #main()
 
 
