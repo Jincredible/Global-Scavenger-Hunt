@@ -34,13 +34,13 @@ def add_to_redis(r,df_in,str_in):
 	return
 
 def test_read(r,df_in,str_in):
-for index, row in df_in.iterrows():
+	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
 		position = r.geopos('Boston',str_in+str(index))
 	return
 
 def test_georadius(r,df_in):
-for index, row in df_in.iterrows():
+	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
 		target_set = r.georadius('Boston',row[0],row[1],100)
 	return
