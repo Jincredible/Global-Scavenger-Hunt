@@ -50,8 +50,6 @@ fi
 
 printf '\ndeploying kafka cluster\n'
 
-BASEDIR=$(dirname "$0")
-
 CLUSTER_NAME=kafka
 
 peg validate ${BASEDIR}/kafka-master.yml
@@ -63,6 +61,26 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
 peg up ${BASEDIR}/kafka-master.yml &
 peg up ${BASEDIR}/kafka-workers.yml &
+
+wait
+
+printf '\ncreated all clusters. fetching data for cluster\n'
+
+peg fetch ${CLUSTER_NAME}
+
+# KAFKA =============================================================
+
+printf '\ndeploying redis instance\n'
+
+CLUSTER_NAME=redis
+
+peg validate ${BASEDIR}/redis-master.yml
+
+read -p "Are you sure to deploy the clusters? Y/n" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+peg up ${BASEDIR}/redis-master.yml &
 
 wait
 

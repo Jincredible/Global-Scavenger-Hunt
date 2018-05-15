@@ -98,7 +98,39 @@ peg service ${CLUSTER_NAME} kafka start
 printf '\ninstalled all packages\n'
 fi
 
+# SETTING UP REDIS ===================================================
+printf '\nrunning pegasus installation scripts on redis instance\n'
 
+BASEDIR=$(dirname "$0")
+
+CLUSTER_NAME=redis
+
+
+peg fetch ${CLUSTER_NAME}
+
+read -p "Are you sure to install packages on your instances? Y" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+
+printf '\ninstalling ssh and aws to the cluster:'
+peg install ${CLUSTER_NAME} ssh
+peg install ${CLUSTER_NAME} aws
+
+read -p "Press enter to install environment packages:"
+peg install ${CLUSTER_NAME} environment 
+#[WARNINGS WHEN INSTALLING ENVIRONMENT]:
+#1. maven can't be installed
+#2. recommend to upgrade pip
+
+read -p "Press enter to install redis:"
+# install and start redis
+peg install ${CLUSTER_NAME} redis
+peg service ${CLUSTER_NAME} redis start
+
+
+printf '\ninstalled all packages\n'
+fi
 
 
 
