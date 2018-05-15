@@ -77,19 +77,28 @@ INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target 
 SCORE_DIST = 30 #in meters, distance a player must be to score the point
 #REDIS_LOCATION_NAME='Boston' #moved to config file
 #NUM_PARTITIONS = 18 #No longer needed, spark automates this
-REDIS_CONNECTION_POOL =  redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
-
-#class ExactPartitioner[V](partitions: Int, elements: Int) extends Partitioner {
-#  def getPartition(key: Any): Int = {
-#    val k = key.asInstanceOf[Int]
-#    //0 and 1 are partition number
-#    return ( k < 30 )? 0 : 1
-#  }
-#} 
 
 
-#class UserPartitioner(partitions,elements) extends Partitioner:
+class Redis_Handler(object): #this is a metaclass
 
+    def __init__(self):
+        self.pool = redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+
+    @property
+    def connection(self):
+        try:
+            return self._connection
+        except AttributeError:
+            self.setConnection()
+            return self._connection
+
+        #if not hasattr(self, '_connection'):
+        #    self.setConnection()
+        #return self._connection #think about try?
+
+    def setConnection(self):
+        #self._connection = redis.StrictRedis(connection_pool = self.pool)
+        self._connection = redis.Redis(connection_pool = self.pool)
 
 # getSqlContextInstance From Spark Streaming Tutorial -----------------------------------------
 # http://spark.apache.org/docs/1.3.0/streaming-programming-guide.html#dataframe-and-sql-operations
@@ -409,20 +418,63 @@ def test_save_to_txt(ssc):
     return
 
 
-def test_redis_writes(ssc):
-# objective of test_save_to_txt: test the write speed to redis cluster
+def test_speeds(ssc):
+# This method simply tests spark speeds for different functions
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
                             .map(lambda message: message[1].split(';'))
 
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_writes_per_partition))
+
+    # Tests speeds of setting up a redis partition per partition
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+
+    # Tests speeds of setting up a redis partition per iter, iterating through the partition
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_iter))
+
+    # Tests speeds of setting up a redis partition per partition with a new connection every partition, benchmark against empty function
+    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_StrictRedis))
+
+    # Tests speeds of setting up a redis partition per partition with a connection pool, benchmark against empty function
+    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
 
     ssc.start()
     ssc.awaitTermination()
-
     return
 
-def test_redis_writes_per_partition(iter):
+def test_empty_function_per_partition(iter):
+# function: to test establishing redis connections per partition
+    print('empty function')
+    return
 
+def test_empty_function_per_iter(iter):
+# function: to test establishing redis connections per partition, iterating through all of the records
+    for record in iter:
+        if 0 < NUM_LOC_PER_USER: 
+            print('empty function')
+        
+        for target in range(NUM_LOC_PER_USER):
+            print('empty function')
+
+            if 50 <= 10:
+                print('empty function')
+    return
+
+def test_redis_connection_per_partition_StrictRedis(iter):
+# function: to test establishing redis connections per partition
+    redis_connection = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+    return
+
+def test_redis_connection_per_partition_ConnectionPool(iter):
+# function: to test establishing redis connections per partition with a connection pool
+    redis_connection = Redis_Handler().connection
+
+    #StrictRedis object automatically releases connection
+    #http://redis-py.readthedocs.io/en/latest/_modules/redis/client.html#StrictRedis.execute_command
+    return
+
+
+
+def test_redis_writes_per_partition_with_StrictRedis(iter):
+# function: to test establishing redis connections per partition
 #   spark streaming documentation for correct connection handling
 #   def sendPartition(iter):
 #       ConnectionPool is a static, lazily initialized pool of connections
@@ -442,45 +494,21 @@ def test_redis_writes_per_partition(iter):
         if redis_connection.scard(record[0]+'_targets') < NUM_LOC_PER_USER: #EDITED THIS FOR TESTING!! Need to revert later
             populate_user_targets_with_redis(redis_connection,record)
         #second, add the user location to the location timeseries database
-        timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+        #timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
         #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
         #r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
         #r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
-        r_local.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000)) #EDITED THIS FOR TESTING!! Need to revert later
+        #r_local.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000)) #EDITED THIS FOR TESTING!! Need to revert later
 
         for target in r_local.smembers(record[0]+'_targets'): #EDITED THIS FOR TESTING!! Need to revert later
             target_position = r_local.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
-            if target_position <=SCORE_DIST:
+            if target_distance <=SCORE_DIST:
                 #POP target
                 r_local.srem(record[0]+'_targets',target) #EDITED THIS FOR TESTING!! Need to revert later
                 populate_user_targets_with_redis(r_local,record) #EDITED THIS FOR TESTING!! Need to revert later
 
     #REDIS_CONNECTION_POOL.release(redis_connection)
-    return
-
-def test_redis_connection(ssc):
-# objective of test_redis_connection: test the time needed to make connection to redis using StrictRedis vs Connection Pooling
-    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
-                            .map(lambda message: message[1].split(';'))
-
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition))
-    ssc.start()
-    ssc.awaitTermination()
-    return
-
-def test_redis_connection_per_partition(iter):
-    r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
-    return
-
-def test_speeds(ssc):
-# This method simply tests spark speeds for different functions
-    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
-                            .map(lambda message: message[1].split(';'))
-
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition))
-    ssc.start()
-    ssc.awaitTermination()
     return
 
 if __name__ == '__main__':
@@ -490,10 +518,9 @@ if __name__ == '__main__':
     sc.setLogLevel("WARN")
 
     # set microbatch interval as X seconds
-    ssc = StreamingContext(sc, 1)
+    ssc = StreamingContext(sc, config.SPARK_MICROBATCH_DURATION)
 
-    #test_save_to_txt(ssc)
-    #test_redis_writes(ssc)
+    
     test_speeds(ssc)
     #main()
 
