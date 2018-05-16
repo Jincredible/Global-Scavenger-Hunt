@@ -78,9 +78,15 @@ SCORE_DIST = 10 #in meters, distance a player must be to score the point
 #REDIS_LOCATION_NAME='Boston' #moved to config file
 #NUM_PARTITIONS = 18 #No longer needed, spark automates this
 
+class Singleton(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
 
-class redis_handler(object): #this is a metaclass
-
+class redis_handler(object):
+    __metaclass__ = Singleton
     def __init__(self):
         self.pool = redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
