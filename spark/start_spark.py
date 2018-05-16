@@ -71,15 +71,15 @@ import global_config as config
 #REDIS_DATABASE = 7 #7 is for testing, 0 is for production #moved to config file
 NUM_LOC_PER_USER = 3 #This is the number of target locations for each user at each time
 MIN_LOC_PER_USER = 1 # this is in case there aren't enough target locations within the MAX_OUTER_RADIUS
-OUTER_RADIUS = 600 #in meters, this is the outer bound distance to fetch target location
-MAX_OUTER_RADIUS = 2500 #in meters, this is the maximum distance to fetch targets
-INNER_RADIUS = 400 #in meters, this is the inner bound distance to fetch target location
-SCORE_DIST = 30 #in meters, distance a player must be to score the point
+OUTER_RADIUS = 150 #in meters, this is the outer bound distance to fetch target location
+MAX_OUTER_RADIUS = 2000 #in meters, this is the maximum distance to fetch targets
+INNER_RADIUS = 50 #in meters, this is the inner bound distance to fetch target location
+SCORE_DIST = 10 #in meters, distance a player must be to score the point
 #REDIS_LOCATION_NAME='Boston' #moved to config file
 #NUM_PARTITIONS = 18 #No longer needed, spark automates this
 
 
-class Redis_Handler(object): #this is a metaclass
+class redis_handler(object): #this is a metaclass
 
     def __init__(self):
         self.pool = redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
@@ -91,10 +91,6 @@ class Redis_Handler(object): #this is a metaclass
         except AttributeError:
             self.setConnection()
             return self._connection
-
-        #if not hasattr(self, '_connection'):
-        #    self.setConnection()
-        #return self._connection #think about try?
 
     def setConnection(self):
         #self._connection = redis.StrictRedis(connection_pool = self.pool)
@@ -259,15 +255,7 @@ def debug_save_user_in_redis(iter):
         r.sadd(member_list_name,record[0])
 
 
-def get_candidate_targets_with_redis(r,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS):
-    set_outer = set(r.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=out_radius, unit='m'))
-    set_inner = set(r.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=in_radius, unit='m'))
-    #also, implement add another set of 'SOLVED' targets for this particular user
-    set_targets = set_outer - set_inner
-    if (len(set_targets) < MIN_LOC_PER_USER) or (out_radius >= MAX_OUTER_RADIUS):
-        return redis_get_new_targets(r,record,out_radius+100, in_radius)
-    else:
-        return set_targets
+
 
 
 def populate_user_targets_with_redis(r,record):
@@ -388,6 +376,7 @@ def main():
     
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
                             .map(lambda message: message[1].split(';'))
+
     
     
     #write to cassandra: used to be slow, set quorum to ANY
@@ -403,38 +392,46 @@ def main():
     ssc.awaitTermination()
     return
 
-def test_save_to_txt(ssc):
-# objective of test_save_to_txt: test the raw speed of spark when it has no functions or downstream database connections
 
-    kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
-                            .map(lambda message: message[1].split(';'))
-    #The following saves the text file in a folder named the timestamp in the logs folder of the working directory, which for each worker is ~/Global-Scavenger-Hunt/spark,
-    #because this is where it is run in the master node
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
-
-    ssc.start()
-    ssc.awaitTermination()
-
-    return
 
 
 def test_speeds(ssc):
 # This method simply tests spark speeds for different functions
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
                             .map(lambda message: message[1].split(';'))
+                            
 
+    # KafkaUtils.createDirectStream({parameters}).map(lambda message: message[1].split(';'))
+    # [u'user0000469', u'2077.971822', u'-71.09669095277786', u'42.32523143581117', u'0']
+    # [u'user0000473', u'2077.978366', u'-71.11637242815704', u'42.25912890355503', u'0']
+
+    
+
+    # Test speeds of writing DStream obj to file: saves the text file in a folder named the timestamp in the logs folder of the working directory, which for each worker is ~/Global-Scavenger-Hunt/spark,
+    # because this is where it is run in the master node
+    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
 
     # Tests speeds of setting up a redis partition per partition
-    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
 
     # Tests speeds of setting up a redis partition per iter, iterating through the partition
-    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_iter))
+    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_iter))
 
     # Tests speeds of setting up a redis partition per partition with a new connection every partition, benchmark against empty function
-    kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_StrictRedis))
+    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_StrictRedis))
 
     # Tests speeds of setting up a redis partition per partition with a connection pool, benchmark against empty function
     # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
+
+    # filters if the element 0 of the split message = 1 (if the just_logged_in boolean = 1)
+    DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
+
+    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user))
+
+    DStream_returning_users = kafkaStream.filter(lambda message : not int(message[4]))
+
+    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user_pipe))
+
 
     ssc.start()
     ssc.awaitTermination()
@@ -465,51 +462,89 @@ def test_redis_connection_per_partition_StrictRedis(iter):
 
 def test_redis_connection_per_partition_ConnectionPool(iter):
 # function: to test establishing redis connections per partition with a connection pool
-    redis_connection = Redis_Handler().connection
+    redis_connection = redis_handler().connection
 
     #StrictRedis object automatically releases connection
     #http://redis-py.readthedocs.io/en/latest/_modules/redis/client.html#StrictRedis.execute_command
     return
 
+def process_new_user(iter):
+# function: add users into redis
+    redis_connection = redis_handler().connection
 
-
-def test_redis_writes_per_partition_with_StrictRedis(iter):
-# function: to test establishing redis connections per partition
-#   spark streaming documentation for correct connection handling
-#   def sendPartition(iter):
-#       ConnectionPool is a static, lazily initialized pool of connections
-#       connection = ConnectionPool.getConnection()
-#       for record in iter:
-#           connection.send(record)
-#       return to the pool for future reuse
-#       ConnectionPool.returnConnection(connection)
-
-#   dstream.foreachRDD(lambda rdd: rdd.foreachPartition(sendPartition))
-    
-    #redis_connection = REDIS_CONNECTION_POOL.get_connection()
-    #r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
-    #r_local = redis.StrictRedis(host='REDIS_DNS', port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
     for record in iter:
-        #first, populate targets for the user if needed
-        if redis_connection.scard(record[0]+'_targets') < NUM_LOC_PER_USER: #EDITED THIS FOR TESTING!! Need to revert later
-            populate_user_targets_with_redis(redis_connection,record)
-        #second, add the user location to the location timeseries database
-        #timestamp_spark_s = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
-        #print('adding user:',record[0],'lon: ',record[2],'lat: ',record[3],'timestamp_prod: ',record[1],'timestamp_spark_s: ',str(timestamp_spark_s))
-        #r.zadd(record[0]+'_lon',long(float(record[1])*1000),record[2])
-        #r.zadd(record[0]+'_lat',long(float(record[1])*1000),record[3])
-        #r_local.zadd(record[0]+'_time',long(float(record[1])*1000),long(float(timestamp_spark_s)*1000)) #EDITED THIS FOR TESTING!! Need to revert later
+        possible_target_set = get_candidate_targets_with_redis(redis_connection,record)
 
-        for target in r_local.smembers(record[0]+'_targets'): #EDITED THIS FOR TESTING!! Need to revert later
-            target_position = r_local.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
-            target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
-            if target_distance <=SCORE_DIST:
-                #POP target
-                r_local.srem(record[0]+'_targets',target) #EDITED THIS FOR TESTING!! Need to revert later
-                populate_user_targets_with_redis(r_local,record) #EDITED THIS FOR TESTING!! Need to revert later
+        for i in range(NUM_LOC_PER_USER):
+            redis_connection.sadd(record[0]+'_targets',possible_target_set.pop()) 
 
-    #REDIS_CONNECTION_POOL.release(redis_connection)
     return
+
+def get_candidate_targets_with_redis(redis_connection,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS,num_targets=NUM_LOC_PER_USER):
+    set_outer = set(redis_connection.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=out_radius, unit='m'))
+    set_inner = set(redis_connection.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=in_radius, unit='m'))
+    #also, implement add another set of 'SOLVED' targets for this particular user
+    set_targets = set_outer - set_inner
+    if (len(set_targets) < num_targets): #and (out_radius <= MAX_OUTER_RADIUS)
+        return get_candidate_targets_with_redis(redis_connection,record,out_radius+100, in_radius)
+    else:
+        return set_targets
+
+def process_returning_user(iter):
+    redis_connection = redis_handler().connection
+
+    for record in iter:
+        for target in redis_connection.smembers(record[0]+'_targets'): 
+            target_position = redis_connection.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
+            target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
+            
+            #if target_distance <=SCORE_DIST:
+                #POP target
+            #    redis_connection.srem(record[0]+'_targets',target) #EDITED THIS FOR TESTING!! Need to revert later
+            #    populate_user_targets_with_redis(redis_connection,record) #EDITED THIS FOR TESTING!! Need to revert later
+            #   redis_connection.sadd(record[0]+'_targets',get_candidate_targets_with_redis(redis_connection,record,num_targets=1))
+
+    return
+
+def process_returning_user_pipe(iter):
+    redis_pipe = redis_handler().connection.pipeline()
+
+    for record in iter:
+        redis_pipe.smembers(record[0]+'_targets')
+
+    target_sets = redis_pipe.execute()
+    #output of target_sets
+    #type: list of sets
+    #[{'bos1588', 'bos1675', 'bos1746'},
+    #{'bos3721', 'bos3875', 'bos3986'},
+    #{'bos1319', 'bos1371', 'bos1400'}]
+
+    for i_set in target_sets:
+        set_copy = i_set.copy()
+        redis_pipe.geopos(config.REDIS_LOCATION_NAME,set_copy.pop(),set_copy.pop(),set_copy.pop())
+
+    target_positions = redis_pipe.execute()
+    #target_positions output:
+    #type: list of list of tuples
+    #[[(-71.08641654253006, 42.350492466885036),
+    #(-71.08616441488266, 42.35092083476096),
+    #(-71.08790785074234, 42.35136948040617)],
+    #[(-71.07866495847702, 42.333152439433995),
+    #(-71.07868105173111, 42.33531202186176),
+    #(-71.07865422964096, 42.33414098068614)],
+    #[(-71.13807052373886, 42.3527204867841),
+    #(-71.13873571157455, 42.35300184083278),
+    #(-71.13669723272324, 42.353349097631614)]]
+
+    #target_positions[index_member][index_target][longitude or latitude]
+    for record in iter:
+        index = 0
+        for target_coordinates in target_positions[index]:
+            target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_coordinates[0]),lat_2=decimal.Decimal(target_coordinates[1]))
+            print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
+        index += 1
+    return
+
 
 if __name__ == '__main__':
 
