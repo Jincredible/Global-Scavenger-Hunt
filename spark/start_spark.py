@@ -86,8 +86,9 @@ class Singleton(type):
         return cls._instances[cls]
 
 class redis_handler(object):
-    __metaclass__ = Singleton
+    #__metaclass__ = Singleton
     def __init__(self):
+        #print(datetime.now(),"================== INSTANTIATING NEW REDIS HANDLER =============================")
         self.pool = redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
     @property
@@ -100,7 +101,9 @@ class redis_handler(object):
 
     def setConnection(self):
         #self._connection = redis.StrictRedis(connection_pool = self.pool)
+        #print(datetime.now(),"================== SETTING CONNECTION =============================")
         self._connection = redis.Redis(connection_pool = self.pool)
+
 
 # getSqlContextInstance From Spark Streaming Tutorial -----------------------------------------
 # http://spark.apache.org/docs/1.3.0/streaming-programming-guide.html#dataframe-and-sql-operations
@@ -415,10 +418,12 @@ def test_speeds(ssc):
 
     # Test speeds of writing DStream obj to file: saves the text file in a folder named the timestamp in the logs folder of the working directory, which for each worker is ~/Global-Scavenger-Hunt/spark,
     # because this is where it is run in the master node
-    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
-
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
+    #kafkaStream.foreachRDD(test_empty_function_per_rdd)
     # Tests speeds of setting up a redis partition per partition
-    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    # need to run this function twice to get the effect of running foreachPartition on the new and returning users
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
 
     # Tests speeds of setting up a redis partition per iter, iterating through the partition
     # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_iter))
@@ -427,20 +432,24 @@ def test_speeds(ssc):
     # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_StrictRedis))
 
     # Tests speeds of setting up a redis partition per partition with a connection pool, benchmark against empty function
-    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
 
     # filters if the element 0 of the split message = 1 (if the just_logged_in boolean = 1)
     DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
-
-    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user))
+    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user))
 
     DStream_returning_users = kafkaStream.filter(lambda message : not int(message[4]))
-
-    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user_pipe))
+    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user_pipe))
 
 
     ssc.start()
     ssc.awaitTermination()
+    return
+
+def test_empty_function_per_rdd(rdd):
+    print('empty rdd function')
     return
 
 def test_empty_function_per_partition(iter):
@@ -477,7 +486,7 @@ def test_redis_connection_per_partition_ConnectionPool(iter):
 def process_new_user(iter):
 # function: add users into redis
     redis_connection = redis_handler().connection
-
+    
     for record in iter:
         possible_target_set = get_candidate_targets_with_redis(redis_connection,record)
 
@@ -498,7 +507,7 @@ def get_candidate_targets_with_redis(redis_connection,record,out_radius=OUTER_RA
 
 def process_returning_user(iter):
     redis_connection = redis_handler().connection
-
+    
     for record in iter:
         for target in redis_connection.smembers(record[0]+'_targets'): 
             target_position = redis_connection.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
@@ -514,7 +523,7 @@ def process_returning_user(iter):
 
 def process_returning_user_pipe(iter):
     redis_pipe = redis_handler().connection.pipeline()
-
+    
     for record in iter:
         redis_pipe.smembers(record[0]+'_targets')
 
@@ -547,7 +556,8 @@ def process_returning_user_pipe(iter):
         index = 0
         for target_coordinates in target_positions[index]:
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_coordinates[0]),lat_2=decimal.Decimal(target_coordinates[1]))
-            print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
+            #print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
+            
         index += 1
     return
 
