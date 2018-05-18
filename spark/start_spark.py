@@ -4,30 +4,6 @@
 # Here is the format of the data from kafka:
 #
 # [user_id; timestamp; longitude; latitude; int(just_logged_in)]
-# The "acc" column is the acceleration of the user.
-#
-# The main tasks of thise script is the following:
-#
-# 1. Receive streaming data from kafka as a Dstream object 
-# 2. Take the original Dstream, get only the latest GPS message of each user
-# 3. Does the user exist in the redis database? 
-# 3a If Not: fetch N target locations for the user and store them into the
-#    user database
-# 3b If Yes: next step
-# 4. Calculate the distance between the user and each of the user locations.
-# 5. Is this distance between the user and a target location less than Y meters?
-# 5a If Yes: add the 
-
-#
-# The parameters in streaming_config
-# streaming_config.KAFKA_TOPIC: name of kafka topic for upstream queue
-# streaming_config.KAFKA_DNS: public DNS and port for Kafka messages
-# streaming_config.REDIS_DNS: public DNS for Redis instance
-# streaming_config.REDIS_PORT: public port for Redis instance
-# streaming_config.REDIS_PASS: password for redis authentication
-# streaming_config.CASSANDRA_DNS: public DNS of cassandra seed
-# streaming_config.CASSANDRA_NAMESPACE: namespace for cassandra
-# were written in a separate "streaming-config.py".
 ############################################################
 
 import os
@@ -131,19 +107,6 @@ def get_distance(lon_1, lat_1, lon_2, lat_2): #inputs must be in degrees
     long_diff = (lon_2 - lon_1)*decimal.Decimal(math.cos(math.radians(lat_2)))
     distance = length_degree*decimal.Decimal(math.sqrt(lat_diff*lat_diff + long_diff*long_diff))
 
-    ''' Haversine formula
-    #first, convert to radians
-    lon_1 = math.radians(lon_1)
-    lon_2 = math.radians(lon_2)
-    lat_1 = math.radians(lat_1)
-    lat_2 = math.radians(lat_2)
-
-    lon_diff = lon_2 - lon_1
-    lat_diff = lat_2 - lat_1
-    a = (sin(lat_diff/2))**2 + cos(lat_1) * cos(lat_2) * (sin(lon_diff/2))**2
-    c = 2 * atan2(sqrt(a), sqrt(1-a))
-    distance = 6373.0 * c
-    '''
     return distance
 
 
@@ -154,7 +117,6 @@ def main():
     sc.setLogLevel("WARN")
     
     ssc = StreamingContext(sc, config.SPARK_MICROBATCH_DURATION)
-
     
     kafkaStream = KafkaUtils.createDirectStream(ssc, [config.KAFKA_TOPIC], {"metadata.broker.list": config.KAFKA_DNS}) \
                             .map(lambda message: message[1].split(';'))
@@ -182,28 +144,30 @@ def test_speeds(ssc):
     # because this is where it is run in the master node
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.saveAsTextFile('logs/'+str(float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f")))))
     #kafkaStream.foreachRDD(test_empty_function_per_rdd)
-    # Tests speeds of setting up a redis partition per partition
+    
+    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
     # need to run this function twice to get the effect of running foreachPartition on the new and returning users
     #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
 
     # Tests speeds of setting up a redis partition per iter, iterating through the partition
     # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_iter))
+    
 
     # Tests speeds of setting up a redis partition per partition with a new connection every partition, benchmark against empty function
     # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_StrictRedis))
 
     # Tests speeds of setting up a redis partition per partition with a connection pool, benchmark against empty function
-    #kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
+    # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
 
     # filters if the element 0 of the split message = 1 (if the just_logged_in boolean = 1)
     DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
-    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
-    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user))
+    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user))
 
     DStream_returning_users = kafkaStream.filter(lambda message : not int(message[4]))
-    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
-    #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user_pipe))
+    #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
+    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user))
 
 
     ssc.start()
@@ -253,8 +217,29 @@ def process_new_user(iter):
         possible_target_set = get_candidate_targets_with_redis(redis_connection,record)
 
         for i in range(NUM_LOC_PER_USER):
-            redis_connection.sadd(record[0]+'_targets',possible_target_set.pop()) 
+            redis_connection.sadd(record[0]+'_targets',possible_target_set.pop())
 
+    return
+
+def process_new_user_pipe(iter):
+    redis_pipe = redis_handler().connection.pipeline()
+
+    for record in iter:
+        redis_pipe.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=300, unit='m')
+
+    candidates = redis_pipe.execute()
+
+    i = 0
+    for record in iter:
+        candidate_set = set(candidates[i])
+        for i in range(NUM_LOC_PER_USER):
+            try:
+                redis_pipe.sadd(record[0]+'_targets',candidate_set.pop())
+            except KeyError:
+                pass
+        i += 1
+
+    redis_pipe.execute()
     return
 
 def get_candidate_targets_with_redis(redis_connection,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS,num_targets=NUM_LOC_PER_USER):
@@ -298,7 +283,11 @@ def process_returning_user_pipe(iter):
 
     for i_set in target_sets:
         set_copy = i_set.copy()
-        redis_pipe.geopos(config.REDIS_LOCATION_NAME,set_copy.pop(),set_copy.pop(),set_copy.pop())
+        try:
+            redis_pipe.geopos(config.REDIS_LOCATION_NAME,set_copy.pop(),set_copy.pop(),set_copy.pop())
+        except KeyError:
+            redis_pipe.geopos(config.REDIS_LOCATION_NAME,set_copy.pop())
+            pass
 
     target_positions = redis_pipe.execute()
     #target_positions output:
@@ -314,13 +303,34 @@ def process_returning_user_pipe(iter):
     #(-71.13669723272324, 42.353349097631614)]]
 
     #target_positions[index_member][index_target][longitude or latitude]
+    assignments_to_remove = [] # a list of tuples of (user_id, user_lon, user_lat, target)
     for record in iter:
         index = 0
         for target_coordinates in target_positions[index]:
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_coordinates[0]),lat_2=decimal.Decimal(target_coordinates[1]))
             #print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
-            
+            if target_distance <= SCORE_DIST:
+                assignments_to_remove.append((record[0], record[2], record[3], target))
+                
         index += 1
+
+    for assignment in assignments_to_remove:
+        redis_pipe.srem(assignment[0] + '_targets', assignment[3])
+
+    redis_pipe.execute()
+
+    for assignment in assignments_to_remove:
+        redis_pipe.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(assignment[1]), latitude=decimal.Decimal(assignment[2]), radius=300, unit='m')
+
+    new_candidates = redis_pipe.execute()
+
+    i = 0
+    for assignment in assignments_to_remove:
+        candidate_set = set(new_candidates[i])
+        redis_pipe.sadd(assignment[0]+'_targets',candidate_set.pop())
+        i += 1
+
+    redis_pipe.execute()
     return
 
 
