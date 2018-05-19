@@ -162,12 +162,12 @@ def test_speeds(ssc):
 
     # filters if the element 0 of the split message = 1 (if the just_logged_in boolean = 1)
     DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
-    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
-    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user))
-
+    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_and_iter))
+    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user_pipe))
+    
     DStream_returning_users = kafkaStream.filter(lambda message : not int(message[4]))
-    #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_empty_function_per_partition))
-    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user))
+    #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_and_iter))
+    DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_returning_user_pipe))
 
 
     ssc.start()
@@ -194,6 +194,7 @@ def test_empty_function_per_iter(iter):
 
             if 50 <= 10:
                 print('empty function')
+
     return
 
 def test_redis_connection_per_partition_StrictRedis(iter):
@@ -207,6 +208,19 @@ def test_redis_connection_per_partition_ConnectionPool(iter):
 
     #StrictRedis object automatically releases connection
     #http://redis-py.readthedocs.io/en/latest/_modules/redis/client.html#StrictRedis.execute_command
+    return
+
+def test_redis_connection_and_iter(iter):
+    redis_connection = redis_handler().connection
+    for record in iter:
+        if 0 < NUM_LOC_PER_USER: 
+            print('empty function')
+        
+        for target in range(NUM_LOC_PER_USER):
+            print('empty function')
+
+            if 50 <= 10:
+                print('empty function')
     return
 
 def process_new_user(iter):
@@ -308,7 +322,7 @@ def process_returning_user_pipe(iter):
         index = 0
         for target_coordinates in target_positions[index]:
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_coordinates[0]),lat_2=decimal.Decimal(target_coordinates[1]))
-            #print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
+            print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
             if target_distance <= SCORE_DIST:
                 assignments_to_remove.append((record[0], record[2], record[3], target))
                 
