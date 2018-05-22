@@ -20,8 +20,7 @@ from pyspark.sql.context import SQLContext
 from pyspark.sql.types import *
 from pyspark.sql import Row, SparkSession
 from pyspark.sql.window import Window
-from pyspark.sql.functions import *
-
+from pyspark.sql import functions as sqlf
 
 # Kafka
 from pyspark.streaming.kafka import KafkaUtils
@@ -237,23 +236,26 @@ def process_new_user(iter):
 
 def process_new_user_pipe(iter):
     redis_pipe = redis_handler().connection.pipeline()
-
+    new_users = []
     for record in iter:
-        redis_pipe.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=300, unit='m')
+        new_users.append(record[0])
+        redis_pipe.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=200, unit='m')
 
     candidates = redis_pipe.execute()
+    #print('num_users in candidates list:', len(candidates))
 
-    i = 0
-    for record in iter:
-        candidate_set = set(candidates[i])
-        for i in range(NUM_LOC_PER_USER):
-            try:
-                redis_pipe.sadd(record[0]+'_targets',candidate_set.pop())
-            except KeyError:
-                pass
-        i += 1
+    for user_index in range(len(candidates)):
+        #print('num_target_candidates for user:',new_users[user_index],':', len(candidates[user_index]))
+        #num_targets = min([len(candidates[user_index]),NUM_LOC_PER_USER])
+        num_targets = min([len(candidates[user_index]),NUM_LOC_PER_USER])
+        #print ('num_targets:', num_targets)
+        for target_index in range(num_targets): #range(min(len(candidates[user_index]),NUM_LOC_PER_USER))
+            #print ('adding user:', new_users[user_index],'target:',candidates[user_index][target_index])
+            redis_pipe.sadd(new_users[user_index]+'_targets',candidates[user_index][target_index])
 
     redis_pipe.execute()
+    del new_users
+    del candidates
     return
 
 def get_candidate_targets_with_redis(redis_connection,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS,num_targets=NUM_LOC_PER_USER):
@@ -284,8 +286,9 @@ def process_returning_user(iter):
 
 def process_returning_user_pipe(iter):
     redis_pipe = redis_handler().connection.pipeline()
-    
+    users = [] 
     for record in iter:
+        users.append([record[0],record[2],record[3]]) #username, lon, lat
         redis_pipe.smembers(record[0]+'_targets')
 
     target_sets = redis_pipe.execute()
@@ -295,54 +298,65 @@ def process_returning_user_pipe(iter):
     #{'bos3721', 'bos3875', 'bos3986'},
     #{'bos1319', 'bos1371', 'bos1400'}]
 
-    for i_set in target_sets:
-        set_copy = i_set.copy()
-        try:
-            redis_pipe.geopos(config.REDIS_LOCATION_NAME,set_copy.pop(),set_copy.pop(),set_copy.pop())
-        except KeyError:
-            redis_pipe.geopos(config.REDIS_LOCATION_NAME,set_copy.pop())
-            pass
+
+    #users will need a new column, for an array of targets
+    
+    for user_index in range(len(users)):
+        users[user_index].append([])
+        for target in target_sets[user_index]:
+            users[user_index][-1].append(target)
+            redis_pipe.geopos(config.REDIS_LOCATION_NAME,target)
 
     target_positions = redis_pipe.execute()
-    #target_positions output:
-    #type: list of list of tuples
-    #[[(-71.08641654253006, 42.350492466885036),
-    #(-71.08616441488266, 42.35092083476096),
-    #(-71.08790785074234, 42.35136948040617)],
-    #[(-71.07866495847702, 42.333152439433995),
-    #(-71.07868105173111, 42.33531202186176),
-    #(-71.07865422964096, 42.33414098068614)],
-    #[(-71.13807052373886, 42.3527204867841),
-    #(-71.13873571157455, 42.35300184083278),
-    #(-71.13669723272324, 42.353349097631614)]]
-
-    #target_positions[index_member][index_target][longitude or latitude]
-    assignments_to_remove = [] # a list of tuples of (user_id, user_lon, user_lat, target)
-    for record in iter:
-        index = 0
-        for target_coordinates in target_positions[index]:
-            target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_coordinates[0]),lat_2=decimal.Decimal(target_coordinates[1]))
-            print('lon:',target_coordinates[0],'lat:',target_coordinates[1],'dist',target_distance)
+    
+    assignments_to_remove = [] #this is a list of [user_index, target_index]
+    position_index = 0
+    for user_index in range(len(users)):
+        for target_index in range(len(users[user_index][3])): #length of 4th column of users table
+            target_distance = get_distance(lon_1=decimal.Decimal(users[user_index][1]),lat_1=decimal.Decimal(users[user_index][2]),lon_2=decimal.Decimal(target_positions[position_index][0][0]),lat_2=decimal.Decimal(target_positions[position_index][0][1]))
+            
             if target_distance <= SCORE_DIST:
-                assignments_to_remove.append((record[0], record[2], record[3], target))
-                
-        index += 1
+                assignments_to_remove.append((user_index,target_index))
+                redis_pipe.sadd('removed', users[user_index][3][target_index] + '_' + users[user_index][0] + '_' + str(target_distance))
+                redis_pipe.sadd(users[user_index][0] +'_solved',users[user_index][3][target_index])
 
-    for assignment in assignments_to_remove:
-        redis_pipe.srem(assignment[0] + '_targets', assignment[3])
+            position_index += 1
 
     redis_pipe.execute()
 
-    for assignment in assignments_to_remove:
-        redis_pipe.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(assignment[1]), latitude=decimal.Decimal(assignment[2]), radius=300, unit='m')
+    for assign_index in range(len(assignments_to_remove)):
+        user_index = assignments_to_remove[assign_index][0]
+        target_index = assignments_to_remove[assign_index][1]
+        redis_pipe.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(users[user_index][1]), latitude=decimal.Decimal(users[user_index][2]), radius=500, unit='m')
 
-    new_candidates = redis_pipe.execute()
+    candidates = redis_pipe.execute()
 
-    i = 0
-    for assignment in assignments_to_remove:
-        candidate_set = set(new_candidates[i])
-        redis_pipe.sadd(assignment[0]+'_targets',candidate_set.pop())
-        i += 1
+    for assign_index in range(len(assignments_to_remove)):
+        user_index = assignments_to_remove[assign_index][0]
+        redis_pipe.smembers(users[user_index][0] +'_solved')
+
+    solved = redis_pipe.execute()
+    
+    for assign_index in range(len(assignments_to_remove)):
+        user_index = assignments_to_remove[assign_index][0]
+        target_index = assignments_to_remove[assign_index][1]
+        
+        # remove old target
+        redis_pipe.srem(users[user_index][0]+'_targets',users[user_index][3][target_index])
+        
+        #add new target
+
+        candidates_set = set(candidates[assign_index])
+        solved_set = set(solved[assign_index])
+        current_set = set(users[user_index][3])
+
+        available_set = candidates_set - solved_set - current_set
+
+        users[user_index][3][target_index] = available_set.pop() 
+        redis_pipe.sadd(users[user_index][0]+'_targets',users[user_index][3][target_index])
+        
+        #record it
+        redis_pipe.sadd('added',users[user_index][3][target_index] + '_' + users[user_index][0])
 
     redis_pipe.execute()
     return
@@ -360,11 +374,5 @@ if __name__ == '__main__':
     
     test_speeds(ssc)
     #main()
-
-
-# ------------------ NOTES ----------------------------
-
-
-
 
 

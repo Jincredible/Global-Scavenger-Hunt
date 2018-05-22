@@ -27,20 +27,21 @@ if __name__ == "__main__":
 
     num_rows = config.PRODUCER_NUM_ROWS
     num_files= config.PRODUCER_NUM_FILES #number of files we're going to process
-
+    users = ['user999']
     df = pandas.DataFrame.from_csv('simulations/path0000999.csv',header=0,sep='/',index_col=None).head(num_rows)
-    df.columns = ['user0000999']
+    df.columns =  [users[0]]
     #print(df)
     for index in range(num_files):
     	#print('index:',index)
     	filename = input_path + '/' + 'path' + str("%07d" % (index,)) + '.csv'
         if os.path.isfile(filename):
             #print(filename,'file exists')
-        	username = 'user' + str("%07d" % (index,))
-        	df_i = pandas.DataFrame.from_csv(filename,header=0,sep='/',index_col=None)
-        	df_i.columns = [username]
-        	df = df.join(df_i)
-        	#print(username)
+            #username = 'user' + str("%07d" % (index,))
+            users.append('user' + str(index))
+            df_i = pandas.DataFrame.from_csv(filename,header=0,sep='/',index_col=None)
+            df_i.columns = [users[-1]]
+            df = df.join(df_i)
+            #print(username)
 
     #print('rows:',df.shape[0])
     #print('cols:',df.shape[1])
@@ -62,22 +63,22 @@ if __name__ == "__main__":
     #print df
 
     for column in df:
-    	row_i = 0
+        row_i = 0
         time.sleep(config.PRODUCER_SLEEP_TIME)
         #print('column:', column)
-    	for row in df[column]:
-            #print('row:',row_i)
+        for row in df[column]:
+            #print('row: ', row)
             #print('col:',column)
             #timestamp = datetime.now().strftime("%H%M%S%f")
             timestamp_s = float(datetime.now().strftime("%M"))*60 + float(datetime.now().strftime("%S.%f"))
             longitude = row.split(',')[0]
             latitude = row.split(',')[1]
-            user_id = filenames[row_i]
-            #message_to_send = str_fmt.format(user_id, timestamp, longitude, latitude, int(column==0))
-            message_to_send = str_fmt.format(user_id, timestamp_s, longitude, latitude, int(column==0))
-            #print(int(user_id[-6:]), message_to_send)
+            #user_id = filenames[row_i]
+            #message_to_send = str_fmt.format(users[row_i],, timestamp, longitude, latitude, int(column==0))
+            message_to_send = str_fmt.format(users[row_i], timestamp_s, longitude, latitude, int(column==0))
+            #print(users[row_i], message_to_send)
 
-            producer.send(topic=config.KAFKA_TOPIC,value=message_to_send,key=user_id[-6:].encode('utf-8'))
+            producer.send(topic=config.KAFKA_TOPIC,value=message_to_send,key=users[row_i].encode('utf-8'))
             row_i +=1
 
     end_time = float(datetime.now().strftime("%M"))*60 + float(datetime.now().strftime("%S.%f"))

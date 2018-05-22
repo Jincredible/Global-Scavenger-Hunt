@@ -45,11 +45,7 @@ def test_georadius(r,df_in):
 		target_set = r.georadius('Boston',row[0],row[1],100)
 	return
 
-if __name__ == "__main__":
-	fn_csv_Boston = 'POI_01.csv'
-	fn_csv_Cambridge = 'POI_02.csv'
-	#database_num = sys.argv[3] #moved this from being defined in the shell script to the global_config.py file
-
+def test1(fn_csv_Boston,fn_csv_Cambridge):
 	r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
 	if config.REDIS_RESET:
@@ -100,3 +96,39 @@ if __name__ == "__main__":
 	#print df_POI_01
 	#print df_POI_02
 	#add_to_redis(df_POI)
+
+def test2():
+	fn_csv_Boston = 'POI_01.csv'
+	fn_csv_Cambridge = 'POI_02.csv'
+
+	df_boston = dataframe_from_csv(fn_csv_Boston)
+	df_cam = dataframe_from_csv(fn_csv_Cambridge)
+
+	r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+
+	print 'fetching targets from sorted set using georadius: no piping'
+	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	for i in range(num_loops):
+		test_georadius(r,df_boston)
+		test_georadius(r,df_boston)
+	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	duration = time_end - time_start
+	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
+
+	print 'fetching targets from sorted set using georadius: with piping'
+	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	for i in range(num_loops):
+		test_georadius(r,df_boston)
+		test_georadius(r,df_boston)
+	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	duration = time_end - time_start
+	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
+
+if __name__ == "__main__":
+	
+	test2()
+	
