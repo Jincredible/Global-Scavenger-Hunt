@@ -117,7 +117,7 @@ def test2():
 	df_cam = dataframe_from_csv(fn_csv_Cambridge)
 
 	r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
-
+	num_loops=10
 	print 'fetching targets from sorted set using georadius: no piping'
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
