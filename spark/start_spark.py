@@ -142,7 +142,7 @@ def process_new_user_pipe(iter):
     candidates = redis_pipe.execute()
     #print('num_users in candidates list:', len(candidates))
     redis_pipe = redis_handler().connection.pipeline()
-    
+
     for user_index in range(len(candidates)):
         #print('num_target_candidates for user:',new_users[user_index],':', len(candidates[user_index]))
         #num_targets = min([len(candidates[user_index]),NUM_LOC_PER_USER])
@@ -270,9 +270,9 @@ def test_speeds(ssc):
     # kafkaStream.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_per_partition_ConnectionPool))
 
     # filters if the element 0 of the split message = 1 (if the just_logged_in boolean = 1)
-    DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
+    #DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
     #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_and_iter))
-    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user_pipe))
+    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user_pipe))
     
     DStream_returning_users = kafkaStream.filter(lambda message : not int(message[4]))
     #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_and_iter))
@@ -300,10 +300,18 @@ def test_process_returning_user_pipe(iter):
         num_targets = min([len(target_sets[user_index]),NUM_LOC_PER_USER])
 
         for target_index in range(num_targets):
-            users[user_index][-1].append(target_sets[user_index][target_index])
-            redis_pipe.geopos(config.REDIS_LOCATION_NAME,target)
+            target = target_sets[user_index].pop()
+            users[user_index][-1].append(target)
+            #redis_pipe.geopos(config.REDIS_LOCATION_NAME,target)
+            redis_pipe.hmget(target,'longitude','latitude')
 
     target_positions = redis_pipe.execute()
+    # result of target_positions using hmget
+    # ['-71.073419977183889', '42.380114660229978'],
+    # ['-71.03800525348619', '42.371386581176289'],
+    # ['-71.025670516818266', '42.374175193811212']]
+
+
     #for target in target_sets[user_index]
     #assignments_to_remove = [] #this is a list of [user_index, target_index]
     #position_index = 0
