@@ -29,7 +29,8 @@ def add_to_redis(r,df_in,str_in):
 	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
 		r.geoadd('Boston',row[0],row[1],str_in+str(index))
-
+		r.hset(str_in+str(index),'longitude',row[0])
+		r.hset(str_in+str(index),'latitude',row[1])
 	return
 
 
