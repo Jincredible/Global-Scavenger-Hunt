@@ -141,7 +141,8 @@ def process_new_user_pipe(iter):
 
     candidates = redis_pipe.execute()
     #print('num_users in candidates list:', len(candidates))
-
+    redis_pipe = redis_handler().connection.pipeline()
+    
     for user_index in range(len(candidates)):
         #print('num_target_candidates for user:',new_users[user_index],':', len(candidates[user_index]))
         #num_targets = min([len(candidates[user_index]),NUM_LOC_PER_USER])
@@ -271,7 +272,7 @@ def test_speeds(ssc):
     # filters if the element 0 of the split message = 1 (if the just_logged_in boolean = 1)
     DStream_new_users = kafkaStream.filter(lambda message : int(message[4]))
     #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_and_iter))
-    #DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user_pipe))
+    DStream_new_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(process_new_user_pipe))
     
     DStream_returning_users = kafkaStream.filter(lambda message : not int(message[4]))
     #DStream_returning_users.foreachRDD(lambda rdd : None if rdd.isEmpty() else rdd.foreachPartition(test_redis_connection_and_iter))
