@@ -134,7 +134,7 @@ def test2():
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
 		r_pipe = test_georadius_with_piping(r_pipe,df_boston)
-		r_pipe = test_georadius_with_piping(r_pipe,df_cambridge)
+		r_pipe = test_georadius_with_piping(r_pipe,df_cam)
 
 	candidates = r_pipe.execute()
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
@@ -148,7 +148,7 @@ def test2():
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
 		test_read(r,df_boston,'bos')
-		test_read(r,df_boston,'cam')
+		test_read(r,df_cam,'cam')
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 
 	duration = time_end - time_start
@@ -163,7 +163,7 @@ def test2():
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
 		r_pipe = test_read_with_piping(r_pipe,df_boston,'bos')
-		r_pipe = test_read_with_piping(r_pipe,df_boston,'cam')
+		r_pipe = test_read_with_piping(r_pipe,df_cam,'cam')
 
 	target_coordinates = r_pipe.execute()
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
