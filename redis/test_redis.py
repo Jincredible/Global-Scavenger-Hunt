@@ -39,11 +39,23 @@ def test_read(r,df_in,str_in):
 		position = r.geopos('Boston',str_in+str(index))
 	return
 
+def test_read_with_piping(r_pipe,df_in,str_in):
+	for index, row in df_in.iterrows():
+		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
+		r_pipe.geopos('Boston',str_in+str(index))
+	return r_pipe
+
 def test_georadius(r,df_in):
 	for index, row in df_in.iterrows():
 		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
 		target_set = r.georadius('Boston',row[0],row[1],100)
 	return
+
+def test_georadius_with_piping(r_pipe,df_in):
+	for index, row in df_in.iterrows():
+		#print("row[0]: ", str(row[0]), "row[1]: ", str(row[1]), "index: ", str(index))
+		r_pipe.georadius('Boston',row[0],row[1],100)
+	return r_pipe
 
 def test1(fn_csv_Boston,fn_csv_Cambridge):
 	r = redis.StrictRedis(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
@@ -110,7 +122,7 @@ def test2():
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
 		test_georadius(r,df_boston)
-		test_georadius(r,df_boston)
+		test_georadius(r,df_cam)
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
@@ -118,11 +130,44 @@ def test2():
 	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
 
 	print 'fetching targets from sorted set using georadius: with piping'
+	r_pipe = r.pipeline()
 	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
 	for i in range(num_loops):
-		test_georadius(r,df_boston)
-		test_georadius(r,df_boston)
+		r_pipe = test_georadius_with_piping(r_pipe,df_boston)
+		r_pipe = test_georadius_with_piping(r_pipe,df_cambridge)
+
+	candidates = r_pipe.execute()
 	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	duration = time_end - time_start
+	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
+
+	num_loops=10
+	print 'test reading geoposition from sorted set'
+	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	for i in range(num_loops):
+		test_read(r,df_boston,'bos')
+		test_read(r,df_boston,'cam')
+	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+
+	duration = time_end - time_start
+	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
+	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
+	print 'duration: ' + str(duration) + ' records: ' + str(num_records) + ' records/s ' + str(float(num_records)/duration)
+
+
+	num_loops=10
+	print 'test reading geoposition from sorted set with piping'
+	r_pipe = r.pipeline()
+	time_start = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+	for i in range(num_loops):
+		r_pipe = test_read_with_piping(r_pipe,df_boston,'bos')
+		r_pipe = test_read_with_piping(r_pipe,df_boston,'cam')
+
+	target_coordinates = r_pipe.execute()
+	time_end = float(datetime.now().strftime("%M"))*60+float(datetime.now().strftime("%S.%f"))
+
 	duration = time_end - time_start
 	num_records = (df_boston.shape[0] + df_cam.shape[0]) * num_loops
 	print 'time_start: ' + str(time_start) + ' time_end: ' + str(time_end)
