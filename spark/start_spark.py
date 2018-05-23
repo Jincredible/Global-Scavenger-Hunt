@@ -57,13 +57,14 @@ class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
+            print(datetime.now(),"================== CREATING NEW SINGLETON =============================")
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
 class redis_handler(object):
     __metaclass__ = Singleton
     def __init__(self):
-        #print(datetime.now(),"================== INSTANTIATING NEW REDIS HANDLER =============================")
+        
         self.pool = redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
 
     @property
@@ -292,8 +293,8 @@ def test_process_returning_user_pipe(iter):
         redis_pipe.smembers(record[0]+'_targets')
 
     target_sets = redis_pipe.execute()
-    redis_pipe = redis_handler().connection.pipeline()
-    #users will need a new column, for an array of targets
+
+    redis_pipe = redis_handler().connection.pipeline() #redis-py closes the connection after each execute statement
     
     for user_index in range(len(users)):
         users[user_index].append([])
@@ -302,7 +303,6 @@ def test_process_returning_user_pipe(iter):
         for target_index in range(num_targets):
             target = target_sets[user_index].pop()
             users[user_index][-1].append(target)
-            #redis_pipe.geopos(config.REDIS_LOCATION_NAME,target)
             redis_pipe.hmget(target,'longitude','latitude')
 
     target_positions = redis_pipe.execute()
