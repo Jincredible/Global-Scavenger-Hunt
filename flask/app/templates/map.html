@@ -69,12 +69,12 @@
 				});
 
 				target_marker.addListener('click', function() {
-					var original_map_position = map.getZoom();
-					map.setZoom(14);
-					map.setCenter(target_marker.getPosition());
+					//var original_map_position = map.getZoom();
+					//map.setZoom(14);
+					//map.setCenter(target_marker.getPosition());
 					target_infowindow.open(target_marker.get('map'), target_marker);
 					window.setTimeout(function() {
-						map.setZoom(original_map_position);
+						//map.setZoom(original_map_position);
 						if (target_infowindow){
 							target_infowindow.close();
 						}
@@ -123,12 +123,12 @@
 				});
 
 				player_marker.addListener('click', function() {
-					var original_map_position = map.getZoom();
-					map.setZoom(18);
-					map.setCenter(player_marker.getPosition());
+					//var original_map_position = map.getZoom();
+					//map.setZoom(18);
+					//map.setCenter(player_marker.getPosition());
 					player_infowindow.open(player_marker.get('map'), player_marker);
 					window.setTimeout(function() {
-						map.setZoom(original_map_position);
+						//map.setZoom(original_map_position);
 						if (player_infowindow){
 							player_infowindow.close();
 						}

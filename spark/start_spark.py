@@ -42,17 +42,6 @@ from cassandra import ConsistencyLevel
 import global_config as config
 
 
-# Global variables
-#REDIS_DATABASE = 7 #7 is for testing, 0 is for production #moved to config file
-NUM_LOC_PER_USER = 3 #This is the number of target locations for each user at each time
-MIN_LOC_PER_USER = 1 # this is in case there aren't enough target locations within the MAX_OUTER_RADIUS
-OUTER_RADIUS = 150 #in meters, this is the outer bound distance to fetch target location
-MAX_OUTER_RADIUS = 2000 #in meters, this is the maximum distance to fetch targets
-INNER_RADIUS = 50 #in meters, this is the inner bound distance to fetch target location
-SCORE_DIST = 10 #in meters, distance a player must be to score the point
-#REDIS_LOCATION_NAME='Boston' #moved to config file
-#NUM_PARTITIONS = 18 #No longer needed, spark automates this
-
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
@@ -81,16 +70,14 @@ class redis_handler(object):
         self._connection = redis.Redis(connection_pool = self.pool)
 
 
-# getSqlContextInstance From Spark Streaming Tutorial -----------------------------------------
-# http://spark.apache.org/docs/1.3.0/streaming-programming-guide.html#dataframe-and-sql-operations
-# Lazily instantiated global instance of SQLContext
+def get_redis_connection():
+    if ('redis_connection' not in globals()):
+        print(datetime.now(),"================== SETTING CONNECTION =============================")
+        pool = redis.ConnectionPool(host=config.REDIS_DNS, port=config.REDIS_PORT, db=config.REDIS_DATABASE, password=config.REDIS_PASS)
+        globals()['redis_connection'] = redis.StrictRedis(connection_pool = pool)
+    return globals()['redis_connection']
 
-def getSqlContextInstance(sparkContext):
-    if ('sqlContextSingletonInstance' not in globals()):
-        globals()['sqlContextSingletonInstance'] = SQLContext(sparkContext)
-    return globals()['sqlContextSingletonInstance']
 
-# --------------------------------------------------------------------------------------------
 
 def get_distance(lon_1, lat_1, lon_2, lat_2): #inputs must be in degrees
     
@@ -146,10 +133,10 @@ def process_new_user_pipe(iter):
 
     for user_index in range(len(candidates)):
         #print('num_target_candidates for user:',new_users[user_index],':', len(candidates[user_index]))
-        #num_targets = min([len(candidates[user_index]),NUM_LOC_PER_USER])
-        num_targets = min([len(candidates[user_index]),NUM_LOC_PER_USER])
+        #num_targets = min([len(candidates[user_index]),config.NUM_LOC_PER_USER])
+        num_targets = min([len(candidates[user_index]),config.NUM_LOC_PER_USER])
         #print ('num_targets:', num_targets)
-        for target_index in range(num_targets): #range(min(len(candidates[user_index]),NUM_LOC_PER_USER))
+        for target_index in range(num_targets): #range(min(len(candidates[user_index]),config.NUM_LOC_PER_USER))
             #print ('adding user:', new_users[user_index],'target:',candidates[user_index][target_index])
             redis_pipe.sadd(new_users[user_index]+'_targets',candidates[user_index][target_index])
 
@@ -191,7 +178,7 @@ def process_returning_user_pipe(iter):
         for target_index in range(len(users[user_index][3])): #length of 4th column of users table
             target_distance = get_distance(lon_1=decimal.Decimal(users[user_index][1]),lat_1=decimal.Decimal(users[user_index][2]),lon_2=decimal.Decimal(target_positions[position_index][0][0]),lat_2=decimal.Decimal(target_positions[position_index][0][1]))
             
-            if target_distance <= SCORE_DIST:
+            if target_distance <= config.SCORE_DIST:
                 assignments_to_remove.append((user_index,target_index))
                 redis_pipe.sadd('removed', users[user_index][3][target_index] + '_' + users[user_index][0] + '_' + str(target_distance))
                 redis_pipe.sadd(users[user_index][0] +'_solved',users[user_index][3][target_index])
@@ -287,6 +274,8 @@ def test_speeds(ssc):
 
 def test_process_returning_user_pipe(iter):
     redis_pipe = redis_handler().connection.pipeline()
+    #redis_pipe = get_redis_connection().pipeline()
+
     users = [] 
     for record in iter:
         users.append([record[0],record[2],record[3]]) #username, lon, lat
@@ -294,11 +283,13 @@ def test_process_returning_user_pipe(iter):
 
     target_sets = redis_pipe.execute()
 
-    redis_pipe = redis_handler().connection.pipeline() #redis-py closes the connection after each execute statement
+    #redis-py closes the connection after each execute statement
+    redis_pipe = redis_handler().connection.pipeline() 
+    #redis_pipe = get_redis_connection().pipeline()
     
     for user_index in range(len(users)):
         users[user_index].append([])
-        num_targets = min([len(target_sets[user_index]),NUM_LOC_PER_USER])
+        num_targets = min([len(target_sets[user_index]),config.NUM_LOC_PER_USER])
 
         for target_index in range(num_targets):
             target = target_sets[user_index].pop()
@@ -319,7 +310,7 @@ def test_process_returning_user_pipe(iter):
     #    for target_index in range(len(users[user_index][3])): #length of 4th column of users table
     #        target_distance = get_distance(lon_1=decimal.Decimal(users[user_index][1]),lat_1=decimal.Decimal(users[user_index][2]),lon_2=decimal.Decimal(target_positions[position_index][0][0]),lat_2=decimal.Decimal(target_positions[position_index][0][1]))
             
-            #if target_distance <= SCORE_DIST:
+            #if target_distance <= config.SCORE_DIST:
             #    assignments_to_remove.append((user_index,target_index))
             #    redis_pipe.sadd('removed', users[user_index][3][target_index] + '_' + users[user_index][0] + '_' + str(target_distance))
             #    redis_pipe.sadd(users[user_index][0] +'_solved',users[user_index][3][target_index])
@@ -337,7 +328,7 @@ def process_returning_user(iter):
             target_position = redis_connection.geopos(config.REDIS_LOCATION_NAME,target)[0] #geopos returns a list of tuples: [(longitude,latitude)], so to get the tuple out of the list, use [0]
             target_distance = get_distance(lon_1=decimal.Decimal(record[2]),lat_1=decimal.Decimal(record[3]),lon_2=decimal.Decimal(target_position[0]),lat_2=decimal.Decimal(target_position[1]))
             
-            #if target_distance <=SCORE_DIST:
+            #if target_distance <=config.SCORE_DIST:
                 #POP target
             #    redis_connection.srem(record[0]+'_targets',target) #EDITED THIS FOR TESTING!! Need to revert later
             #    populate_user_targets_with_redis(redis_connection,record) #EDITED THIS FOR TESTING!! Need to revert later
@@ -345,12 +336,12 @@ def process_returning_user(iter):
     return
 
 
-def get_candidate_targets_with_redis(redis_connection,record,out_radius=OUTER_RADIUS,in_radius=INNER_RADIUS,num_targets=NUM_LOC_PER_USER):
+def get_candidate_targets_with_redis(redis_connection,record,out_radius=config.OUTER_RADIUS,in_radius=config.INNER_RADIUS,num_targets=config.NUM_LOC_PER_USER):
     set_outer = set(redis_connection.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=out_radius, unit='m'))
     set_inner = set(redis_connection.georadius(name=config.REDIS_LOCATION_NAME, longitude=decimal.Decimal(record[2]), latitude=decimal.Decimal(record[3]), radius=in_radius, unit='m'))
     #also, implement add another set of 'SOLVED' targets for this particular user
     set_targets = set_outer - set_inner
-    if (len(set_targets) < num_targets): #and (out_radius <= MAX_OUTER_RADIUS)
+    if (len(set_targets) < num_targets): #and (out_radius <= config.MAX_OUTER_RADIUS)
         return get_candidate_targets_with_redis(redis_connection,record,out_radius+100, in_radius)
     else:
         return set_targets
@@ -372,10 +363,10 @@ def test_redis_connection_per_partition_ConnectionPool(iter):
 def test_redis_connection_and_iter(iter):
     redis_connection = redis_handler().connection
     for record in iter:
-        if 0 < NUM_LOC_PER_USER: 
+        if 0 < config.NUM_LOC_PER_USER: 
             print('empty function')
         
-        for target in range(NUM_LOC_PER_USER):
+        for target in range(config.NUM_LOC_PER_USER):
             print('empty function')
 
             if 50 <= 10:
@@ -389,7 +380,7 @@ def process_new_user(iter):
     for record in iter:
         possible_target_set = get_candidate_targets_with_redis(redis_connection,record)
 
-        for i in range(NUM_LOC_PER_USER):
+        for i in range(config.NUM_LOC_PER_USER):
             redis_connection.sadd(record[0]+'_targets',possible_target_set.pop())
 
     return
@@ -406,10 +397,10 @@ def test_empty_function_per_partition(iter):
 def test_empty_function_per_iter(iter):
 # function: to test establishing redis connections per partition, iterating through all of the records
     for record in iter:
-        if 0 < NUM_LOC_PER_USER: 
+        if 0 < config.NUM_LOC_PER_USER: 
             print('empty function')
         
-        for target in range(NUM_LOC_PER_USER):
+        for target in range(config.NUM_LOC_PER_USER):
             print('empty function')
 
             if 50 <= 10:
