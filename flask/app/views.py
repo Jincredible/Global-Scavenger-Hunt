@@ -103,8 +103,8 @@ def mapview():
 					  			 			"lng": val.longitude})
     return render_template('map_example.html',user_location_output=user_location_output,user_id_output=user_id_output)
 
-@app.route('/user_example')
-def map_user():
+@app.route('/user')
+def user_example():
 	username = 'user0000071'
 
 	querystatement_select_user_location = "SELECT * FROM user_location WHERE user_id=%s ORDER BY timestamp_produced DESC LIMIT 300"
