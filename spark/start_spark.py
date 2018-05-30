@@ -175,7 +175,9 @@ def process_returning_user_pipe(iter):
     assignments_to_remove = [] #this is a list of [user_index, target_index]
     position_index = 0
     for user_index in range(len(users)):
-        for target_index in range(len(users[user_index][3])): #length of 4th column of users table
+
+        num_targets = min([len(users[user_index][3]),config.NUM_LOC_PER_USER])
+        for target_index in range(num_targets): 
             target_distance = get_distance(lon_1=decimal.Decimal(users[user_index][1]),lat_1=decimal.Decimal(users[user_index][2]),lon_2=decimal.Decimal(target_positions[position_index][0][0]),lat_2=decimal.Decimal(target_positions[position_index][0][1]))
             
             if target_distance <= config.SCORE_DIST:
